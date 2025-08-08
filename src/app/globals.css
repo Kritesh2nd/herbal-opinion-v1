@@ -10,6 +10,21 @@
   --color-primary: #145f48;
   --color-secondary: #f7c914;
   --color-tertiary: #e5ea98;
+
+  --color-farm-green: #145f48;
+  --color-lettuce: #2ba149;
+  --color-lemon-green: #aed141;
+  --color-llight-green: #f1f4c7;
+  --color-light-green: #e5ea98;
+  --color-lemon: #f7c914;
+  --color-pumpkin: #f5933c;
+  --color-chilly-paper: #bc2141;
+  --color-beetroot: #8e4175;
+
+  --color-primary-black: #1f1c1e;
+  --color-primary-white: #ffffff;
+  --color-primary-lgray: #cfccce;
+  --color-primary-dgray: #625b5f;
 }
 
 @font-face {
