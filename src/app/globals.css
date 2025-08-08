@@ -6,9 +6,10 @@
   }
 }
 
-@theme{
-  --color-primary: #145F48;
-  --color-secondary: #F7C914;
+@theme {
+  --color-primary: #145f48;
+  --color-secondary: #f7c914;
+  --color-tertiary: #e5ea98;
 }
 
 @font-face {
@@ -27,5 +28,6 @@
 
 :root {
   font-family: "Maison_Neue_font";
+
   line-height: 1.3;
 }
