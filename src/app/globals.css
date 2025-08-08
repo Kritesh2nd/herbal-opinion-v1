@@ -13,12 +13,12 @@
 
 @font-face {
   font-family: "GooperFont";
-  src: url("/fonts/gooper-black.ttf") format("truetype");
+  src: url("/fonts/gooper-semi-condensed-regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Maison_Neue_font";
-  src: url("/fonts/fonnts.com-Maison_Neue_Mono.ttf") format("truetype");
+  src: url("/fonts/fonnts.com-Maison_Neue_Book.ttf") format("truetype");
 }
 
 .gooper {
@@ -27,4 +27,5 @@
 
 :root {
   font-family: "Maison_Neue_font";
+  line-height: 1.3;
 }
