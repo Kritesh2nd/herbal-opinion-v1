@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+@layer components {
+  .globalContainer {
+    @apply max-w-[1350px] mx-auto px-5 md:px-8 lg:px-8;
+  }
+}
+
+@theme{
+  --color-primary: #145F48;
+  --color-secondary: #F7C914;
+}
+
+@font-face {
+  font-family: "GooperFont";
+  src: url("/fonts/gooper-black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Maison_Neue_font";
+  src: url("/fonts/fonnts.com-Maison_Neue_Mono.ttf") format("truetype");
+}
+
+.gooper {
+  font-family: "GooperFont";
+}
+
+:root {
+  font-family: "Maison_Neue_font";
+}
