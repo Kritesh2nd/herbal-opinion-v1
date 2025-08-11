@@ -1,49 +1,43 @@
 import React from "react";
-import image1 from "../../../../public/img/about/image1.png";
-import image2 from "../../../../public/img/about/image2.png";
-import image3 from "../../../../public/img/about/image3.png";
-import image4 from "../../../../public/img/about/image4.png";
-import image5 from "../../../../public/img/about/image5.png";
-import image6 from "../../../../public/img/about/image6.png";
-import image7 from "../../../../public/img/about/image7.png";
-import image8 from "../../../../public/img/about/image8.png";
-import icon1 from "../../../../public/img/about/icon1.png";
-import icon2 from "../../../../public/img/about/icon2.png";
-import icon3 from "../../../../public/img/about/icon3.png";
-import icon4 from "../../../../public/img/about/icon4.png";
-import icon5 from "../../../../public/img/about/icon5.png";
-import icon6 from "../../../../public/img/about/icon6.png";
-import icon7 from "../../../../public/img/about/icon7.png";
-import icon8 from "../../../../public/img/about/icon8.png";
 import Image from "next/image";
 import Link from "next/link";
+import WhyHerbal from "@/src/components/WhyHerbal";
+import {
+  FaDoorOpen,
+  FaHeart,
+  FaLightbulb,
+  FaQuoteLeft,
+  FaRegHandshake,
+  FaSeedling,
+} from "react-icons/fa";
+import { FaUserDoctor } from "react-icons/fa6";
 
 const page = () => {
   const ourJourney = [
     {
       id: 1,
-      icon: icon1,
+      icon: <FaSeedling />,
       title: "Founded in 2025",
       description:
         "Started by a group of Australian citizens passionate about natural alternatives.",
     },
     {
       id: 2,
-      icon: icon2,
+      icon: <FaLightbulb />,
       title: "Inspired by Need",
       description:
         "Recognized the gap in accessible, natural support for those with ongoing conditions.",
     },
     {
       id: 3,
-      icon: icon3,
+      icon: <FaUserDoctor />,
       title: "Professional Partners",
       description:
         "Partnered with experienced healthcare professionals to ensure safety and efficacy.",
     },
     {
       id: 4,
-      icon: icon4,
+      icon: <FaHeart />,
       title: "Focused Mission",
       description:
         "Dedicated to helping seniors and individuals with long-term conditions find relief naturally.",
@@ -53,26 +47,27 @@ const page = () => {
   const resilience = [
     {
       id: 1,
-      icon: icon7,
+      icon: <FaDoorOpen />,
       title: "Accessibility",
       description:
         "Making natural wellness solutions available to everyone, regardless of location or circumstance.",
     },
     {
       id: 2,
-      icon: icon8,
+      icon: <FaRegHandshake />,
       title: "Integrity",
       description:
         "Providing honest, transparent recommendations based on what's truly best for each individual.",
     },
     {
       id: 3,
-      icon: icon1,
+      icon: <FaSeedling />,
       title: "Long-Term Wellbeing",
       description:
         "Supporting sustainable health practices that improve quality of life for years to come.",
     },
   ];
+
   return (
     <div>
       {/* section 1 */}
@@ -86,7 +81,9 @@ const page = () => {
           <div className="flex  flex-col md:flex-row gap-5">
             <div className="w-full md:w-1/3  md:pt-5 ">
               <Image
-                src={image1}
+                src="/img/about/image1.png"
+                width={500}
+                height={500}
                 className="rounded-lg w-full"
                 alt="old couple"
               />
@@ -98,7 +95,9 @@ const page = () => {
               </div>
               <div>
                 <Image
-                  src={image2}
+                  src="/img/about/image2.png"
+                  width={500}
+                  height={500}
                   className=" rounded-lg w-full"
                   alt="old couple"
                 />
@@ -106,7 +105,9 @@ const page = () => {
             </div>
             <div className="w-full md:w-1/3 md:pt-5  ">
               <Image
-                src={image3}
+                src="/img/about/image3.png"
+                width={500}
+                height={500}
                 className=" rounded-lg w-full"
                 alt="old couple"
               />
@@ -129,12 +130,10 @@ const page = () => {
             {ourJourney.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col  rounded-xl bg-light-green p-6 shadow-[0_2px_4px_rgba(0,0,0,0.10)]"
+                className="flex flex-col  rounded-xl bg-[#F1F4C7] p-6 shadow-[0_2px_4px_rgba(0,0,0,0.10)]"
               >
-                <div className="pb-4">
-                  <Image src={item.icon} alt={item.title} />
-                </div>
-                <div className="text-xl pb-3">{item.title}</div>
+                <div className="p-4 bg-primary w-fit rounded-[100px] text-white text-2xl">{item.icon}</div>
+                <div className="text-xl py-4">{item.title}</div>
                 <div className="text-primary-dgray">{item.description}</div>
               </div>
             ))}
@@ -145,7 +144,13 @@ const page = () => {
       <section className="bg-light-green pt-[70px] pb-[86px]">
         <div className="globalContainer flex gap-12  ">
           <div className="flex-1 min-w-0 ">
-            <Image src={image4} className="h-full w-full" alt="doctor" />
+            <Image
+              src="/img/about/image4.png"
+              width={500}
+              height={500}
+              className="h-full w-full"
+              alt="doctor"
+            />
           </div>
           <div className="flex flex-col flex-1 min-w-0 ">
             <div className="text-[39px] text-farm-green gooper pb-10">
@@ -153,12 +158,12 @@ const page = () => {
             </div>
             <div className="text-xl pb-5">
               <p>
-                Herbal Opinion is a specialised online clinic dedicated to
+                {`Herbal Opinion is a specialised online clinic dedicated to
                 delivering accessible, high-quality healthcare to patients
                 across Australia. We harness the power of digital health
                 technologies to seamlessly connect patients with experienced
                 healthcare professionals, offering personalised treatment plans
-                tailored to individual needs.
+                tailored to individual needs.`}
               </p>
               <br />
               <p>
@@ -190,73 +195,8 @@ const page = () => {
       </section>
       {/* section 4 */}
       <section>
-        <div className="globalContainer ">
-          <div className="flex flex-col py-[70px] px-[100px] ">
-            <div className="text-center text-lettuce gooper text-[39px]  pb-[64px]">
-              Why Herbal Opinion?
-            </div>
-            <div className="flex gap-5">
-              <div className="flex flex-col flex-1 min-w-0  rounded-sm px-6 pt-6 bg-llight-green">
-                <div className="flex gap-4 pb-4">
-                  <div>
-                    <Image src={icon1} alt="icon1" />
-                  </div>
-                  <div className="flex items-center text-[25px] text-farm-green -mb-2">
-                    Natural Solutions
-                  </div>
-                </div>
-                <div className="text-xl">
-                  We focus on plant-based alternatives that work with your body
-                  naturally.
-                </div>
-                <div className="flex justify-end">
-                  <Image src={image5} className="-mr-6 -mr-b-6" alt="image5" />
-                </div>
-              </div>
-              <div className="flex flex-col flex-1 min-w-0 gap-5 ">
-                <div className="flex flex-1 bg-llight-green p-6 rounded-sm">
-                  <div className="w-[200px]">
-                    <Image src={image6} className="w-full" alt="image6" />
-                  </div>
-                  <div>
-                    <div className="flex pb-4 gap-4 ">
-                      <div>
-                        <Image src={icon5} alt="icon5" />
-                      </div>
-                      <div className="flex items-center text-[25px] text-farm-green -mb-2">
-                        Doctor Approved
-                      </div>
-                    </div>
-                    <div className="text-xl">
-                      All our recommendations are reviewed by qualified
-                      healthcare professionals.
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-1 bg-llight-green p-6 rounded-sm gap-3">
-                  <div>
-                    <div className="flex pb-4 gap-4 ">
-                      <div>
-                        <Image src={icon6} alt="icon6" />
-                      </div>
-                      <div className="flex items-center text-[25px] text-farm-green -mb-2">
-                        Discreet & Simple
-                      </div>
-                    </div>
-                    <div className="text-xl">
-                      Our process is easy to navigate with privacy as our
-                      priority.
-                    </div>
-                  </div>
-                  <div className="w-[200px]">
-                    <Image src={image7} className="w-full" alt="image7" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>{" "}
+        <WhyHerbal color={"#E5EA988C"} />
+      </section>
       {/* section 4 */}
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col gap-[64px] py-[70px]">
@@ -264,7 +204,9 @@ const page = () => {
             <div className="bg-farm-green w-full rounded-lg pl-2 shadow-[0_4px_6px_rgba(0,0,0,0.10)]">
               <div className="flex flex-col items-center gap-6 bg-white rounded-lg py-[40px] px-[48px]">
                 <div className="flex justify-center">
-                  <Image src={image8} alt="image8" />
+                  <div className="text-[#F5933C] text-3xl">
+                    <FaQuoteLeft />
+                  </div>
                 </div>
                 <div className="text-[39px] gooper text-farm-green text-center">
                   We imagine a world where safe, natural
@@ -285,9 +227,7 @@ const page = () => {
                 key={item.id}
                 className="flex flex-col flex-1 min-w-0 p-[32px] bg-white rounded-xl text-center"
               >
-                <div className="flex justify-center pb-6">
-                  <Image src={item.icon} alt={item.title} />
-                </div>
+                <div className="flex justify-center pb-6">{item.icon}</div>
                 <div className="pb-4 text-xl text-farm-green">{item.title}</div>
                 <div className="text-primary-dgray">{item.description}</div>
               </div>
