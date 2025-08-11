@@ -128,7 +128,7 @@ export const testimonials: Testimonial[] = [
     title: "12 years old",
     content:
       "The doctor was so patient with all my questions. I appreciate finding a service that treats seniors with respect and offers natural alternatives.",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/img/testimonial/1.jpg",
     rating: 5,
   },
   {
@@ -137,7 +137,7 @@ export const testimonials: Testimonial[] = [
     title: "Wellness Coach",
     content:
       "Amazing service! The personalized approach and natural remedies have made such a difference in my health journey. Highly recommend!",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/img/testimonial/2.jpg",
     rating: 5,
   },
   {
@@ -146,7 +146,7 @@ export const testimonials: Testimonial[] = [
     title: "Retired Teacher",
     content:
       "I was skeptical at first, but the results speak for themselves. The team is knowledgeable and truly cares about their patients.",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/img/testimonial/1.jpg",
     rating: 5,
   },
   {
@@ -155,7 +155,7 @@ export const testimonials: Testimonial[] = [
     title: "Yoga Instructor",
     content:
       "The holistic approach aligns perfectly with my lifestyle. Professional, caring, and effective - everything I was looking for.",
-    image: "/placeholder.svg?height=80&width=80",
+    image: "/img/testimonial/2.jpg",
     rating: 5,
   },
 ]
