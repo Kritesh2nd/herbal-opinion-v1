@@ -1,4 +1,10 @@
-import { ConsultationPlan, NavItemIn, StepProps, Testimonial, TherapyItem,  } from "../types";
+import {
+  ConsultationPlan,
+  NavItemIn,
+  StepProps,
+  Testimonial,
+  TherapyItem,
+} from "../types";
 
 export const NavData: NavItemIn[] = [
   {
@@ -7,22 +13,21 @@ export const NavData: NavItemIn[] = [
   },
   {
     name: "How It Works",
-    url: "/",
+    url: "/how-it-works",
   },
   {
     name: "Pricing",
-    url: "/",
+    url: "/pricing",
   },
   {
     name: "Switch Clinic",
-    url: "/",
+    url: "/switch-clinic",
   },
   {
     name: "Contact",
-    url: "/",
+    url: "/contact",
   },
 ];
-
 
 export const therapyItems: TherapyItem[] = [
   {
@@ -61,17 +66,20 @@ export const steps: StepProps[] = [
   {
     number: 1,
     title: "Answer 5 Quick Questions",
-    description: "Tell us about your needs with our simple questionnaire designed for ease of use.",
+    description:
+      "Tell us about your needs with our simple questionnaire designed for ease of use.",
   },
   {
     number: 2,
     title: "Get a Recommendation",
-    description: "Receive personalized natural solutions based on your specific needs.",
+    description:
+      "Receive personalized natural solutions based on your specific needs.",
   },
   {
     number: 3,
     title: "Receive Your Prescription",
-    description: "Your natural prescription is delivered discreetly to your door.",
+    description:
+      "Your natural prescription is delivered discreetly to your door.",
   },
 ];
 
@@ -79,7 +87,8 @@ export const CONSULTATION_PLANS: ConsultationPlan[] = [
   {
     id: "initial",
     title: "Initial Consultation",
-    description: "Personalized care from doctor reviewed your tailored to your needs.",
+    description:
+      "Personalized care from doctor reviewed your tailored to your needs.",
     originalPrice: 79,
     currentPrice: 29,
     bgColor: "light-green",
@@ -93,7 +102,8 @@ export const CONSULTATION_PLANS: ConsultationPlan[] = [
   {
     id: "followup",
     title: "Follow Up Consultation",
-    description: "Ongoing support to keep your wellness journey on track with expert guidance.",
+    description:
+      "Ongoing support to keep your wellness journey on track with expert guidance.",
     originalPrice: 69,
     currentPrice: 19,
     bgColor: "Primary-green",
@@ -108,7 +118,8 @@ export const CONSULTATION_PLANS: ConsultationPlan[] = [
   {
     id: "switching",
     title: "Switching Clinic",
-    description: "Seamless transition, we make it easy to switch your care to herbal options.",
+    description:
+      "Seamless transition, we make it easy to switch your care to herbal options.",
     currentPrice: "FREE",
     isFree: true,
     bgColor: "light-green",
@@ -119,7 +130,7 @@ export const CONSULTATION_PLANS: ConsultationPlan[] = [
       "Guided by our care team",
     ],
   },
-]
+];
 
 export const testimonials: Testimonial[] = [
   {
@@ -158,4 +169,4 @@ export const testimonials: Testimonial[] = [
     image: "/img/testimonial/2.jpg",
     rating: 5,
   },
-]
+];

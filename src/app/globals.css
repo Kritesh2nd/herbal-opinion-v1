@@ -4,6 +4,9 @@
   .globalContainer {
     @apply max-w-[1360px] mx-auto px-5 md:px-8 lg:px-8;
   }
+  .inputStyle {
+    @apply mt-2 mb-5 w-full border border-gray-300 rounded-2xl py-3 px-4;
+  }
 }
 
 @theme {
@@ -45,4 +48,3 @@
   font-family: "Maison_Neue_font";
 
   line-height: 1.3;
-}
