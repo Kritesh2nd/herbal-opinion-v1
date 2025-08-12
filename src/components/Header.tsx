@@ -47,7 +47,6 @@ export default function Header() {
               <p className="mt-1">Get Started</p>
             </Link>
           </div>
-
         </div>
       </div>
     </header>
