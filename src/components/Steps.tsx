@@ -9,18 +9,18 @@ const Steps = ({ item }: { item: JourneyStep }) => {
     <div className="">
       <div className="flex  gap-5">
         <div className="sm:hidden ">
-          <div className="flex flex-col h-full min-w-0 flex-1 gooper items-center  ">
+          <section className="flex flex-col h-full min-w-0 flex-1 gooper items-center  ">
             <div className="text-[25px] text-primary-dgray">STEP</div>
             <div className="text-[31px] text-[#1F1C1E] pb-2">{item.id}</div>
             <div className="flex-1 border-1 border-dashed border-l-primary-dgray "></div>
-          </div>
+          </section>
         </div>
         <div
           className={`${
             parseInt(item.id) % 2 == 0 ? "sm:flex-row-reverse" : "sm:flex-row"
           } flex flex-col w-full pt-9 sm:pt-0`}
         >
-          <div className="flex justify-center min-w-0 flex-4  pb-5 sm:pb-0">
+          <section className="flex justify-center min-w-0 flex-4  pb-5 sm:pb-0">
             <div
               className={`${
                 parseInt(item.id) % 2 == 0
@@ -43,13 +43,13 @@ const Steps = ({ item }: { item: JourneyStep }) => {
                 </div>
               )}
             </div>
-          </div>
-          <div className="sm:flex hidden flex-col min-w-0 flex-1 gooper items-center  ">
+          </section>
+          <section className="sm:flex hidden flex-col min-w-0 flex-1 gooper items-center  ">
             <div className="text-[31px] text-primary-dgray">STEP</div>
             <div className="text-[39px] text-[#1F1C1E] pb-2">{item.id}</div>
             <div className="flex-1 border-1 border-dashed border-l-primary-dgray "></div>
-          </div>
-          <div className="flex min-w-0 flex-4 pb-10  ">
+          </section>
+          <section className="flex min-w-0 flex-4 pb-10  ">
             <div
               className={`${
                 parseInt(item.id) % 2 == 0
@@ -66,7 +66,7 @@ const Steps = ({ item }: { item: JourneyStep }) => {
                 />
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>

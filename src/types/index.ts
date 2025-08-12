@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface NavItemIn {
   name: string;
   url: string;
@@ -44,4 +46,11 @@ export interface JourneyStep {
   image: string;
   style: string;
   extra: string;
+}
+
+export interface ContactDetailType {
+  id: number;
+  icon: ReactNode;
+  title: string;
+  description: string;
 }
