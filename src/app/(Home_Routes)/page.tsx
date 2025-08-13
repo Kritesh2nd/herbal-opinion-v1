@@ -89,8 +89,8 @@ const Home = () => {
                 <div key={item.number}>
                   <div className="flex items-start gap-4">
                     {/* Circle with number */}
-                    <div className="w-[64px] h-[64px] rounded-full flex items-center justify-center bg-[#E6E89A] flex-shrink-0">
-                      <span className="text-green-900 font-semibold text-xl ">
+                    <div className="sm:w-[64px] sm:h-[64px] w-[48px] h-[48px] rounded-full flex items-center justify-center bg-[#E6E89A] flex-shrink-0">
+                      <span className="text-green-900 font-semibold text-xl">
                         {item.number}
                       </span>
                     </div>

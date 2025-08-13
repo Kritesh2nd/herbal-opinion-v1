@@ -1,4 +1,5 @@
 import {
+  FaCheck,
   FaDoorOpen,
   FaHeart,
   FaLightbulb,
@@ -7,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 import {
+  AssessmentType,
   ComparePlansType,
   ConsultationPlan,
   FaqDropdownType,
@@ -20,6 +22,7 @@ import {
   TherapyItem,
 } from "../types";
 import { FaUserDoctor } from "react-icons/fa6";
+import { ImCross } from "react-icons/im";
 
 export const NavData: NavItemIn[] = [
   {
@@ -361,3 +364,77 @@ export const JourneyStep: JourneyStepType[] = [
     extra: "",
   },
 ];
+
+export const assessmentQuestion: AssessmentType[] = [
+  {
+    id: 1,
+    title: "Step 1: Your Health Background",
+    subTitle: "We'll check if your condition is suitable for our care pathways",
+    question:
+      "Do you have a chronic condition lasting more than 3 months that has been diagnosed by a doctor? (e.g. chronic pain, anxiety, depression, insomnia, etc.)",
+    points: [],
+    answer: false,
+  },
+  {
+    id: 2,
+    title: "Step 2: Your Treatment Journey",
+    subTitle:
+      "Tell us what you've already tried so we can guide you toward better results.",
+    question:
+      "Have you tried conventional prescription medication for your condition?",
+    points: [],
+    answer: false,
+  },
+  {
+    id: 3,
+    title: "Step 3: Is Your Current Treatment Helping?",
+    subTitle: "This helps us know if another option might suit you better.",
+    question:
+      "Has the medication been unsuccessful in fully treating your symptoms, or does it cause adverse side effects?",
+    points: [],
+    answer: false,
+  },
+  {
+    id: 4,
+    title: "Step 4: A Quick Health Check",
+    subTitle:
+      "Some conditions may need extra care. Let us know if any apply to you.",
+    question: "Do you have any of the following conditions?",
+    points: [
+      "Active psychosis",
+      "Drug dependence or substance abuse",
+      "Cardio pulmonary disease",
+      "Pregnant or breastfeeding",
+    ],
+    answer: false,
+  },
+  {
+    id: 5,
+    title: "Step 5: Mental Health Background",
+    subTitle: "We ask this to ensure our care is right for you.",
+    question:
+      "Do you have a history of schizophrenia, bipolar type 1 and 2 disorder or have experienced psychosis?",
+    points: [],
+    answer: false,
+  },
+];
+
+export const eligibleText = {
+  true: {
+    title: "Great news — you're eligible!",
+    message: [
+      "You've met the requirements for care through our team. Let's get you started with your free consultation.",
+    ],
+    icon: <FaCheck />,
+  },
+  false: {
+    title: "Unfortunately, you may not be eligible at this time",
+    message: [
+      "In order to be eligible, a patient needs to have been diagnosed with a chronic condition by a doctor. ",
+      "In order to be eligible, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
+      "In order to be eligible,  your previous medication needs to have been unsuccessful or have undesired side-effects.",
+      "Sadly, based on the information provided, it appears that you may not be suitable for plant medicine treatment at this time.",
+    ],
+    icon: <ImCross />,
+  },
+};

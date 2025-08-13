@@ -88,3 +88,12 @@ export interface MeetHerbalType {
   id: number;
   text: string;
 }
+
+export interface AssessmentType {
+  id: number;
+  title: string;
+  subTitle: string;
+  question: string;
+  points: string[];
+  answer: boolean;
+}

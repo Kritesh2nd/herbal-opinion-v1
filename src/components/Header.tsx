@@ -81,6 +81,12 @@ export default function Header() {
                   />
                 </div>
                 <nav className="flex flex-col px-5 pt-10 ">
+                  <Link
+                    href="/"
+                    className="text-primary-white text-[18px] mb-5 py-2 text-center"
+                  >
+                    Home
+                  </Link>
                   {NavData.map((item, idx) => (
                     <Link
                       key={idx}
