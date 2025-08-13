@@ -7,9 +7,8 @@ import React, { useState } from "react";
 import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowUp } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
 
-const FaqDropdown = ({ faq }) => {
+const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
   const { question, answer } = faq;
   const [open, setOpen] = useState(false);
 
