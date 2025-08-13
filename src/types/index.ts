@@ -54,3 +54,10 @@ export interface ContactDetailType {
   title: string;
   description: string;
 }
+
+export interface FaqDropdownType {
+  id: number;
+  question: string;
+  answer: string;
+  display: boolean;
+}

@@ -209,7 +209,7 @@ const SwitchClinic = () => {
           </div>
           <div className="flex flex-col sm:flex-row">
             <div className="flex flex-1 justify-center sm:pb-0 pb-8">
-              <div className="lg:h-[650px] md:h-[520px] sm:h-[420px] h-[320px] lg:w-[650px] md:w-[520px] sm:w-[420px] w-[320px] relative">
+              <div className="lg:h-[650px] md:h-[520px] sm:h-[420px] h-[100vw] lg:w-[650px] md:w-[520px] sm:w-[420px] w-[100vw] relative">
                 <Image
                   src="/img/switch-clinic/meetup.png"
                   fill
