@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowUp } from "react-icons/io";
+import LeafComponent from "@/src/components/leaf";
 
 const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
   const { question, answer } = faq;
@@ -131,8 +132,10 @@ const Pricing = () => {
         </div>
       </section>
       {/* section 2 */}
-      <section className="bg-white">
+
+      <section className="bg-white relative">
         <div className="globalContainer py-[74px]">
+          <LeafComponent />
           <div className="gooper text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-2 text-center">
             Compare All Plans
           </div>

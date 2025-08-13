@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa";
+import LeafComponent from "@/src/components/leaf";
 
 const SwitchClinic = () => {
   const meetHerbal = [
@@ -85,8 +86,9 @@ const SwitchClinic = () => {
         </div>
       </section>
       {/* section 2 */}
-      <section className="py-[74px]">
+      <section className="py-[74px] relative">
         <div className="globalContainer">
+          <LeafComponent />
           <div className="lg:px-[220px] md:px-[160px] sm:px-[80px] px-0">
             <div className="md:text-[39px] sm:text-[31px] text-[25px] text-lettuce gooper text-center pb-2">
               Ready to Switch?
