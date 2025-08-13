@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Assessment = () => {
   const [stage, setStage] = useState(0);
-  const [displayQuestion, setDisplayQuestion] = useState(false);
+  const [displayQuestion, setDisplayQuestion] = useState(true);
   const [eligible, setEligible] = useState(true);
   const [ineligibleStage, setIneligibleStage] = useState(0);
   const assessments = [

@@ -1,139 +1,24 @@
 "use client";
 
-import { FaqDropdownType } from "@/src/types";
-import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
 import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import { IoIosArrowUp } from "react-icons/io";
 import LeafComponent from "@/src/components/leaf";
 import TestimonialCard from "@/src/components/TestimonialCard";
-import { CONSULTATION_PLANS } from "@/src/constants";
+import { comparePlans, CONSULTATION_PLANS, faqs } from "@/src/constants";
 import ConsultationCard from "@/src/components/Plan";
-
-const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
-  const { question, answer } = faq;
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="flex flex-row bg-llight-green py-5 px-6 rounded-xl">
-      <div className="flex flex-col flex-1">
-        <p>{question}</p>
-
-        <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out text-primary-dgray leading-5 ${
-            open ? "max-h-40" : "max-h-0"
-          }`}
-        >
-          <p className="mt-2">{answer}</p>
-        </div>
-      </div>
-      <div className="">
-        <button
-          className={`ml-4 transform transition-transform duration-300 ${
-            open ? "rotate-0" : "rotate-180"
-          }`}
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          <IoIosArrowUp className="text-xl" />
-        </button>
-      </div>
-    </div>
-  );
-};
+import Faq from "@/src/components/Faq";
 
 const Pricing = () => {
-  const comparePlans = [
-    {
-      id: 1,
-      feature: "Consultations",
-      essectialRelief: "1 Session",
-      ongoingCare: "Monthly",
-      priorityAccess: "Unlimited",
-    },
-    {
-      id: 2,
-      feature: "Personalized Care Plan",
-      essectialRelief: "yes",
-      ongoingCare: "yes",
-      priorityAccess: "yes",
-    },
-    {
-      id: 3,
-      feature: "Prescription Support",
-      essectialRelief: "no",
-      ongoingCare: "yes",
-      priorityAccess: "yes",
-    },
-    {
-      id: 4,
-      feature: "Direct Chat Access",
-      essectialRelief: "no",
-      ongoingCare: "no",
-      priorityAccess: "yes",
-    },
-    {
-      id: 5,
-      feature: "Priority Service",
-      essectialRelief: "no",
-      ongoingCare: "Standard",
-      priorityAccess: "VIP",
-    },
-  ];
-
-  const faqs: FaqDropdownType[] = [
-    {
-      id: 1,
-      question: "What makes your products different from others in the market?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-    {
-      id: 2,
-      question: "Are your products cruelty-free and vegan?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-    {
-      id: 3,
-      question: "Do you offer international shipping?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-    {
-      id: 4,
-      question: "What is your return policy?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-    {
-      id: 5,
-      question: "How are your ingredients sourced?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-    {
-      id: 6,
-      question: "Are your products safe?",
-      answer:
-        "Our products stand out because they are crafted with 100% natural, ethically sourced ingredients. We focus on sustainability throughout our entire production process, from ingredient selection to packaging. ",
-      display: true,
-    },
-  ];
   return (
     <div>
       {/* section 1 */}
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col py-25 ">
-          <h1 className="text-[39px] gooper text-primary font-medium text-center">
+          <h2 className="gooper text-primary titleLevel2">
             Simple Pricing for Personalized Support
-          </h1>
+          </h2>
           <p className="text-center  text-[#4B5563] text-xl mb-16 mt-2">
             Choose the care level that suits your needs. No hidden fees. Cancel
             anytime.
@@ -145,14 +30,14 @@ const Pricing = () => {
           </div>
         </div>
       </section>
-      {/* section 2 */}
 
+      {/* section 2 */}
       <section className="bg-white relative">
         <div className="globalContainer py-[74px]">
           <LeafComponent />
-          <div className="gooper text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-2 text-center">
+          <h2 className="gooper text-lettuce titleLevel2 pb-2">
             Compare All Plans
-          </div>
+          </h2>
           <div className="md:text-[20px] sm:text-[20px] text-[18px] pb-7 text-center text-primary-dgray">
             Not sure which plan is the right fit for you? Explore our detailed
             comparison to
@@ -245,40 +130,20 @@ const Pricing = () => {
           </div>
         </div>
       </section>
+
       {/* section 3 */}
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col py-[70px]">
-          <h2 className="gooper text-center text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-[64px]">
+          <h2 className="gooper text-farm-green titleLevel2 pb-[64px]">
             What Our Members Say
           </h2>
           <TestimonialCard bgwhite={true} />
         </div>
       </section>
+
       {/* section 4 */}
-      <section className="bg-white py-[70px]">
-        <div className="globalContainer flex flex-col sm:flex-row">
-          <div className="flex sm:justify-start justify-center sm:w-1/2 pb-10 sm:pb-0">
-            <div className="w-[100vw] h-[calc(100vw+50px)] sm:w-[320px] sm:h-[420px] md:w-[440px] md:h-[560px] lg:w-[559px] lg:h-[680px] relative overflow-hidden rounded-xl">
-              <Image src="/img/pricing/old-people.png" fill alt="old-people" />
-            </div>
-          </div>
-          <div className="flex flex-col sm:w-1/2">
-            <div className="gooper text-lettuce md:text-[39px] sm:text-[31px] text-[25px] pb-2 ">
-              Frequently Asked Questions
-            </div>
-            <div className="md:text-[20px] sm:text-[20px] text-[18px] pb-7 text-primary-dgray">
-              Our community of care providers, experts, and advocates working
-              together to support your wellness journey.
-            </div>
-            <div className="flex flex-col gap-2">
-              {faqs.map((item) => (
-                <div key={item.id}>
-                  <FaqDropdown faq={item} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+      <section>
+        <Faq />
       </section>
     </div>
   );

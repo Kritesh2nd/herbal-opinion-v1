@@ -1,29 +1,30 @@
 "use client";
 import Herosection from "@/src/components/Herosection";
 import LeafComponent from "@/src/components/leaf";
+import MeetHerbal from "@/src/components/MeetHerbal";
 import ConsultationCard from "@/src/components/Plan";
+import PrimaryButton from "@/src/components/PrimaryButton";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WhyHerbal from "@/src/components/WhyHerbal";
-import {
-  CONSULTATION_PLANS,
-  steps,
-  testimonials,
-  therapyItems,
-} from "@/src/constants";
+import { CONSULTATION_PLANS, steps, therapyItems } from "@/src/constants";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
-import { Autoplay, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
 
 const Home = () => {
   return (
     <div>
-      <Herosection />
+      {/* section 1 */}
+      <section>
+        <Herosection />
+      </section>
+
+      {/* section 2 */}
       <section className="relative">
         <LeafComponent />
         <div className="globalContainer py-16">
-          <h1 className="text-[39px] text-primary gooper text-center font-medium">
+          <h1 className="gooper text-farm-green titleLevel2 pb-2">
             When to Choose a Different Path to Healing?
           </h1>
           <div className="flex flex-col md:flex-row gap-10 items-center bg-white pt-16">
@@ -72,16 +73,16 @@ const Home = () => {
         </div>
       </section>
 
+      {/* section 3 */}
       <section className="bg-tertiary py-5">
         <WhyHerbal color={"white"} />
       </section>
 
+      {/* section 4 */}
       <section className="relative">
         <div className="globalContainer py-16">
-          <h1 className="text-[39px] text-primary gooper text-center font-medium">
-            How It Works?
-          </h1>
-          <div className="flex flex-col md:flex-row gap-10 items-center justify-between pt-16">
+          <h2 className=" text-primary gooper titleLevel2">How It Works?</h2>
+          <div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between pt-16">
             {/* Left side image */}
             <div className="flex flex-col gap-14">
               {steps.map((item) => (
@@ -106,14 +107,12 @@ const Home = () => {
                   </div>
                 </div>
               ))}
-              <button className="mt-3 inline-flex items-center gap-3 bg-[#F7C914] text-primary px-7 py-[10px] rounded-full text-[25px] transition-all duration-300 hover:shadow-lg hover:scale-105 group w-fit">
-                Questionnaire
-                <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              <div>
+                <PrimaryButton title="Questionnaire" url="/assessment" />
+              </div>
             </div>
-
             {/* Right side text and grid */}
-            <div className="w-[45%]">
+            <div className="sm:w-[45%]">
               <div>
                 <Image
                   src="/img/home/work.png"
@@ -128,11 +127,12 @@ const Home = () => {
         </div>
       </section>
 
+      {/* section 5 */}
       <section className="bg-tertiary py-16">
         <div className="globalContainer">
-          <h1 className="text-[39px] gooper text-primary font-medium text-center">
+          <h2 className="gooper text-primary titleLevel2">
             Simple Pricing for Personalized Support
-          </h1>
+          </h2>
           <p className="text-center  text-[#4B5563] text-xl mb-16 mt-2">
             Choose the care level that suits your needs. No hidden fees. Cancel
             anytime.
@@ -150,14 +150,15 @@ const Home = () => {
                 questionnaire — <br />
                 we'll guide you from there.
               </p>
-
-              <button className="bg-[#AED141] text-white px-6 py-3 rounded-lg text-xl transition-colors duration-200 inline-flex items-center gap-2 group">
+              <Link
+                href="/assessment"
+                className="bg-[#AED141] text-white px-6 py-3 rounded-lg text-xl transition-colors duration-200 inline-flex items-center gap-2 group"
+              >
                 Take the Questionnaire
                 <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 text-xl transition-transform duration-200" />
-              </button>
+              </Link>
             </div>
           </div>
-
           {/* Bottom Section */}
           <div className="text-center space-y-4">
             <h2 className="text-2xl text-[#1F1C1E]">
@@ -173,14 +174,26 @@ const Home = () => {
         </div>
       </section>
 
+      {/* section 6 */}
       <section className="py-16 bg-white">
         <div className="globalContainer px-4">
-          {/* Section Title */}
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+          <h2 className="titleLevel2 gooper text-farm-green mb-12">
             What Our Members Say
           </h2>
           <TestimonialCard bgwhite={false} />
         </div>
+      </section>
+
+      {/* section 7 */}
+      <section className="bg-light-green py-25">
+        <div className="globalContainer">
+          Section7: Already With Another Clinic?
+        </div>
+      </section>
+
+      {/* section 8 */}
+      <section>
+        <MeetHerbal />
       </section>
     </div>
   );

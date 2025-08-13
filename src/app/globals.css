@@ -7,6 +7,12 @@
   .inputStyle {
     @apply mt-2 mb-5 w-full border border-gray-300 rounded-2xl py-3 px-4;
   }
+  .titleLevel1 {
+    @apply lg:text-[61px] md:text-[49px] sm:text-[31px] text-[25px] text-center;
+  }
+  .titleLevel2 {
+    @apply md:text-[49px] sm:text-[31px] text-[25px] text-center;
+  }
 }
 
 @theme {
