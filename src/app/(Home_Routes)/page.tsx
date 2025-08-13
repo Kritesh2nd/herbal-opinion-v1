@@ -179,7 +179,7 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
             What Our Members Say
           </h2>
-          <TestimonialCard />
+          <TestimonialCard bgwhite={false} />
         </div>
       </section>
     </div>

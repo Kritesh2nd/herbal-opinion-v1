@@ -8,6 +8,9 @@ import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosArrowUp } from "react-icons/io";
 import LeafComponent from "@/src/components/leaf";
+import TestimonialCard from "@/src/components/TestimonialCard";
+import { CONSULTATION_PLANS } from "@/src/constants";
+import ConsultationCard from "@/src/components/Plan";
 
 const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
   const { question, answer } = faq;
@@ -126,9 +129,20 @@ const Pricing = () => {
   return (
     <div>
       {/* section 1 */}
-      <section className="bg-light-green border border-stone-400">
-        <div className="globalContainer py-25 ">
-          section1: Simple Pricing for Personalized Support
+      <section className="bg-light-green">
+        <div className="globalContainer flex flex-col py-25 ">
+          <h1 className="text-[39px] gooper text-primary font-medium text-center">
+            Simple Pricing for Personalized Support
+          </h1>
+          <p className="text-center  text-[#4B5563] text-xl mb-16 mt-2">
+            Choose the care level that suits your needs. No hidden fees. Cancel
+            anytime.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 justify-center items-center ">
+            {CONSULTATION_PLANS.map((plan) => (
+              <ConsultationCard key={plan.id} plan={plan} />
+            ))}
+          </div>
         </div>
       </section>
       {/* section 2 */}
@@ -232,9 +246,12 @@ const Pricing = () => {
         </div>
       </section>
       {/* section 3 */}
-      <section className="bg-light-green border border-stone-400">
-        <div className="globalContainer py-25">
-          section1: What Our Members Say
+      <section className="bg-light-green">
+        <div className="globalContainer flex flex-col py-[70px]">
+          <h2 className="gooper text-center text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-[64px]">
+            What Our Members Say
+          </h2>
+          <TestimonialCard bgwhite={true} />
         </div>
       </section>
       {/* section 4 */}

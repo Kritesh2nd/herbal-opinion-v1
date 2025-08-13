@@ -6,6 +6,7 @@ import React, { ChangeEvent, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa";
 import LeafComponent from "@/src/components/leaf";
+import TestimonialCard from "@/src/components/TestimonialCard";
 
 const SwitchClinic = () => {
   const meetHerbal = [
@@ -200,14 +201,19 @@ const SwitchClinic = () => {
         </div>
       </section>
       {/* section 3 */}
-      <section className="py-40 border border-stone-300">
-        <div className="globalContainer">What Our Members Says</div>
+      <section className="bg-light-green py-[70px]">
+        <div className="globalContainer flex flex-col gooper ">
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+            What Our Members Say
+          </h2>
+          <TestimonialCard bgwhite={true} />
+        </div>
       </section>
       {/* section 4 */}
       <section className="">
         <div className="globalContainer py-[70px]">
           <div className="gooper text-center text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-[64px]">
-            Meed Herbal Opinion
+            Meet Herbal Opinion
           </div>
           <div className="flex flex-col sm:flex-row">
             <div className="flex flex-1 justify-center sm:pb-0 pb-8">
