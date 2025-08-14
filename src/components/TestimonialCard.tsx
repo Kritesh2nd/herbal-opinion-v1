@@ -49,7 +49,7 @@ const TestimonialCard = ({ bgwhite = false }: { bgwhite?: boolean }) => {
                           />
                         ))}
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col sm:pr-2">
                       <div className="text-farm-green sm:text-xl text-lg sm:text-right text-center">
                         {item.name}
                       </div>

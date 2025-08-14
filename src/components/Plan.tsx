@@ -23,9 +23,7 @@ export default function ConsultationCard({ plan }: ConsultationCardProps) {
     >
       <div className="flex-1">
         <div className={`${getCardBgColor()} p-6 rounded-t-2xl`}>
-          <h3 className={`text-2xl mb-3`}>
-            {plan.title}
-          </h3>
+          <h3 className={`text-2xl mb-3`}>{plan.title}</h3>
           <p className={`text-xl mb-4`}>{plan.description}</p>
         </div>
         <div className="p-6">
@@ -35,9 +33,7 @@ export default function ConsultationCard({ plan }: ConsultationCardProps) {
                 ${plan.originalPrice}
               </span>
             )}
-            <span
-              className={`text-[39px] text-[#1F1C1E] gooper`}
-            >
+            <span className={`text-[39px] text-[#1F1C1E] gooper`}>
               {typeof plan.currentPrice === "string"
                 ? plan.currentPrice
                 : `$${plan.currentPrice}`}
@@ -46,11 +42,10 @@ export default function ConsultationCard({ plan }: ConsultationCardProps) {
           <p className="mb-6 text-xl text-[#625B5F]">{plan.subtitle}</p>
           <ul className="space-y-2 mb-6">
             {plan.features.map((feature, index) => (
-              <li
-                key={index}
-                className={`text-sm flex items-start text-black`}
-              >
-                <span className="mr-2 text-[#AED141] text-2xl"><TiTick /></span>
+              <li key={index} className={`text-sm flex items-start text-black`}>
+                <span className="mr-2 text-[#AED141] text-2xl">
+                  <TiTick />
+                </span>
                 <span className="text-xl">{feature}</span>
               </li>
             ))}
