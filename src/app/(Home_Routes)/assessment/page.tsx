@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -9,6 +9,47 @@ import { FiArrowRight } from "react-icons/fi";
 import { FaCircleInfo } from "react-icons/fa6";
 import Link from "next/link";
 import { assessmentQuestion, eligibleText } from "@/src/constants";
+
+const CircleProgress = ({ current }: { current: number }) => {
+  const radius = 16;
+  const circumference = 2 * Math.PI * radius;
+  const total = 5;
+
+  const percent = current / total;
+  const offset = circumference - percent * circumference;
+
+  return (
+    <div className="">
+      <svg className="w-[40px] h-[40px]" width="40" height="40">
+        {/* Background ring */}
+        <circle
+          className="stroke-gray-400"
+          strokeWidth="5"
+          fill="transparent"
+          r={radius}
+          cx="20"
+          cy="20"
+        />
+        {/* Progress ring */}
+        <circle
+          className="stroke-[#136f63] transition-all duration-500 ease-in-out"
+          strokeWidth="5"
+          fill="transparent"
+          r={radius}
+          cx="20"
+          cy="20"
+          strokeLinecap="round"
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "50% 50%",
+            strokeDasharray: `${circumference} ${circumference}`,
+            strokeDashoffset: offset,
+          }}
+        />
+      </svg>
+    </div>
+  );
+};
 
 const Assessment = () => {
   const [stage, setStage] = useState(0);
@@ -23,11 +64,15 @@ const Assessment = () => {
     setStage(stage > 0 ? stage - 1 : stage);
   };
 
+  // useEffect(()=>{
+
+  // },[])
+
   return (
     <div className="bg-light-green sm:py-[120px] py-[80px]">
       <div className="globalContainer flex flex-col ">
         {displayQuestion && (
-          <div>
+          <div className="">
             <h1 className="gooper text-farm-green titleLevel1 sm:pb-4">
               Let's see if we're right for you.
             </h1>
@@ -42,10 +87,16 @@ const Assessment = () => {
                   </div>
                   <div>{assessmentQuestion[stage].subTitle}</div>
                 </div>
-                <div className="flex items-center">{stage + 1}/5</div>
+
+                <div className="flex justify-between w-20 items-center">
+                  <div className="flex justify-center items-center">
+                    <CircleProgress current={stage + 1} />
+                  </div>
+                  <div>{stage + 1}/5</div>
+                </div>
               </div>
               <div className="flex flex-col md:px-[50px] px-[20px] py-[30px]">
-                <div className="text-primary-black text-md sm:text-xl pb-12">
+                <div className="text-primary-black text-md sm:text-xl pb-12 h-[180px]">
                   {assessmentQuestion[stage].question}
                   <br />
                   {assessmentQuestion[stage].points && (
@@ -136,7 +187,7 @@ const Assessment = () => {
               {eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href=""
+                    href="#"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">
@@ -149,7 +200,7 @@ const Assessment = () => {
               {!eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href=""
+                    href="#"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">
@@ -161,7 +212,7 @@ const Assessment = () => {
               )}
               <div className="flex justify-center pb-4 sm:px-10">
                 <Link
-                  href=""
+                  href="#"
                   className="flex items-center gap-3 w-full border-3 border-green-500 text-primary-black px-7 py-[5px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                 >
                   <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] text-center ">
