@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { JourneyStep } from "../types";
+import { JourneyStepType } from "../types";
 import Image from "next/image";
 import { FaCheckCircle } from "react-icons/fa";
 
-const Steps = ({ item }: { item: JourneyStep }) => {
+const Steps = ({ item }: { item: JourneyStepType }) => {
   return (
     <div className="">
       <div className="flex  gap-5">
