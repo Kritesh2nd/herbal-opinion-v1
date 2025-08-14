@@ -11,8 +11,11 @@ const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-row bg-llight-green py-5 px-6 rounded-xl">
-      <div className="flex flex-col flex-1">
+    <div className="flex flex-row bg-llight-green py-5 px-6 rounded-xl ">
+      <div
+        className="flex flex-col flex-1 cursor-pointer"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <p>{question}</p>
 
         <div
@@ -23,15 +26,14 @@ const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
           <p className="mt-2">{answer}</p>
         </div>
       </div>
-      <div className="">
-        <button
+      <div className="cursor-pointer" onClick={() => setOpen((prev) => !prev)}>
+        <div
           className={`ml-4 transform transition-transform duration-300 ${
             open ? "rotate-0" : "rotate-180"
           }`}
-          onClick={() => setOpen((prev) => !prev)}
         >
           <IoIosArrowUp className="text-xl" />
-        </button>
+        </div>
       </div>
     </div>
   );
