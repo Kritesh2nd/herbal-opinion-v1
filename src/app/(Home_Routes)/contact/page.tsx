@@ -1,44 +1,10 @@
 "use client";
 
-import { ContactDetailType } from "@/src/types";
 import React, { ChangeEvent, useState } from "react";
-import { IoMail } from "react-icons/io5";
-import { FaPhoneAlt } from "react-icons/fa";
-import { FaClock } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaTwitter } from "react-icons/fa";
 import Link from "next/link";
+import { contactDetails, followUs } from "@/src/constants";
+import MessageReceived from "@/src/components/MessageReceived";
 const Contact = () => {
-  const contactDetails: ContactDetailType[] = [
-    {
-      id: 1,
-      icon: <IoMail />,
-      title: "Email",
-      description: "support@herbalopinion.com",
-    },
-    {
-      id: 2,
-      icon: <FaPhoneAlt />,
-      title: "Phone",
-      description: "1-800-54444-877",
-    },
-    {
-      id: 3,
-      icon: <FaClock />,
-      title: "Hours",
-      description: "Mon-Fri, 9am-5pm AEST",
-    },
-  ];
-
-  const followUs = [
-    { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
-    { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
-    { id: 3, display: true, icon: <FaSquareXTwitter />, link: "/twitter" },
-    { id: 4, display: false, icon: <FaTwitter />, link: "/twitter" },
-  ];
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -71,6 +37,7 @@ const Contact = () => {
 
   return (
     <div className="bg-light-green">
+      <MessageReceived active={false} />
       <div className="globalContainer flex flex-col">
         {/* section 1 */}
         <section className="flex flex-col gap-2 pt-[70px] pb-[64px] text-center">

@@ -10,6 +10,7 @@ import TestimonialCard from "@/src/components/TestimonialCard";
 import PrimaryButton from "@/src/components/PrimaryButton";
 import MeetHerbal from "@/src/components/MeetHerbal";
 import LeafComponent from "@/src/components/LeafComponent";
+import MessageReceived from "@/src/components/MessageReceived";
 
 const SwitchClinic = () => {
   const [formData, setFormData] = useState({
@@ -45,6 +46,7 @@ const SwitchClinic = () => {
 
   return (
     <div>
+      <MessageReceived active={false} />
       {/* section 1 */}
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col md:flex-row pt-[86px] pb-[64px] ">

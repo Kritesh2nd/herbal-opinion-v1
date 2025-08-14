@@ -1,16 +1,22 @@
 import {
   FaCheck,
+  FaClock,
   FaDoorOpen,
+  FaFacebookF,
   FaHeart,
+  FaInstagram,
   FaLightbulb,
+  FaPhoneAlt,
   FaRegHandshake,
   FaSeedling,
+  FaTwitter,
 } from "react-icons/fa";
 
 import {
   AssessmentType,
   ComparePlansType,
   ConsultationPlan,
+  ContactDetailType,
   FaqDropdownType,
   JourneyStepType,
   MeetHerbalType,
@@ -21,8 +27,9 @@ import {
   Testimonial,
   TherapyItem,
 } from "../types";
-import { FaUserDoctor } from "react-icons/fa6";
+import { FaSquareXTwitter, FaUserDoctor } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
+import { IoMail } from "react-icons/io5";
 
 export const NavData: NavItemIn[] = [
   {
@@ -363,6 +370,34 @@ export const JourneyStep: JourneyStepType[] = [
     style: "bottom-14 -left-1",
     extra: "",
   },
+];
+
+export const contactDetails: ContactDetailType[] = [
+  {
+    id: 1,
+    icon: <IoMail />,
+    title: "Email",
+    description: "support@herbalopinion.com",
+  },
+  {
+    id: 2,
+    icon: <FaPhoneAlt />,
+    title: "Phone",
+    description: "1-800-54444-877",
+  },
+  {
+    id: 3,
+    icon: <FaClock />,
+    title: "Hours",
+    description: "Mon-Fri, 9am-5pm AEST",
+  },
+];
+
+export const followUs = [
+  { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
+  { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
+  { id: 3, display: true, icon: <FaSquareXTwitter />, link: "/twitter" },
+  { id: 4, display: false, icon: <FaTwitter />, link: "/twitter" },
 ];
 
 export const assessmentQuestion: AssessmentType[] = [
