@@ -59,11 +59,21 @@ const Assessment = () => {
 
   const handelRight = () => {
     setStage(stage < 4 ? stage + 1 : stage);
+    if (stage == 4) {
+      setDisplayQuestion(false);
+    }
   };
   const handelWrong = () => {
-    setStage(stage > 0 ? stage - 1 : stage);
+    setDisplayQuestion(false);
+    setEligible(false);
+    setIneligibleStage(stage);
   };
-
+  const resetAssessment = () => {
+    setStage(0);
+    setDisplayQuestion(true);
+    setEligible(true);
+    setIneligibleStage(0);
+  };
   // useEffect(()=>{
 
   // },[])
@@ -200,7 +210,7 @@ const Assessment = () => {
               {!eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href="#"
+                    href="/"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">

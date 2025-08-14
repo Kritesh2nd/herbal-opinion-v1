@@ -430,11 +430,19 @@ export const eligibleText = {
   false: {
     title: "Unfortunately, you may not be eligible at this time",
     message: [
-      "In order to be eligible, a patient needs to have been diagnosed with a chronic condition by a doctor. ",
-      "In order to be eligible, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
-      "In order to be eligible,  your previous medication needs to have been unsuccessful or have undesired side-effects.",
-      "Sadly, based on the information provided, it appears that you may not be suitable for plant medicine treatment at this time.",
+      "In order to be eligible for medicinal cannabis treatment, a patient needs to have been diagnosed with a chronic condition by a doctor.",
+      "In order to be eligible for medicinal cannabis treatment, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
+      "In order to be eligible for medicinal cannabis treatment, your previous medication needs to have been unsuccessful or have undesired side-effects.",
+      "Unfortunately, you are likely not suitable for plant medicine treatment.",
+      "Unfortunately, you are likely not suitable for plant medicine treatment.",
     ],
     icon: <ImCross />,
   },
 };
+/*
+"In order to be eligible for medicinal cannabis treatment, a patient needs to have been diagnosed with a chronic condition by a doctor.",
+"In order to be eligible for medicinal cannabis treatment, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
+"In order to be eligible for medicinal cannabis treatment, your previous medication needs to have been unsuccessful or have undesired side-effects.",
+"Unfortunately, you are likely not suitable for plant medicine treatment.",
+"Unfortunately, you are likely not suitable for plant medicine treatment.",
+*/
