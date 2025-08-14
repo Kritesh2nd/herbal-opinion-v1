@@ -7,7 +7,7 @@ import { testimonials } from "../constants";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const TestimonialCard = () => {
+const TestimonialCard = ({ bgwhite }: { bgwhite: boolean }) => {
   return (
     <div>
       <Swiper
@@ -33,7 +33,9 @@ const TestimonialCard = () => {
         {testimonials.map((testimonial) => (
           <SwiperSlide
             key={testimonial.id}
-            className="relative bg-[#E5EA98] rounded-2xl flex flex-col mt-10 mb-16 mx-15 p-6"
+            className={`${
+              bgwhite ? "bg-white" : "bg-[#E5EA98]"
+            } relative  rounded-2xl flex flex-col mt-10 mb-16 mx-15 p-6`}
           >
             {/* Quote Icon */}
             <div>
@@ -76,9 +78,7 @@ const TestimonialCard = () => {
 
               {/* Author Info */}
               <div className="text-right">
-                <p className="text-primary text-xl">
-                  {testimonial.name}
-                </p>
+                <p className="text-primary text-xl">{testimonial.name}</p>
                 <p className="text-[#1F1C1E] text-xs">{testimonial.title}</p>
               </div>
             </div>

@@ -7,6 +7,12 @@
   .inputStyle {
     @apply mt-2 mb-5 w-full border border-gray-300 rounded-2xl py-3 px-4;
   }
+  .titleLevel1 {
+    @apply lg:text-[61px] md:text-[49px] sm:text-[31px] text-[25px] text-center;
+  }
+  .titleLevel2 {
+    @apply md:text-[49px] sm:text-[31px] text-[25px] text-center;
+  }
 }
 
 @theme {
@@ -17,6 +23,7 @@
   --color-farm-green: #145f48;
   --color-lettuce: #2ba149;
   --color-lemon-green: #aed141;
+  --color-lllight-green: rgba(241, 244, 199, 0.5);
   --color-llight-green: #f1f4c7;
   --color-light-green: #e5ea98;
   --color-lemon: #f7c914;
@@ -48,3 +55,4 @@
   font-family: "Maison_Neue_font";
 
   line-height: 1.3;
+}

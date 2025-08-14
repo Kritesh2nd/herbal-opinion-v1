@@ -1,93 +1,61 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { FiArrowRight } from "react-icons/fi";
 import { FaCircleInfo } from "react-icons/fa6";
 import Link from "next/link";
+import { assessmentQuestion, eligibleText } from "@/src/constants";
+
+const CircleProgress = ({ current }: { current: number }) => {
+  const radius = 16;
+  const circumference = 2 * Math.PI * radius;
+  const total = 5;
+
+  const percent = current / total;
+  const offset = circumference - percent * circumference;
+
+  return (
+    <div className="">
+      <svg className="w-[40px] h-[40px]" width="40" height="40">
+        {/* Background ring */}
+        <circle
+          className="stroke-gray-400"
+          strokeWidth="5"
+          fill="transparent"
+          r={radius}
+          cx="20"
+          cy="20"
+        />
+        {/* Progress ring */}
+        <circle
+          className="stroke-[#136f63] transition-all duration-500 ease-in-out"
+          strokeWidth="5"
+          fill="transparent"
+          r={radius}
+          cx="20"
+          cy="20"
+          strokeLinecap="round"
+          style={{
+            transform: "rotate(-90deg)",
+            transformOrigin: "50% 50%",
+            strokeDasharray: `${circumference} ${circumference}`,
+            strokeDashoffset: offset,
+          }}
+        />
+      </svg>
+    </div>
+  );
+};
 
 const Assessment = () => {
   const [stage, setStage] = useState(0);
-  const [displayQuestion, setDisplayQuestion] = useState(false);
+  const [displayQuestion, setDisplayQuestion] = useState(true);
   const [eligible, setEligible] = useState(true);
   const [ineligibleStage, setIneligibleStage] = useState(0);
-  const assessments = [
-    {
-      id: 1,
-      title: "Step 1: Your Health Background",
-      subTitle:
-        "We'll check if your condition is suitable for our care pathways",
-      question:
-        "Do you have a chronic condition lasting more than 3 months that has been diagnosed by a doctor? (e.g. chronic pain, anxiety, depression, insomnia, etc.)",
-      points: [],
-      answer: false,
-    },
-    {
-      id: 2,
-      title: "Step 2: Your Treatment Journey",
-      subTitle:
-        "Tell us what you've already tried so we can guide you toward better results.",
-      question:
-        "Have you tried conventional prescription medication for your condition?",
-      points: [],
-      answer: false,
-    },
-    {
-      id: 3,
-      title: "Step 3: Is Your Current Treatment Helping?",
-      subTitle: "This helps us know if another option might suit you better.",
-      question:
-        "Has the medication been unsuccessful in fully treating your symptoms, or does it cause adverse side effects?",
-      points: [],
-      answer: false,
-    },
-    {
-      id: 4,
-      title: "Step 4: A Quick Health Check",
-      subTitle:
-        "Some conditions may need extra care. Let us know if any apply to you.",
-      question: "Do you have any of the following conditions?",
-      points: [
-        "Active psychosis",
-        "Drug dependence or substance abuse",
-        "Cardio pulmonary disease",
-        "Pregnant or breastfeeding",
-      ],
-      answer: false,
-    },
-    {
-      id: 5,
-      title: "Step 5: Mental Health Background",
-      subTitle: "We ask this to ensure our care is right for you.",
-      question:
-        "Do you have a history of schizophrenia, bipolar type 1 and 2 disorder or have experienced psychosis?",
-      points: [],
-      answer: false,
-    },
-  ];
-
-  const eligibleText = {
-    true: {
-      title: "Great news — you're eligible!",
-      message: [
-        "You've met the requirements for care through our team. Let's get you started with your free consultation.",
-      ],
-      icon: <FaCheck />,
-    },
-    false: {
-      title: "Unfortunately, you may not be eligible at this time",
-      message: [
-        "In order to be eligible, a patient needs to have been diagnosed with a chronic condition by a doctor. ",
-        "In order to be eligible, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
-        "In order to be eligible,  your previous medication needs to have been unsuccessful or have undesired side-effects.",
-        "Sadly, based on the information provided, it appears that you may not be suitable for plant medicine treatment at this time.",
-      ],
-      icon: <ImCross />,
-    },
-  };
 
   const handelRight = () => {
     setStage(stage < 4 ? stage + 1 : stage);
@@ -95,34 +63,45 @@ const Assessment = () => {
   const handelWrong = () => {
     setStage(stage > 0 ? stage - 1 : stage);
   };
+
+  // useEffect(()=>{
+
+  // },[])
+
   return (
-    <div className="bg-light-green py-[120px]">
+    <div className="bg-light-green sm:py-[120px] py-[80px]">
       <div className="globalContainer flex flex-col ">
         {displayQuestion && (
-          <div>
-            <div className="gooper text-farm-green lg:text-[61px] md:text-[31px] sm:text-[25px] text-[20px] pb-4 text-center">
+          <div className="">
+            <h1 className="gooper text-farm-green titleLevel1 sm:pb-4">
               Let's see if we're right for you.
-            </div>
-            <div className="pb-[64px] text-primary-black sm:text-xl text-lg text-center">
+            </h1>
+            <div className="sm:pb-[64px] pb-[42px] text-primary-black sm:text-xl text-lg text-center">
               Just 5 quick questions — takes under 5 minutes.
             </div>
             <div className="flex flex-col rounded-b-2xl shadow-[0px_8px_10px_rgba(0,0,0,0.30)] bg-white overflow-hidden">
               <div className="flex  py-6 px-8 bg-lemon-green">
                 <div className="flex flex-col flex-1 ">
                   <div className="sm:text-[25px] text-xl pb-[6px]">
-                    {assessments[stage].title}
+                    {assessmentQuestion[stage].title}
                   </div>
-                  <div>{assessments[stage].subTitle}</div>
+                  <div>{assessmentQuestion[stage].subTitle}</div>
                 </div>
-                <div className="flex items-center">{stage + 1}/5</div>
+
+                <div className="flex justify-between w-20 items-center">
+                  <div className="flex justify-center items-center">
+                    <CircleProgress current={stage + 1} />
+                  </div>
+                  <div>{stage + 1}/5</div>
+                </div>
               </div>
               <div className="flex flex-col md:px-[50px] px-[20px] py-[30px]">
-                <div className="text-primary-black text-md sm:text-xl pb-12">
-                  {assessments[stage].question}
+                <div className="text-primary-black text-md sm:text-xl pb-12 h-[180px]">
+                  {assessmentQuestion[stage].question}
                   <br />
-                  {assessments[stage].points && (
+                  {assessmentQuestion[stage].points && (
                     <ul className="pt-3">
-                      {assessments[stage].points.map((point) => (
+                      {assessmentQuestion[stage].points.map((point) => (
                         <li
                           key={point}
                           className="flex items-center pl-6 relative"
@@ -208,7 +187,7 @@ const Assessment = () => {
               {eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href=""
+                    href="#"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">
@@ -221,7 +200,7 @@ const Assessment = () => {
               {!eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href=""
+                    href="#"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">
@@ -233,7 +212,7 @@ const Assessment = () => {
               )}
               <div className="flex justify-center pb-4 sm:px-10">
                 <Link
-                  href=""
+                  href="#"
                   className="flex items-center gap-3 w-full border-3 border-green-500 text-primary-black px-7 py-[5px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                 >
                   <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] text-center ">

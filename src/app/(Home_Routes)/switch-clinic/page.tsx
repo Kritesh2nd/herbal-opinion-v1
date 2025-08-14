@@ -4,6 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { FaCheck } from "react-icons/fa";
+
+import TestimonialCard from "@/src/components/TestimonialCard";
+import PrimaryButton from "@/src/components/PrimaryButton";
+import MeetHerbal from "@/src/components/MeetHerbal";
+import LeafComponent from "@/src/components/LeafComponent";
 
 const SwitchClinic = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +49,7 @@ const SwitchClinic = () => {
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col md:flex-row pt-[86px] pb-[64px] ">
           <div className="flex flex-col pt-[120px] md:w-1/2 pb-[120px] md:pb-0 w-full  pr-10">
-            <div className="text-4xl md:text-5xl lg:text-[61px] gooper pb-12">
+            <div className="gooper titleLevel1 text-left pb-12">
               Switch for <span className="text-farm-green">$20</span>{" "}
               <span className="sm:inline hidden">
                 <br />
@@ -55,15 +61,12 @@ const SwitchClinic = () => {
               step of the way.
             </div>
             <div className="flex">
-              <Link
-                href=""
-                className="flex items-center gap-3 bg-farm-green text-white px-7 py-[5px] rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
-              >
-                <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] ">
-                  Start Your Assessment
-                  <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
-              </Link>
+              <PrimaryButton
+                title="Start Your Assessment"
+                url="/assessment"
+                background="farm-green"
+                text="white"
+              />
             </div>
           </div>
           <div className="flex md:justify-end justify-center md:w-1/2 w-full ">
@@ -76,11 +79,25 @@ const SwitchClinic = () => {
           </div>
         </div>
       </section>
+
       {/* section 2 */}
-      <section className="py-[74px]">
+      <section className="py-[74px] relative">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-40 hidden sm:block"
+            direction="left"
+            subStyle="-left-38  rotate-[260deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-35 w-21 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-18  rotate-[258deg] -top-3"
+          />
+        </div>
         <div className="globalContainer">
           <div className="lg:px-[220px] md:px-[160px] sm:px-[80px] px-0">
-            <div className="md:text-[39px] sm:text-[31px] text-[25px] text-lettuce gooper text-center pb-2">
+            <div className="gooper text-lettuce  titleLevel2 pb-2">
               Ready to Switch?
             </div>
             <div className="sm:text-[20px] text-[18px] text-primary-dgray text-center pb-[64px]">
@@ -177,25 +194,30 @@ const SwitchClinic = () => {
                   </label>
                 </div>
                 <div className="flex justify-center">
-                  <button className="flex items-center gap-3 bg-lemon text-farm-green px-7 py-[5px] rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
-                    <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] ">
-                      Submit & Start Transfer
-                      <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </div>
-                  </button>
+                  <PrimaryButton
+                    title="Submit & Start Transfer"
+                    isButton={true}
+                  />
                 </div>
               </form>
             </div>
           </div>
         </div>
       </section>
+
       {/* section 3 */}
-      <section className="">
-        <div className="globalContainer">Section 3</div>
+      <section className="bg-light-green py-[70px]">
+        <div className="globalContainer flex flex-col gooper ">
+          <h2 className="gooper text-farm-green titleLevel2 mb-12">
+            What Our Members Say
+          </h2>
+          <TestimonialCard bgwhite={true} />
+        </div>
       </section>
+
       {/* section 4 */}
-      <section className="">
-        <div className="globalContainer">Section 4</div>
+      <section>
+        <MeetHerbal />
       </section>
     </div>
   );

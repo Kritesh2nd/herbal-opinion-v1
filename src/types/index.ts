@@ -39,7 +39,7 @@ export interface Testimonial {
   rating: number;
 }
 
-export interface JourneyStep {
+export interface JourneyStepType {
   id: string;
   title: string;
   description: string;
@@ -53,4 +53,47 @@ export interface ContactDetailType {
   icon: ReactNode;
   title: string;
   description: string;
+}
+
+export interface FaqDropdownType {
+  id: number;
+  question: string;
+  answer: string;
+  display: boolean;
+}
+
+export interface OurJourneyTypes {
+  id: number;
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+export interface ResilienceType {
+  id: number;
+  icon: ReactNode;
+  title: string;
+  description: string;
+}
+
+export interface ComparePlansType {
+  id: number;
+  feature: string;
+  essectialRelief: string;
+  ongoingCare: string;
+  priorityAccess: string;
+}
+
+export interface MeetHerbalType {
+  id: number;
+  text: string;
+}
+
+export interface AssessmentType {
+  id: number;
+  title: string;
+  subTitle: string;
+  question: string;
+  points: string[];
+  answer: boolean;
 }

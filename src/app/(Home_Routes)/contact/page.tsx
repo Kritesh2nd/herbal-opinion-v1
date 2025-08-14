@@ -74,13 +74,12 @@ const Contact = () => {
       <div className="globalContainer flex flex-col">
         {/* section 1 */}
         <section className="flex flex-col gap-2 pt-[70px] pb-[64px] text-center">
-          <div className="md:text-[39px] text-[25px] gooper text-farm-green">
-            Get in Touch
-          </div>
+          <h2 className="gooper text-farm-green titleLevel2">Get in Touch</h2>
           <div className="md:text-[25px] text-[18px] text-primary-dgray">
             We're here to answer, assist, or just chat
           </div>
         </section>
+
         {/* section 2 */}
         <section className="flex gap-4 sm:flex-row flex-col pb-[130px]">
           <div className="flex flex-col bg-white rounded-[20px] shadow-[0_2px_4px_rgba(0,0,0,0.10)] flex-1 md:py-[32px] sm:py-[26px] py-[20px] md:px-[45px] sm:px-[35px] px-[25px] ">
