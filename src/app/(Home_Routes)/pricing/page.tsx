@@ -4,11 +4,12 @@ import React from "react";
 
 import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
-import LeafComponent from "@/src/components/leaf";
+
 import TestimonialCard from "@/src/components/TestimonialCard";
 import { comparePlans, CONSULTATION_PLANS, faqs } from "@/src/constants";
 import ConsultationCard from "@/src/components/Plan";
 import Faq from "@/src/components/Faq";
+import LeafComponent from "@/src/components/LeafComponent";
 
 const Pricing = () => {
   return (
@@ -33,8 +34,20 @@ const Pricing = () => {
 
       {/* section 2 */}
       <section className="bg-white relative">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-60 w-54 hidden sm:block"
+            direction="left"
+            subStyle="-left-30 rotate-[270deg] -top-13"
+          />
+          <LeafComponent
+            mainStyle="h-30 w-24 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-18  rotate-[268deg] -top-6"
+          />
+        </div>
         <div className="globalContainer py-[74px]">
-          <LeafComponent />
           <h2 className="gooper text-lettuce titleLevel2 pb-2">
             Compare All Plans
           </h2>

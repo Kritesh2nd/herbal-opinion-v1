@@ -15,7 +15,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="globalContainer">
-        <div className="flex flex-col sm:flex-row sm:gap-0 gap-4 justify-between items-center py-4 ">
+        <div className="flex flex-col sm:flex-row sm:gap-0 justify-between items-center py-4">
           <div className="flex justify-between items-center sm:w-auto w-full">
             {/* Logo */}
             <Link
@@ -48,18 +48,18 @@ export default function Header() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex  items-center gap-4">
+          <div className=" items-center gap-4 hidden sm:flex">
             <Link
-              href="patient-portal"
+              href="/patient-portal"
               className="border border-farm-green text-farm-green sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
             >
               <p className="mt-1">Patient Portal</p>
             </Link>
             <Link
-              href="patient-portal"
+              href="/assessment"
               className="border border-lemon text-farm-green bg-lemon sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
             >
-              <p className="mt-1">Patient Portal</p>
+              <p className="mt-1">Get Started</p>
             </Link>
           </div>
         </div>
@@ -84,6 +84,7 @@ export default function Header() {
                   <Link
                     href="/"
                     className="text-primary-white text-[18px] mb-5 py-2 text-center"
+                    onClick={() => setToggle(!toggle)}
                   >
                     Home
                   </Link>
@@ -92,10 +93,25 @@ export default function Header() {
                       key={idx}
                       href={item.url}
                       className="text-primary-white text-[18px] mb-5 py-2 text-center"
+                      onClick={() => setToggle(!toggle)}
                     >
                       {item.name}
                     </Link>
                   ))}
+                  <Link
+                    href="/patient-portal"
+                    className="text-primary-white text-[18px] mb-5 py-2 text-center"
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    Patient Portal
+                  </Link>
+                  <Link
+                    href="/assessment"
+                    className="text-primary-white text-[18px] mb-5 py-2 text-center"
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    Get Started
+                  </Link>
                 </nav>
               </div>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 import Herosection from "@/src/components/Herosection";
-import LeafComponent from "@/src/components/leaf";
+import LeafComponent from "@/src/components/LeafComponent";
+
 import MeetHerbal from "@/src/components/MeetHerbal";
 import ConsultationCard from "@/src/components/Plan";
 import PrimaryButton from "@/src/components/PrimaryButton";
@@ -22,7 +23,19 @@ const Home = () => {
 
       {/* section 2 */}
       <section className="relative">
-        <LeafComponent />
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-58 hidden sm:block"
+            direction="left"
+            subStyle="-left-20  rotate-[260deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-32 w-29 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-13  rotate-[268deg] -top-6"
+          />
+        </div>
         <div className="globalContainer py-16">
           <h1 className="gooper text-farm-green titleLevel2 pb-2">
             When to Choose a Different Path to Healing?
@@ -80,6 +93,19 @@ const Home = () => {
 
       {/* section 4 */}
       <section className="relative">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-25 hidden sm:block"
+            direction="right"
+            subStyle="right-31  rotate-[40deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-44 w-10 sm:hidden block"
+            direction="right"
+            subSize="h-40 w-40"
+            subStyle="right-13  rotate-[40deg] top-1"
+          />
+        </div>
         <div className="globalContainer py-16">
           <h2 className=" text-primary gooper titleLevel2">How It Works?</h2>
           <div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between pt-16">
@@ -175,8 +201,21 @@ const Home = () => {
       </section>
 
       {/* section 6 */}
-      <section className="py-16 bg-white">
-        <div className="globalContainer px-4">
+      <section className=" bg-white relative">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-25 hidden sm:block"
+            direction="left"
+            subStyle="-left-38 rotate-[240deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-40 w-18 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-18  rotate-[250deg] -top-1"
+          />
+        </div>
+        <div className="globalContainer py-16 px-4">
           <h2 className="titleLevel2 gooper text-farm-green mb-12">
             What Our Members Say
           </h2>

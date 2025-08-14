@@ -5,10 +5,11 @@ import Link from "next/link";
 import React, { ChangeEvent, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { FaCheck } from "react-icons/fa";
-import LeafComponent from "@/src/components/leaf";
+
 import TestimonialCard from "@/src/components/TestimonialCard";
 import PrimaryButton from "@/src/components/PrimaryButton";
 import MeetHerbal from "@/src/components/MeetHerbal";
+import LeafComponent from "@/src/components/LeafComponent";
 
 const SwitchClinic = () => {
   const [formData, setFormData] = useState({
@@ -81,8 +82,20 @@ const SwitchClinic = () => {
 
       {/* section 2 */}
       <section className="py-[74px] relative">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-40 hidden sm:block"
+            direction="left"
+            subStyle="-left-38  rotate-[260deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-35 w-21 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-18  rotate-[258deg] -top-3"
+          />
+        </div>
         <div className="globalContainer">
-          <LeafComponent />
           <div className="lg:px-[220px] md:px-[160px] sm:px-[80px] px-0">
             <div className="gooper text-lettuce  titleLevel2 pb-2">
               Ready to Switch?

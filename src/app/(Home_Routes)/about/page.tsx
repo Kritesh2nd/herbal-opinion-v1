@@ -6,6 +6,7 @@ import PrimaryButton from "@/src/components/PrimaryButton";
 import { ourJourney, resilience } from "@/src/constants";
 import Faq from "@/src/components/Faq";
 import TestimonialCard from "@/src/components/TestimonialCard";
+import LeafComponent from "@/src/components/LeafComponent";
 
 const page = () => {
   return (
@@ -58,6 +59,19 @@ const page = () => {
 
       {/* section 2 */}
       <section>
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-48 hidden sm:block"
+            direction="left"
+            subStyle="-left-30  rotate-[260deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-32 w-25 sm:hidden block"
+            direction="left"
+            subSize="h-45 w-45"
+            subStyle="-left-17  rotate-[268deg] -top-6"
+          />
+        </div>
         <div className="globalContainer flex flex-col py-[70px]">
           <h2 className="gooper text-lettuce titleLevel2">Our Journey</h2>
           <div className="text-xl text-center text-primary-dgray pb-[64px]">
@@ -141,6 +155,19 @@ const page = () => {
 
       {/* section 5 */}
       <section className="bg-light-green">
+        <div className="relative">
+          <LeafComponent
+            mainStyle="h-105 w-34 hidden sm:block"
+            direction="right"
+            subStyle="right-21 rotate-[22deg] top-6"
+          />
+          <LeafComponent
+            mainStyle="h-40 w-12 sm:hidden block"
+            direction="right"
+            subSize="h-40 w-40"
+            subStyle="right-11  rotate-[30deg] top-0"
+          />
+        </div>
         <div className="globalContainer flex flex-col sm:gap-[64px] gap-[20px] py-[70px]">
           <div className="flex">
             <div className="bg-farm-green w-full rounded-lg pl-2 shadow-[0_4px_6px_rgba(0,0,0,0.10)]">

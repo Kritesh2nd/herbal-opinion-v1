@@ -24,14 +24,14 @@ const Assessment = () => {
   };
 
   return (
-    <div className="bg-light-green py-[120px]">
+    <div className="bg-light-green sm:py-[120px] py-[80px]">
       <div className="globalContainer flex flex-col ">
         {displayQuestion && (
           <div>
-            <h1 className="gooper text-farm-green titleLevel1 pb-4">
+            <h1 className="gooper text-farm-green titleLevel1 sm:pb-4">
               Let's see if we're right for you.
             </h1>
-            <div className="pb-[64px] text-primary-black sm:text-xl text-lg text-center">
+            <div className="sm:pb-[64px] pb-[42px] text-primary-black sm:text-xl text-lg text-center">
               Just 5 quick questions — takes under 5 minutes.
             </div>
             <div className="flex flex-col rounded-b-2xl shadow-[0px_8px_10px_rgba(0,0,0,0.30)] bg-white overflow-hidden">
