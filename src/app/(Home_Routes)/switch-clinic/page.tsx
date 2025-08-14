@@ -206,13 +206,8 @@ const SwitchClinic = () => {
       </section>
 
       {/* section 3 */}
-      <section className="bg-light-green py-[70px]">
-        <div className="globalContainer flex flex-col gooper ">
-          <h2 className="gooper text-farm-green titleLevel2 mb-12">
-            What Our Members Say
-          </h2>
-          <TestimonialCard bgwhite={true} />
-        </div>
+      <section className="bg-light-green">
+        <TestimonialCard bgwhite={true} />
       </section>
 
       {/* section 4 */}

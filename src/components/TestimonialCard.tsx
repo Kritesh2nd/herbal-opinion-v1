@@ -6,85 +6,88 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { testimonials } from "../constants";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from "next/image";
 
-const TestimonialCard = ({ bgwhite }: { bgwhite: boolean }) => {
+const TestimonialCard = ({ bgwhite = false }: { bgwhite?: boolean }) => {
   return (
-    <div>
-      <Swiper
-        modules={[Pagination, Autoplay]}
-        spaceBetween={20}
-        slidesPerView={1}
-        pagination={{
-          clickable: true,
-          bulletClass:
-            "swiper-pagination-bullet !bg-green-600 !w-3 !h-3 !rounded-full transition-all duration-300",
-          bulletActiveClass: "!bg-primary !w-3 !h-3 !rounded-full",
-        }}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        breakpoints={{
-          640: { slidesPerView: 1, spaceBetween: 20 },
-          768: { slidesPerView: 2, spaceBetween: 30 },
-          1024: { slidesPerView: 2.2, spaceBetween: 30 },
-        }}
-      >
-        {testimonials.map((testimonial) => (
-          <SwiperSlide
-            key={testimonial.id}
-            className={`${
-              bgwhite ? "bg-white" : "bg-[#E5EA98]"
-            } relative  rounded-2xl flex flex-col mt-10 mb-16 mx-15 p-6`}
-          >
-            {/* Quote Icon */}
-            <div>
-              <div className="bg-primary rounded-full p-5 w-fit h-fit absolute -top-6 left-7">
-                <FaQuoteLeft className="text-white text-3xl" />
-              </div>
-            </div>
+    <div className={`${bgwhite ? "bg-light-green " : "bg-white "} py-10 `}>
+      <div className="globalContainer py-16 px-4">
+        <h2 className="titleLevel2 gooper text-farm-green mb-12">
+          What Our Members Say
+        </h2>
 
-            {/* Content */}
-            <div className="flex flex-col h-full pt-12">
-              <div className="relative flex items-start gap-4 flex-1">
-                {/* Profile Image */}
-                <div className="flex-shrink-0 ">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name || "User"}
-                    className="absolute w-40 h-40 -left-20 rounded-full object-cover border-2 border-white shadow-md"
-                  />
-                </div>
-
-                {/* Testimonial Text */}
-                <div className="flex-1 pl-20">
-                  <p className="text-[#1F1C1E] text-xl leading-relaxed mb-4 h-[130px]">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Star Rating */}
-                  <div className="flex gap-1 mb-3">
-                    {Array(testimonial.rating)
-                      .fill(null)
-                      .map((_, index) => (
-                        <FaStar
-                          key={index}
-                          className="text-yellow-400 text-xl"
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 3000 }}
+          loop={true}
+          spaceBetween={30}
+          slidesPerView={1}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+          }}
+        >
+          {testimonials.map((item, i) => (
+            <SwiperSlide key={i} className=" mb-10">
+              <div className=" sm:h-[352px] h-auto ">
+                <div
+                  className={`${
+                    !bgwhite ? "bg-light-green " : "bg-white "
+                  } flex flex-col-reverse sm:flex-row items-center sm:mt-11 sm:ml-24 rounded-xl p-4 h-[calc(100%-44px)] relative  `}
+                >
+                  <div className="flex sm:flex-col flex-col-reverse  sm:mt-11 sm:ml-24 sm:pt-6 sm:pl-8 ">
+                    <div className="text-primary-black sm:text-xl text-lg pb-4">
+                      {item.content}
+                    </div>
+                    <div className="flex gap-1 mb-3 sm:justify-start justify-center">
+                      {Array(item.rating)
+                        .fill(null)
+                        .map((_, index) => (
+                          <FaStar
+                            key={index}
+                            className="text-yellow-400 text-xl"
+                          />
+                        ))}
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="text-farm-green sm:text-xl text-lg sm:text-right text-center">
+                        {item.name}
+                      </div>
+                      <div className="text-[13px] text-primary-black sm:text-right text-center sm:pb-0 pb-2">
+                        {item.title}
+                      </div>
+                    </div>
+                    <div className="flex justify-center mb-[150px] sm:hidden">
+                      <div className="absolute  h-[125px] w-[125px]  rounded-full  overflow-hidden">
+                        <Image
+                          src={item.image}
+                          fill
+                          alt={item.name}
+                          className="object-cover rounded-full"
                         />
-                      ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="sm:flex hidden justify-center items-center h-19 w-19 bg-farm-green rounded-full absolute top-0 left-[26px] -translate-y-1/2">
+                    <FaQuoteLeft className="text-white text-3xl" />
+                  </div>
+
+                  <div className="sm:h-[188px] sm:w-[188px] hidden sm:block h-auto w-auto bg-stone-100 rounded-full sm:absolute sm:top-[50%]  left-0 sm:-translate-x-1/2 -translate-y-1/2 overflow-hidden ">
+                    <div className="sm:h-full sm:w-auto h-[120px] w-[120px]  ">
+                      <Image
+                        src={item.image}
+                        fill
+                        alt={item.name}
+                        className="object-cover -red-500"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Author Info */}
-              <div className="text-right">
-                <p className="text-primary text-xl">{testimonial.name}</p>
-                <p className="text-[#1F1C1E] text-xs">{testimonial.title}</p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

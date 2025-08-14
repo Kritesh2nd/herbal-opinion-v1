@@ -146,12 +146,7 @@ const Pricing = () => {
 
       {/* section 3 */}
       <section className="bg-light-green">
-        <div className="globalContainer flex flex-col py-[70px]">
-          <h2 className="gooper text-farm-green titleLevel2 pb-[64px]">
-            What Our Members Say
-          </h2>
-          <TestimonialCard bgwhite={true} />
-        </div>
+        <TestimonialCard bgwhite={true} />
       </section>
 
       {/* section 4 */}

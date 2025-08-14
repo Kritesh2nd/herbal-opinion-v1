@@ -201,7 +201,7 @@ const Home = () => {
       </section>
 
       {/* section 6 */}
-      <section className=" bg-white relative">
+      <section className="">
         <div className="relative">
           <LeafComponent
             mainStyle="h-105 w-25 hidden sm:block"
@@ -215,18 +215,39 @@ const Home = () => {
             subStyle="-left-18  rotate-[250deg] -top-1"
           />
         </div>
-        <div className="globalContainer py-16 px-4">
-          <h2 className="titleLevel2 gooper text-farm-green mb-12">
-            What Our Members Say
-          </h2>
-          <TestimonialCard bgwhite={false} />
-        </div>
+        <TestimonialCard bgwhite={false} />
       </section>
 
       {/* section 7 */}
       <section className="bg-light-green py-25">
-        <div className="globalContainer">
-          Section7: Already With Another Clinic?
+        <div className="globalContainer flex sm:flex-row flex-col gap-5">
+          {/* Section7: Already With Another Clinic?    */}
+          <div className="flex flex-col justify-center sm:w-1/2">
+            <h2 className="text-farm-green gooper titleLevel2 text-left">
+              Already with another clinic?
+            </h2>
+            <div className="text-primary-dgray sm:text-xl text-lg sm:pb-9 pb-5">
+              Switching to Herbal Opinion is simple and seamless.
+            </div>
+            <div className=" text-xs text-primary-dgray sm:pr-40 pr-10 sm:pb-13 pb-6">
+              Whether you're unhappy with your current care or looking for a
+              more compassionate approach, we're here to help. Switching takes
+              less than 5 minutes and we'll handle the details for you.
+            </div>
+            <div>
+              <PrimaryButton
+                title="Switch to Herbal Opinion"
+                url="/switch-clinic"
+                background="farm-green"
+                text="white"
+              />
+            </div>
+          </div>
+          <div className="sm:w-1/2">
+            <div className="lg:h-[650px] md:h-[520px] sm:h-[420px] h-[100vw] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[calc(100vw-40px)] relative rounded-lg overflow-hidden">
+              <Image src="/img/home/doctor.png" fill alt="doctor" />
+            </div>
+          </div>
         </div>
       </section>
 
