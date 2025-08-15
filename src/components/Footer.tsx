@@ -88,13 +88,15 @@ const Footer = () => {
             <div className="sm:pb-6 pb-2">Contact Us</div>
             {contactDetails.map((item) => (
               <div key={item.id} className="flex gap-3">
-                <div className="text-light pt-[3px]">{item.icon}</div>
+                <div className="text-light pt-[3px] text-lemon">
+                  {item.icon}
+                </div>
                 <div>{item.description}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className="text-sm pb-[54px] ">
+        <div className="text-sm pb-[54px] text-justify ">
           Disclaimer: The information provided on this website is for general
           informational purposes only and does not constitute medical advice,
           diagnosis, or treatment. It is not intended to be a substitute for
@@ -104,7 +106,7 @@ const Footer = () => {
           will be made solely at the discretion of a registered healthcare
           professional, based.
         </div>
-        <div className="flex sm:flex-row flex-col gap-2 justify-between text-[13px] text-light-green">
+        <div className="flex sm:flex-row flex-col gap-2 justify-between text-[14px] text-light-green">
           <div className="text-center sm:text-right">
             © 2023 Herbal Opinion. All rights reserved.
           </div>

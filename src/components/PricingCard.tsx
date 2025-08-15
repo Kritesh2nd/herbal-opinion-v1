@@ -20,11 +20,9 @@ const PricingSingleCard = ({
   } = data;
 
   return (
-    <div className={`${index % 2 == 0 ? "py-6" : "py-0"} flex `}>
+    <div className={`${index % 2 == 0 ? "sm:py-6" : "py-0"} flex `}>
       <div
-        className={`${
-          index % 2 == 0 ? "" : ""
-        } flex flex-col flex-1 bg-white rounded-xl border-2 border-lemon-green overflow-hidden `}
+        className={`flex flex-col flex-1 bg-white rounded-xl border-2 border-lemon-green overflow-hidden `}
       >
         <div
           className={`${
@@ -77,11 +75,11 @@ const PricingCard = () => {
         <h2 className="gooper text-farm-green titleLevel2 pb-2 font-medium">
           Simple Pricing for Personalized Support
         </h2>
-        <p className="text-lg sm:text-xl text-primary-dgray pb-16 text-center">
+        <p className="text-lg sm:text-xl text-primary-dgray sm:pb-16 pb-10 text-center">
           Choose the care level that suits your needs. No hidden fees. Cancel
           anytime.
         </p>
-        <div className="flex gap-6 sm:flex-row flex-col">
+        <div className="flex sm:gap-6 gap-4 sm:flex-row flex-col">
           {pricingPlans.map((item, index) => (
             <PricingSingleCard key={item.id} data={item} index={index} />
           ))}

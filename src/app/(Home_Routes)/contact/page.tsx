@@ -40,7 +40,7 @@ const Contact = () => {
       <MessageReceived active={false} />
       <div className="globalContainer flex flex-col">
         {/* section 1 */}
-        <section className="flex flex-col gap-2 pt-[70px] pb-[64px] text-center">
+        <section className="flex flex-col gap-2 sm:py-16 py-10 text-center">
           <h2 className="gooper text-farm-green titleLevel2">Get in Touch</h2>
           <div className="md:text-[25px] text-[18px] text-primary-dgray">
             We're here to answer, assist, or just chat
@@ -48,13 +48,13 @@ const Contact = () => {
         </section>
 
         {/* section 2 */}
-        <section className="flex gap-4 sm:flex-row flex-col pb-[130px]">
+        <section className="flex sm:gap-4 gap-6 sm:flex-row flex-col pb-[130px]">
           <div className="flex flex-col bg-white rounded-[20px] shadow-[0_2px_4px_rgba(0,0,0,0.10)] flex-1 md:py-[32px] sm:py-[26px] py-[20px] md:px-[45px] sm:px-[35px] px-[25px] ">
             <div className="flex flex-col gap-4 pb-9 ">
-              <div className="gooper text-lettuce text-[31px] sm:text-[25px]">
+              <div className="gooper text-lettuce sm:text-[31px] text-[25px]">
                 Get in Touch
               </div>
-              <div className="text-primary-dgray text-[20px] sm:text-[18px]">
+              <div className="text-primary-dgray sm:text-[20px] text-[18px]">
                 We're here to support your journey. Reach out with any questions
                 or concerns.
               </div>

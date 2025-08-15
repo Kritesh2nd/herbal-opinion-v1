@@ -112,7 +112,7 @@ const page = () => {
             <h2 className="text-farm-green gooper titleLevel2 pb-10 text-left">
               About Herbal Opinion
             </h2>
-            <div className="text-xl pb-5">
+            <div className="text-[18px] sm:text-[20px] pb-5 text-primary-black">
               <p>
                 Herbal Opinion is a specialised online clinic dedicated to
                 delivering accessible, high-quality healthcare to patients
@@ -150,7 +150,7 @@ const page = () => {
       </section>
 
       {/* section 4 */}
-      <section>
+      <section className="">
         <WhyHerbal color={"#E5EA988C"} />
       </section>
 
@@ -201,7 +201,11 @@ const page = () => {
                 key={item.id}
                 className="flex flex-col flex-1 min-w-0 p-[32px] bg-white rounded-xl text-center"
               >
-                <div className="flex justify-center pb-6">{item.icon}</div>
+                <div className="flex justify-center pb-6">
+                  <div className="flex justify-center items-center text-white bg-farm-green rounded-full text-3xl h-16 w-16">
+                    {item.icon}
+                  </div>
+                </div>
                 <div className="pb-4 text-xl text-farm-green">{item.title}</div>
                 <div className="text-primary-dgray">{item.description}</div>
               </div>
@@ -211,7 +215,7 @@ const page = () => {
       </section>
 
       {/* section 6 */}
-      <section className="bg-white py-25">
+      <section className="bg-white sm:py-25 py-18">
         <div className="globalContainer flex flex-col">
           <h2 className="gooper text-farm-green titleLevel2 pb-2">
             The People Behind Herbal Opinion

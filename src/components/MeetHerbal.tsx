@@ -17,23 +17,23 @@ const MeetHerbal = ({ text }: { text: string[] }) => {
           </div>
         </div>
         <div className="flex justify-end items-center flex-1 text-primary-dgray">
-          <div className="sm:pl-[105px]">
+          <div className="sm:pl-[105px] sm:text-[20px] text-[18px]">
             {text.map((item) => (
-              <>
-                <p>{item}</p>
+              <div key={item}>
+                <p className="">{item}</p>
                 <br />
-              </>
+              </div>
             ))}
-            <div className="grid grid-cols-2 sm:pb-9 pb-5">
+            <div className="grid sm:grid-cols-2 grid-cols-1 sm:pb-9 pb-5">
               {meetHerbal.map((item) => (
                 <div
-                  className="flex gap-2 text-primary-dgray text-[18px] sm:text-[20px]  pb-3"
+                  className="flex gap-2 text-primary-dgray text-[18px] sm:text-[20px] pb-3 "
                   key={item.id}
                 >
                   <div className="flex justify-center items-center text-white text-[9px] h-4 w-4 bg-farm-green rounded-full mt-[2px]">
                     <FaCheck />
                   </div>
-                  <p>{item.text}</p>
+                  <p className="sm:text-[20px] text-[18px]">{item.text}</p>
                 </div>
               ))}
             </div>

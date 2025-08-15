@@ -200,7 +200,7 @@ const Assessment = () => {
               {eligible && (
                 <div className="flex justify-center pb-2 sm:px-10">
                   <Link
-                    href="#"
+                    href="https://book.medprescribe.com.au/book/686c4b0890237467e0781196"
                     className="flex items-center gap-3 w-full bg-lemon text-primary-black px-7 py-[7px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                   >
                     <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] ">

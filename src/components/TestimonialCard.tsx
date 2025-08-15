@@ -11,7 +11,7 @@ import Image from "next/image";
 const TestimonialCard = ({ bgwhite = false }: { bgwhite?: boolean }) => {
   return (
     <div className={`${bgwhite ? "bg-light-green " : "bg-white "} py-10 `}>
-      <div className="globalContainer py-16 px-4">
+      <div className="globalContainer sm:py-16 py-10 px-4">
         <h2 className="titleLevel2 gooper text-farm-green mb-12">
           What Our Members Say
         </h2>
@@ -28,7 +28,7 @@ const TestimonialCard = ({ bgwhite = false }: { bgwhite?: boolean }) => {
           }}
         >
           {testimonials.map((item, i) => (
-            <SwiperSlide key={i} className=" mb-10">
+            <SwiperSlide key={i} className=" mb-10 sm:pb-0 pb-5">
               <div className=" sm:h-[352px] h-auto ">
                 <div
                   className={`${
@@ -49,7 +49,7 @@ const TestimonialCard = ({ bgwhite = false }: { bgwhite?: boolean }) => {
                           />
                         ))}
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex sm:justify-end justify-center ">
                       <div className="flex flex-col sm:pr-2">
                         <div className="text-farm-green sm:text-xl text-lg sm:text-right text-center">
                           {item.name}

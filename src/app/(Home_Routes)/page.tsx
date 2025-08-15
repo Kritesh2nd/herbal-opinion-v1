@@ -3,12 +3,11 @@ import Herosection from "@/src/components/Herosection";
 import LeafComponent from "@/src/components/LeafComponent";
 
 import MeetHerbal from "@/src/components/MeetHerbal";
-import ConsultationCard from "@/src/components/Plan";
 import PricingCard from "@/src/components/PricingCard";
 import PrimaryButton from "@/src/components/PrimaryButton";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WhyHerbal from "@/src/components/WhyHerbal";
-import { CONSULTATION_PLANS, steps, therapyItems } from "@/src/constants";
+import { steps, therapyItems } from "@/src/constants";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -44,7 +43,7 @@ const Home = () => {
           <h1 className="gooper text-farm-green titleLevel2 pb-2">
             When to Choose a Different Path to Healing?
           </h1>
-          <div className="flex flex-col md:flex-row gap-10 items-center bg-white pt-16">
+          <div className="flex flex-col md:flex-row gap-10 items-center bg-white sm:pt-16 pt-10">
             {/* Left side image */}
             <div>
               <div className="flex-1">
@@ -59,14 +58,14 @@ const Home = () => {
             </div>
             {/* Right side text and grid */}
             <div className="flex-1">
-              <p className="text-[#1F2937] mb-6 text-xl">
-                If conventional treatments haven’t worked for you for physical
+              <p className="text-[#1F2937] sm:mb-6 mb-10 text-xl">
+                If conventional treatments haven't worked for you for physical
                 discomfort, mood support, or emotional balance, alternative
                 therapies may provide what you need. Start with our initial
                 consult.
               </p>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-3 sm:gap-6 gap-4">
                 {therapyItems.map((item) => (
                   <div
                     key={item.id}
@@ -112,7 +111,7 @@ const Home = () => {
         </div>
         <div className="globalContainer py-16">
           <h2 className=" text-primary gooper titleLevel2">How It Works?</h2>
-          <div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between pt-16">
+          <div className="flex flex-col-reverse md:flex-row gap-10 items-center justify-between sm:pt-16 pt-10">
             {/* Left side image */}
             <div className="flex flex-col gap-14">
               {steps.map((item) => (
@@ -127,10 +126,10 @@ const Home = () => {
 
                     {/* Text content */}
                     <div className="max-w-[500px] mx-auto">
-                      <h3 className="text-green-900 font-medium text-[25px]">
+                      <h3 className="text-green-900 font-medium tsm:text-[25px] text-[20px]">
                         {item.title}
                       </h3>
-                      <p className="text-[#625B5F] text-xl">
+                      <p className="text-[#625B5F] tsm:text-[20px] text-[18px]">
                         {item.description}
                       </p>
                     </div>
@@ -160,8 +159,8 @@ const Home = () => {
       {/* section 5 */}
       <section className="flex flex-col bg-light-green py-22">
         <PricingCard />
-        <div>
-          <div className="max-w-3xl mx-auto w-full space-y-8 my-16">
+        <div className="px-5">
+          <div className="max-w-3xl mx-auto w-full space-y-8 sm:my-16 my-10">
             {/* Main Card */}
             <div className="bg-white rounded-xl p-6 shadow-lg text-center">
               <p className="text-[#333333] text-xl mb-6 leading-relaxed">
@@ -184,7 +183,7 @@ const Home = () => {
               Your Wellness Journey, Simplified
             </h2>
 
-            <p className="text-[#625B5F] text-xl leading-relaxed max-w-5xl mx-auto">
+            <p className="text-[#625B5F] text-[18px] sm:text-[20px] leading-relaxed max-w-5xl mx-auto">
               All plans include access to our knowledgeable support team and
               educational resources to help you make informed decisions about
               your botanical wellness options.
@@ -212,7 +211,7 @@ const Home = () => {
       </section>
 
       {/* section 7 */}
-      <section className="bg-light-green py-25">
+      <section className="bg-light-green sm:py-25 py-20">
         <div className="globalContainer flex sm:flex-row flex-col gap-10 ">
           <div className="flex items-center sm:w-1/2">
             <div className="flex flex-col justify-center pb-5">
@@ -222,7 +221,7 @@ const Home = () => {
               <div className="text-primary-black sm:text-xl text-lg sm:pb-9 pb-5">
                 Switching to Herbal Opinion is simple and seamless.
               </div>
-              <div className=" text-sm text-primary-dgray sm:pr-32 pr-10 sm:pb-13 pb-6">
+              <div className=" sm:text-[20px] text-[18px] text-primary-dgray sm:pr-32 pr-10 sm:pb-13 pb-6">
                 Whether you're unhappy with your current care or looking for a
                 more compassionate approach, we're here to help. Switching takes
                 less than 5 minutes and we'll handle the details for you.

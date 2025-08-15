@@ -54,16 +54,16 @@ const SwitchClinic = () => {
       <MessageReceived active={false} />
       {/* section 1 */}
       <section className="bg-light-green">
-        <div className="globalContainer flex flex-col md:flex-row pt-[86px] pb-[64px] ">
-          <div className="flex flex-col pt-[120px] md:w-1/2 pb-[120px] md:pb-0 w-full  pr-10">
-            <div className="gooper titleLevel1 text-left pb-12">
+        <div className="globalContainer flex flex-col-reverse md:flex-row pt-[86px] pb-[64px] ">
+          <div className="flex flex-col sm:py-30 py-15  md:w-1/2 md:pb-0 w-full  pr-10">
+            <div className="gooper titleLevel1 text-left pb-12 text-primary-black">
               Switch for <span className="text-farm-green">$20</span>{" "}
               <span className="sm:inline hidden">
                 <br />
               </span>
               Your care, your terms.
             </div>
-            <div className="text-[20px] sm:text-[25px] pb-10">
+            <div className="text-[20px] sm:text-[25px] pb-10 text-primary-black">
               We're here to make your switch simple, secure, and supported every
               step of the way.
             </div>
