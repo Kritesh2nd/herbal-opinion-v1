@@ -193,7 +193,7 @@ const Assessment = () => {
                   </div>
                   <div className="text-primary-dgray">
                     We're here if you have questions or need help exploring
-                    other options.{" "}
+                    other options.{"  "}
                   </div>
                 </div>
               )}
