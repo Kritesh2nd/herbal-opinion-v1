@@ -4,6 +4,7 @@ import LeafComponent from "@/src/components/LeafComponent";
 
 import MeetHerbal from "@/src/components/MeetHerbal";
 import ConsultationCard from "@/src/components/Plan";
+import PricingCard from "@/src/components/PricingCard";
 import PrimaryButton from "@/src/components/PrimaryButton";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import WhyHerbal from "@/src/components/WhyHerbal";
@@ -14,6 +15,9 @@ import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 const Home = () => {
+  const meetHerbalText = [
+    "Herbal Opinion is a Telehealth consultation clinic dedicated to helping everyday Australians explore alternate medications and treatment through expert clinical opinions. Our qualified practitioners guide each patient on a personalised journey to healing, offering tailored care plans that prioritise safety, efficacy, and individual needs.",
+  ];
   return (
     <div>
       {/* section 1 */}
@@ -154,20 +158,9 @@ const Home = () => {
       </section>
 
       {/* section 5 */}
-      <section className="bg-tertiary py-16">
-        <div className="globalContainer">
-          <h2 className="gooper text-primary titleLevel2">
-            Simple Pricing for Personalized Support
-          </h2>
-          <p className="text-center  text-[#4B5563] text-xl mb-16 mt-2">
-            Choose the care level that suits your needs. No hidden fees. Cancel
-            anytime.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6 justify-center items-center ">
-            {CONSULTATION_PLANS.map((plan) => (
-              <ConsultationCard key={plan.id} plan={plan} />
-            ))}
-          </div>
+      <section className="flex flex-col bg-light-green py-22">
+        <PricingCard />
+        <div>
           <div className="max-w-3xl mx-auto w-full space-y-8 my-16">
             {/* Main Card */}
             <div className="bg-white rounded-xl p-6 shadow-lg text-center">
@@ -178,7 +171,7 @@ const Home = () => {
               </p>
               <Link
                 href="/assessment"
-                className="bg-[#AED141] text-white px-6 py-3 rounded-lg text-xl transition-colors duration-200 inline-flex items-center gap-2 group"
+                className="bg-[#AED141] text-primary-black px-6 py-3 rounded-lg text-xl transition-colors duration-200 inline-flex items-center gap-2 group"
               >
                 Take the Questionnaire
                 <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 text-xl transition-transform duration-200" />
@@ -220,31 +213,32 @@ const Home = () => {
 
       {/* section 7 */}
       <section className="bg-light-green py-25">
-        <div className="globalContainer flex sm:flex-row flex-col gap-5">
-          {/* Section7: Already With Another Clinic?    */}
-          <div className="flex flex-col justify-center sm:w-1/2">
-            <h2 className="text-farm-green gooper titleLevel2 text-left">
-              Already with another clinic?
-            </h2>
-            <div className="text-primary-dgray sm:text-xl text-lg sm:pb-9 pb-5">
-              Switching to Herbal Opinion is simple and seamless.
-            </div>
-            <div className=" text-xs text-primary-dgray sm:pr-40 pr-10 sm:pb-13 pb-6">
-              Whether you're unhappy with your current care or looking for a
-              more compassionate approach, we're here to help. Switching takes
-              less than 5 minutes and we'll handle the details for you.
-            </div>
-            <div>
-              <PrimaryButton
-                title="Switch to Herbal Opinion"
-                url="/switch-clinic"
-                background="farm-green"
-                text="white"
-              />
+        <div className="globalContainer flex sm:flex-row flex-col gap-10 ">
+          <div className="flex items-center sm:w-1/2">
+            <div className="flex flex-col justify-center pb-5">
+              <h2 className="text-farm-green gooper titleLevel2 text-left">
+                Already with another clinic?
+              </h2>
+              <div className="text-primary-black sm:text-xl text-lg sm:pb-9 pb-5">
+                Switching to Herbal Opinion is simple and seamless.
+              </div>
+              <div className=" text-sm text-primary-dgray sm:pr-32 pr-10 sm:pb-13 pb-6">
+                Whether you're unhappy with your current care or looking for a
+                more compassionate approach, we're here to help. Switching takes
+                less than 5 minutes and we'll handle the details for you.
+              </div>
+              <div>
+                <PrimaryButton
+                  title="Switch to Herbal Opinion"
+                  url="/switch-clinic"
+                  background="farm-green"
+                  text="white"
+                />
+              </div>
             </div>
           </div>
           <div className="sm:w-1/2">
-            <div className="lg:h-[650px] md:h-[520px] sm:h-[420px] h-[100vw] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[calc(100vw-40px)] relative rounded-lg overflow-hidden">
+            <div className="lg:h-[650px] md:h-[520px] sm:h-[420px] h-[100vw] lg:w-[600px] md:w-[500px] sm:w-[400px] w-[calc(100vw-40px)] relative overflow-hidden">
               <Image src="/img/home/doctor.png" fill alt="doctor" />
             </div>
           </div>
@@ -253,7 +247,7 @@ const Home = () => {
 
       {/* section 8 */}
       <section>
-        <MeetHerbal />
+        <MeetHerbal text={meetHerbalText} />
       </section>
     </div>
   );

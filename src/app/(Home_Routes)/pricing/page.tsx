@@ -10,26 +10,16 @@ import { comparePlans, CONSULTATION_PLANS, faqs } from "@/src/constants";
 import ConsultationCard from "@/src/components/Plan";
 import Faq from "@/src/components/Faq";
 import LeafComponent from "@/src/components/LeafComponent";
+import PricingCard from "@/src/components/PricingCard";
 
 const Pricing = () => {
   return (
     <div>
       {/* section 1 */}
-      <section className="bg-light-green">
-        <div className="globalContainer flex flex-col py-25 ">
-          <h2 className="gooper text-primary titleLevel2">
-            Simple Pricing for Personalized Support
-          </h2>
-          <p className="text-center  text-[#4B5563] text-xl mb-16 mt-2">
-            Choose the care level that suits your needs. No hidden fees. Cancel
-            anytime.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6 justify-center items-center ">
-            {CONSULTATION_PLANS.map((plan) => (
-              <ConsultationCard key={plan.id} plan={plan} />
-            ))}
-          </div>
-        </div>
+
+      {/* section 1 */}
+      <section className="bg-light-green py-22">
+        <PricingCard />
       </section>
 
       {/* section 2 */}

@@ -51,13 +51,13 @@ export default function Header() {
           <div className=" items-center gap-4 hidden sm:flex">
             <Link
               href="/patient-portal"
-              className="border border-farm-green text-farm-green sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
+              className="border-3 border-farm-green text-farm-green sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
             >
               <p className="mt-1">Patient Portal</p>
             </Link>
             <Link
               href="/assessment"
-              className="border border-lemon text-farm-green bg-lemon sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
+              className="border-3 border-lemon text-farm-green bg-lemon sm:px-4 px-6 sm:py-2 py-1 rounded-full md:text-[25px] sm:text-[20px] text-[18px] transition-all duration-300 hover:scale-105"
             >
               <p className="mt-1">Get Started</p>
             </Link>

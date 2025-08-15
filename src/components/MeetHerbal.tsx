@@ -4,7 +4,7 @@ import PrimaryButton from "./PrimaryButton";
 import { FaCheck } from "react-icons/fa";
 import { meetHerbal } from "../constants";
 
-const MeetHerbal = () => {
+const MeetHerbal = ({ text }: { text: string[] }) => {
   return (
     <div className="globalContainer py-[70px]">
       <div className="gooper text-center text-farm-green md:text-[39px] sm:text-[31px] text-[25px] pb-[64px]">
@@ -16,28 +16,21 @@ const MeetHerbal = () => {
             <Image src="/img/switch-clinic/meetup.png" fill alt="yoga girl" />
           </div>
         </div>
-        <div className="flex justify-end items-center flex-1">
+        <div className="flex justify-end items-center flex-1 text-primary-dgray">
           <div className="sm:pl-[105px]">
-            <p className="text-primary-dgray text-[18px] sm:text-[20px]">
-              Founded by an Australian citizen with a mission to make natural
-              health support accessible to everyone, Herbal Opinion is committed
-              to compassionate care through personalized solutions.
-            </p>
-            <br />
-            <p className="text-primary-dgray text-[18px] sm:text-[20px]">
-              We believe in the power of nature to support wellness and provide
-              relief. Our team of healthcare professionals carefully evaluates
-              each person's needs to recommend the most appropriate natural
-              solutions.
-            </p>
-            <br />
+            {text.map((item) => (
+              <>
+                <p>{item}</p>
+                <br />
+              </>
+            ))}
             <div className="grid grid-cols-2 sm:pb-9 pb-5">
               {meetHerbal.map((item) => (
                 <div
                   className="flex gap-2 text-primary-dgray text-[18px] sm:text-[20px]  pb-3"
                   key={item.id}
                 >
-                  <div className="flex justify-center items-center text-white text-[12px] h-4 w-4 bg-farm-green rounded-full mt-[2px]">
+                  <div className="flex justify-center items-center text-white text-[9px] h-4 w-4 bg-farm-green rounded-full mt-[2px]">
                     <FaCheck />
                   </div>
                   <p>{item.text}</p>

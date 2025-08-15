@@ -44,6 +44,11 @@ const SwitchClinic = () => {
     console.log("formData", formData);
   };
 
+  const meetHerbalText = [
+    "Herbal Opinion is a Telehealth consultation clinic dedicated to helping everyday Australians explore alternate medications and treatment through expert clinical opinions. Our qualified practitioners guide each patient on a personalised journey to healing, offering tailored care plans that prioritise safety, efficacy, and individual needs.",
+    " We believe in the power of nature to support wellness and provide relief. Our team of healthcare professionals carefully evaluates each person's needs to recommend the most appropriate natural solutions.",
+  ];
+
   return (
     <div>
       <MessageReceived active={false} />
@@ -64,10 +69,11 @@ const SwitchClinic = () => {
             </div>
             <div className="flex">
               <PrimaryButton
-                title="Start Your Assessment"
-                url="/assessment"
+                title="Switch to Herbal Opinion"
+                url="/switch-clinic"
                 background="farm-green"
                 text="white"
+                py="py-2"
               />
             </div>
           </div>
@@ -214,7 +220,7 @@ const SwitchClinic = () => {
 
       {/* section 4 */}
       <section>
-        <MeetHerbal />
+        <MeetHerbal text={meetHerbalText} />
       </section>
     </div>
   );

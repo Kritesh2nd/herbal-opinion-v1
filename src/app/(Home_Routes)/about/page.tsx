@@ -12,9 +12,9 @@ const page = () => {
   return (
     <div>
       {/* section 1 */}
-      <section className="bg-tertiary gooper font-normal pb-[144px]">
+      <section className="bg-tertiary  font-normal pb-[144px]">
         <div className="globalContainer ">
-          <h1 className="titleLevel1 py-[64px]">
+          <h1 className="titleLevel1 py-[64px] gooper">
             Our Story Begins with a Belief in
             <br />
             <span className="text-primary">Better Healing.</span>
@@ -109,7 +109,7 @@ const page = () => {
             />
           </div>
           <div className="flex flex-col flex-1 min-w-0 ">
-            <h2 className="text-farm-green gooper titleLevel2 pb-10">
+            <h2 className="text-farm-green gooper titleLevel2 pb-10 text-left">
               About Herbal Opinion
             </h2>
             <div className="text-xl pb-5">
@@ -142,6 +142,7 @@ const page = () => {
               <PrimaryButton
                 title="Explore how it works?"
                 url="/how-it-works"
+                py="py-2"
               />
             </div>
           </div>

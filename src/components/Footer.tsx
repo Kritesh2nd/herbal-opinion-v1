@@ -55,7 +55,7 @@ const Footer = () => {
                 height={60}
               />
             </div>
-            <div className="text-lemon-green sm:text-[20px] text-[18px] pb-4">
+            <div className="text-light-green sm:text-[20px] text-[18px] pb-4">
               Your trusted source for alternative, prescription-based relief
               options that support your well-being.
             </div>
@@ -88,13 +88,13 @@ const Footer = () => {
             <div className="sm:pb-6 pb-2">Contact Us</div>
             {contactDetails.map((item) => (
               <div key={item.id} className="flex gap-3">
-                <div className="text-lemon pt-[3px]">{item.icon}</div>
+                <div className="text-light pt-[3px]">{item.icon}</div>
                 <div>{item.description}</div>
               </div>
             ))}
           </div>
         </div>
-        <div className="text-xs pb-[54px] ">
+        <div className="text-sm pb-[54px] ">
           Disclaimer: The information provided on this website is for general
           informational purposes only and does not constitute medical advice,
           diagnosis, or treatment. It is not intended to be a substitute for

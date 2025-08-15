@@ -79,8 +79,8 @@ const Assessment = () => {
   // },[])
 
   return (
-    <div className="bg-light-green sm:py-[120px] py-[80px]">
-      <div className="globalContainer flex flex-col ">
+    <div className="bg-light-green sm:py-[100px] py-[80px] ">
+      <div className="globalContainer flex flex-col">
         {displayQuestion && (
           <div className="">
             <h1 className="gooper text-farm-green titleLevel1 sm:pb-4">
@@ -89,65 +89,68 @@ const Assessment = () => {
             <div className="sm:pb-[64px] pb-[42px] text-primary-black sm:text-xl text-lg text-center">
               Just 5 quick questions — takes under 5 minutes.
             </div>
-            <div className="flex flex-col rounded-b-2xl shadow-[0px_8px_10px_rgba(0,0,0,0.30)] bg-white overflow-hidden">
-              <div className="flex  py-6 px-8 bg-lemon-green">
-                <div className="flex flex-col flex-1 ">
-                  <div className="sm:text-[25px] text-xl pb-[6px]">
-                    {assessmentQuestion[stage].title}
+            <div className=" border-e-red-500 md:px-30 sm:px-15 px-0">
+              <div className="flex flex-col rounded-b-2xl shadow-[0px_8px_10px_rgba(0,0,0,0.30)] bg-white overflow-hidden">
+                <div className="flex  py-6 px-8 bg-lemon-green">
+                  <div className="flex flex-col flex-1 ">
+                    <div className="sm:text-[25px] text-xl pb-[6px]">
+                      {assessmentQuestion[stage].title}
+                    </div>
+                    <div>{assessmentQuestion[stage].subTitle}</div>
                   </div>
-                  <div>{assessmentQuestion[stage].subTitle}</div>
-                </div>
 
-                <div className="flex justify-between w-20 items-center">
-                  <div className="flex justify-center items-center">
-                    <CircleProgress current={stage + 1} />
+                  <div className="flex justify-between w-20 items-center">
+                    <div className="flex justify-center items-center">
+                      <CircleProgress current={stage + 1} />
+                    </div>
+                    <div>{stage + 1}/5</div>
                   </div>
-                  <div>{stage + 1}/5</div>
                 </div>
-              </div>
-              <div className="flex flex-col md:px-[50px] px-[20px] py-[30px]">
-                <div className="text-primary-black text-md sm:text-xl pb-12 h-[180px]">
-                  {assessmentQuestion[stage].question}
-                  <br />
-                  {assessmentQuestion[stage].points && (
-                    <ul className="pt-3">
-                      {assessmentQuestion[stage].points.map((point) => (
-                        <li
-                          key={point}
-                          className="flex items-center pl-6 relative"
-                        >
-                          <span className="absolute h-[6px] w-[6px] bg-black rounded-full left-2 sm:top-[9px] top-[5px]"></span>
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-                <div className="flex flex-col sm:flex-row justify-center gap-8 pb-[20px] ">
-                  <div
-                    className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-green-500 transition-all duration-200 hover:scale-105"
-                    onClick={handelRight}
-                  >
-                    <div className="flex justify-center items-center sm:h-[210px] h-[160px]  sm:w-[210px] w-[160px] ">
-                      <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
-                        <FaCheck />
+                <div className="flex flex-col md:px-[50px] px-[20px] py-[30px]">
+                  <div className="text-primary-black text-md sm:text-xl pb-12 h-[180px]">
+                    {assessmentQuestion[stage].question}
+                    <br />
+                    {assessmentQuestion[stage].points && (
+                      <ul className="pt-3">
+                        {assessmentQuestion[stage].points.map((point) => (
+                          <li
+                            key={point}
+                            className="flex items-center pl-6 relative"
+                          >
+                            <span className="absolute h-[6px] w-[6px] bg-black rounded-full left-2 sm:top-[9px] top-[5px]"></span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <div className="flex flex-col sm:flex-row justify-center gap-8 pb-[20px] ">
+                    <div
+                      className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-green-500 transition-all duration-200 hover:scale-105"
+                      onClick={handelRight}
+                    >
+                      {/* <div className="flex justify-center items-center sm:h-[210px] h-[160px]  sm:w-[210px] w-[160px] "> */}
+                      <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
+                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
+                          <FaCheck />
+                        </div>
+                      </div>
+                      <div className="flex items-center sm:justify-center pt-2 pb-4 text-xl text-center ">
+                        Yes
                       </div>
                     </div>
-                    <div className="flex items-center sm:justify-center pt-2 pb-4 text-xl text-center ">
-                      Yes
-                    </div>
-                  </div>
-                  <div
-                    className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-red-500 transition-all duration-200 hover:scale-105"
-                    onClick={handelWrong}
-                  >
-                    <div className="flex justify-center items-center sm:h-[210px] h-[160px]  sm:w-[210px] w-[160px] ">
-                      <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
-                        <ImCross />
+                    <div
+                      className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-red-500 transition-all duration-200 hover:scale-105"
+                      onClick={handelWrong}
+                    >
+                      <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
+                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
+                          <ImCross />
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center sm:justify-center pt-2 pb-4 text-xl text-center ">
-                      No
+                      <div className="flex items-center sm:justify-center pt-2 pb-4 text-xl text-center ">
+                        No
+                      </div>
                     </div>
                   </div>
                 </div>

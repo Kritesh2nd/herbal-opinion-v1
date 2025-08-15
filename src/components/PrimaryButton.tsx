@@ -11,6 +11,7 @@ const PrimaryButton = ({
   text = "farm-green",
   url = "#",
   isButton = false,
+  py = "py-[5px]",
 }: {
   title: string;
   displayArrow?: boolean;
@@ -18,6 +19,7 @@ const PrimaryButton = ({
   text?: string;
   url?: string;
   isButton?: boolean;
+  py?: string;
 }) => {
   return (
     <div className="flex">
@@ -26,7 +28,7 @@ const PrimaryButton = ({
           href={url}
           className={`${background ? "bg-" + background : "bg-lemon"} 
         ${text ? "text-" + text : "text-farm-green"}
-          flex items-center gap-3  text-farm-green px-7 py-[5px] rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer`}
+          flex items-center gap-3  text-farm-green px-7 ${py} rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer`}
         >
           <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] ">
             {title}

@@ -41,19 +41,20 @@ const WhyHerbal = ({ color }: { color: string }) => {
           <div className="flex flex-col flex-1 min-w-0 gap-5 ">
             <div
               className={
-                "flex flex-col-reverse sm:flex-row flex-1 p-8 rounded-lg"
+                "flex flex-col-reverse sm:flex-row flex-1 p-8 rounded-lg gap-1"
               }
               style={{ backgroundColor: color }}
             >
-              <div className="w-full flex sm:justify-start justify-center  ">
+              <div className="w-[30%] flex sm:justify-start justify-center  ">
                 <Image
                   src="/img/about/image6.png"
-                  width={200}
-                  height={200}
+                  width={180}
+                  height={180}
                   alt="image6"
+                  className="object-contain -mt-3 "
                 />
               </div>
-              <div className="">
+              <div className="w-[70%] flex flex-col gap-2 ">
                 <div className="flex pb-4 gap-4 ">
                   <div className="p-4 bg-[#E5EA98] w-fit rounded-[100px] text-primary text-2xl">
                     <FaUserDoctor />
@@ -72,7 +73,7 @@ const WhyHerbal = ({ color }: { color: string }) => {
               className={`flex flex-1 p-8 rounded-lg gap-3 flex-col sm:flex-row`}
               style={{ backgroundColor: color }}
             >
-              <div>
+              <div className="w-[70%]">
                 <div className="flex pb-4 gap-4 ">
                   <div className="p-4 bg-[#E5EA98] w-fit rounded-[100px] text-primary text-2xl">
                     <MdOutlineSecurity />
@@ -85,12 +86,13 @@ const WhyHerbal = ({ color }: { color: string }) => {
                   Our process is easy to navigate with privacy as our priority.
                 </div>
               </div>
-              <div className="flex sm:justify-start justify-center">
+              <div className="flex sm:justify-start justify-center w-[30%] overflow-hidden">
                 <Image
                   src="/img/about/image7.png"
-                  width={200}
-                  height={200}
-                  alt="image7"
+                  width={180}
+                  height={180}
+                  alt="image6"
+                  className="object-contain scale-140"
                 />
               </div>
             </div>
