@@ -98,7 +98,6 @@ export interface AssessmentType {
   answer: boolean;
 }
 
-
 export interface StatCard {
   title: string;
   value: string;
@@ -107,5 +106,19 @@ export interface StatCard {
   change: string;
   changeType: "positive" | "negative";
   period: string;
-  color: string; // Tailwind color class
+  color: string;
+}
+
+export interface pricingDataType {
+  id: number;
+  name: string;
+  description: string;
+  originalPrice: number;
+  currentPrice: number;
+  free: boolean;
+  shortDescription: string;
+  features: string[];
+  display: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

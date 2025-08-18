@@ -2,11 +2,18 @@ import { StatCard } from "@/src/types";
 import { BiTransfer } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
-import {FiDollarSign,FiHelpCircle,FiMail,FiRefreshCw,FiTrendingUp,FiTrendingDown,FiChevronRight,} from "react-icons/fi";
+import {
+  FiDollarSign,
+  FiHelpCircle,
+  FiMail,
+  FiRefreshCw,
+  FiTrendingUp,
+  FiTrendingDown,
+  FiChevronRight,
+} from "react-icons/fi";
 import { IoDocumentText } from "react-icons/io5";
 
-
-export const metrics:StatCard[] = [
+export const metrics: StatCard[] = [
   {
     title: "Total Submissions",
     value: "24",
@@ -38,7 +45,6 @@ export const metrics:StatCard[] = [
     color: "bg-[#E5EA98]",
   },
 ];
-
 
 const shortcuts = [
   {
@@ -82,10 +88,10 @@ const recentActivity = [
   },
 ];
 
-export  default function DashboardContent() {
+export default function DashboardContent() {
   return (
     <div className="flex-1 w-[81vw] ">
-      <header className="bg-white shadow-sm px-6 py-3">
+      {/* <header className="bg-white shadow-sm px-6 py-3">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-[#1F2937]">Dashboard</h1>
           <div className="flex items-center gap-3">
@@ -100,7 +106,7 @@ export  default function DashboardContent() {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Dashboard Content */}
       <main className="p-6 space-y-6 overflow-y-auto">
@@ -112,7 +118,6 @@ export  default function DashboardContent() {
               className="bg-white rounded-lg border-[1px] border-[#CFCCCE] relative overflow-hidden"
             >
               <div className="p-6">
-                
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-2">
@@ -125,7 +130,9 @@ export  default function DashboardContent() {
                   </div>
                   <div
                     className={`w-fit h-fit p-2 rounded-full ${metric.color}`}
-                  >{metric.icon}</div>
+                  >
+                    {metric.icon}
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-1 mt-4">
@@ -145,7 +152,6 @@ export  default function DashboardContent() {
                   </span>
                   <span className="text-sm text-gray-500">{metric.period}</span>
                 </div>
-
               </div>
             </div>
           ))}
@@ -153,9 +159,7 @@ export  default function DashboardContent() {
 
         {/* Shortcuts */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-6">
-            Shortcuts
-          </h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Shortcuts</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {shortcuts.map((shortcut, index) => (
               <div

@@ -22,6 +22,7 @@ import {
   MeetHerbalType,
   NavItemIn,
   OurJourneyTypes,
+  pricingDataType,
   ResilienceType,
   StatCard,
   StepProps,
@@ -525,6 +526,59 @@ export const eligibleText = {
   },
 };
 
-
-
-
+export const pricingData: pricingDataType[] = [
+  {
+    id: 1,
+    name: "Initial Consultation",
+    description:
+      "Personalized care starts here, doctor reviewed plan tailored to your needs.",
+    originalPrice: 79,
+    currentPrice: 29,
+    free: false,
+    shortDescription: "Ideal for new users",
+    features: [
+      "Expert 1-on-1 consult",
+      "Personalized wellness plan",
+      "Doctor-reviewed recommendations",
+    ],
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 2,
+    name: "Follow Up Consultation",
+    description:
+      "Ongoing support to keep your wellness journey on track with expert guidance.",
+    originalPrice: 65,
+    currentPrice: 19,
+    free: false,
+    shortDescription: "Ideal for ongoing care seekers.",
+    features: [
+      "Continued care support",
+      "Review of progress & plan adjustment",
+      "Quick virtual check-in",
+    ],
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 3,
+    name: "Switching Clinic",
+    description:
+      "Seamless transition, we make it easy to switch your care to Herbal Opinion.",
+    originalPrice: 0,
+    currentPrice: 0,
+    free: true,
+    shortDescription: "Effortless transition to Herbal Opinion.",
+    features: [
+      "No consultation fee",
+      "We handle the switch for you",
+      "Guided by our care team",
+    ],
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];

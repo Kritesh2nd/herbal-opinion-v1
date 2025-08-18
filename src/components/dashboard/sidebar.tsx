@@ -20,7 +20,7 @@ interface SidebarProps {
 
 export function Sidebar({ activeItem, onItemClick }: SidebarProps) {
   return (
-    <div className="w-[300px] bg-white shadow-lg sticky top-0 h-screen">
+    <div className="w-full bg-white shadow-lg sticky top-0 h-screen">
       <div className="p-6">
         <div className="relative h-full w-[137px]">
           <Image
@@ -38,13 +38,13 @@ export function Sidebar({ activeItem, onItemClick }: SidebarProps) {
           <button
             key={index}
             onClick={() => onItemClick(item.label)}
-            className={`w-full flex items-center justify-start gap-3 h-12 px-4 rounded-md text-left text-base  ${
+            className={`w-full flex items-center justify-start gap-3 h-12 px-4 rounded-md text-left text-base cursor-pointer transition-all duration-200 ${
               activeItem === item.label
                 ? "bg-[#E5EA98] text-primary hover:bg-[#E5EA98] font-bold"
-                : "text-[#625B5F] hover:bg-[#E5EA98]"
+                : "text-primary-dgray hover:bg-[#E5EA98]"
             }`}
           >
-            <item.icon className="w-4 h-4 -mt-1" />
+            <item.icon className="w-4 h-4 -mt-1 text-primary-black" />
             {item.label}
           </button>
         ))}
