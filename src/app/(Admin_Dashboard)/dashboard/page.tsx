@@ -9,7 +9,7 @@ import SwitchClinicContent from "@/src/components/dashboard/SwitchClinicContent"
 import DashboardHeader from "@/src/components/dashboard/DashboardHeader";
 
 export default function Dashboard() {
-  const [activeItem, setActiveItem] = useState("Pricing Manager");
+  const [activeItem, setActiveItem] = useState("FAQs Editor");
 
   const renderContent = () => {
     switch (activeItem) {
@@ -36,7 +36,7 @@ export default function Dashboard() {
       </section>
 
       {/* right section: dashboard contents */}
-      <section className="flex flex-col flex-1 h-[100vh]">
+      <section className="flex flex-col flex-1 h-[100vh] relative">
         {/* dashboard header */}
         <div className="h-[65px] overflow-hidden">
           <DashboardHeader />

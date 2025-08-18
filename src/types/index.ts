@@ -122,3 +122,12 @@ export interface pricingDataType {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface FaqDataType {
+  id: number;
+  question: string;
+  answer: string;
+  display: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+}

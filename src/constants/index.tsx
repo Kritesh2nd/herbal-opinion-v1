@@ -17,6 +17,7 @@ import {
   ComparePlansType,
   ConsultationPlan,
   ContactDetailType,
+  FaqDataType,
   FaqDropdownType,
   JourneyStepType,
   MeetHerbalType,
@@ -577,6 +578,54 @@ export const pricingData: pricingDataType[] = [
       "We handle the switch for you",
       "Guided by our care team",
     ],
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+];
+
+export const faqData: FaqDataType[] = [
+  {
+    id: 1,
+    question: "What happens if I miss my consultation?",
+    answer:
+      "If you miss your consultation, our care team will contact you to reschedule. No additional fees will apply for the first missed appointment. However, repeated missed appointments may incur a rescheduling fee of $15. We recommend canceling at least 24 hours in advance if you can't make your appointment.",
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 2,
+    question: "Can I change my consultation time?",
+    answer:
+      "Yes, you can reschedule your consultation up to 24 hours before the appointment at no extra cost. Simply log in to your account or contact our support team.",
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 3,
+    question: "Do you offer refunds for canceled consultations?",
+    answer:
+      "Refunds are available if you cancel at least 48 hours in advance. Cancellations made within 48 hours of the appointment may be eligible for credit toward future consultations.",
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 4,
+    question: "How do I prepare for my consultation?",
+    answer:
+      "Please ensure you have a stable internet connection, a quiet space, and any necessary documents or medical history ready before your consultation begins.",
+    display: true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    id: 5,
+    question: "Are the consultations confidential?",
+    answer:
+      "Yes, all consultations are strictly confidential. We follow industry-standard privacy and data protection policies to safeguard your personal information.",
     display: true,
     createdAt: new Date(),
     updatedAt: new Date(),

@@ -135,13 +135,13 @@ const PricingForm = ({
 
   return (
     <div className="flex flex-col h-auto w-full">
-      <div className="flex flex-row justify-between text-[25px] p-6 items-center">
+      <div className="flex flex-row justify-between text-[25px] p-6 pb-4 items-center border-b-1 border-primary-lgray">
         <h2>{updateForm ? "Edit Pricing Plan" : "Add New Pricing Plan"}</h2>
         <span className=" cursor-pointer" onClick={toggelShowForm}>
           <RxCross2 />
         </span>
       </div>
-      <form className="w-full flex flex-col gap-4 p-6 pt-0">
+      <form className="w-full flex flex-col gap-4 p-6 pt-4">
         <div>
           <label htmlFor="name" className="text-primary-black">
             Full Name
@@ -261,7 +261,7 @@ const PricingForm = ({
             );
           })}
         </div>
-        <div className="flex justify-end gap-4 pt-1">
+        <div className="flex justify-end gap-4 pt-2">
           <button
             type="reset"
             className="py-3 px-5 border-1 border-primary-dgray text-primary-black rounded-md cursor-pointer"
@@ -289,7 +289,7 @@ const PricingContent = () => {
   };
 
   return (
-    <div className="relative flex flex-col h-full w-full overflow-y-auto py-5 px-7">
+    <div className="flex flex-col h-full w-full overflow-y-auto py-5 px-7">
       <div className="pb-6">
         <DashboardSubTitle funcBtn={toggelShowForm} />
       </div>
@@ -306,7 +306,7 @@ const PricingContent = () => {
             <div className="absolute h-full w-full bg-black opacity-5"></div>
             <div className="absolute h-full w-full">
               <div className="h-full w-full flex justify-center items-center">
-                <div className="flex justify-center items-center w-[580px] h-[calc(100vh-180px)] mb-10 ">
+                <div className="flex justify-center items-center w-[580px] h-[calc(100vh-180px)] ">
                   <div className="overflow-y-auto bg-white rounded-lg  shadow-[0_2px_4px_rgba(0,0,0,0.30)]">
                     <PricingForm
                       updateForm={updateForm}
