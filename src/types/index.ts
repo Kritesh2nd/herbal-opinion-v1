@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export interface NavItemIn {
   name: string;
@@ -96,4 +96,16 @@ export interface AssessmentType {
   question: string;
   points: string[];
   answer: boolean;
+}
+
+
+export interface StatCard {
+  title: string;
+  value: string;
+  subtitle: string;
+  icon?: React.JSX.Element;
+  change: string;
+  changeType: "positive" | "negative";
+  period: string;
+  color: string; // Tailwind color class
 }

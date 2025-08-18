@@ -23,6 +23,7 @@ import {
   NavItemIn,
   OurJourneyTypes,
   ResilienceType,
+  StatCard,
   StepProps,
   Testimonial,
   TherapyItem,
@@ -523,10 +524,7 @@ export const eligibleText = {
     icon: <ImCross />,
   },
 };
-/*
-"In order to be eligible for medicinal cannabis treatment, a patient needs to have been diagnosed with a chronic condition by a doctor.",
-"In order to be eligible for medicinal cannabis treatment, you need to have tried (or be currently using) a prescribed medication to help treat your symptoms.",
-"In order to be eligible for medicinal cannabis treatment, your previous medication needs to have been unsuccessful or have undesired side-effects.",
-"Unfortunately, you are likely not suitable for plant medicine treatment.",
-"Unfortunately, you are likely not suitable for plant medicine treatment.",
-*/
+
+
+
+
