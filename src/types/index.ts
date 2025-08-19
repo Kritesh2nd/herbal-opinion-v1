@@ -131,3 +131,13 @@ export interface FaqDataType {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface ContactDataType {
+  id: number;
+  fullname: string;
+  email: string;
+  phone: string;
+  message: string;
+  contactAgree: boolean;
+  submittedAt: Date;
+}

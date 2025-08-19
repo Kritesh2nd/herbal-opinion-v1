@@ -9,7 +9,7 @@ import SwitchClinicContent from "@/src/components/dashboard/SwitchClinicContent"
 import DashboardHeader from "@/src/components/dashboard/DashboardHeader";
 
 export default function Dashboard() {
-  const [activeItem, setActiveItem] = useState("FAQs Editor");
+  const [activeItem, setActiveItem] = useState("Contact Forms");
 
   const renderContent = () => {
     switch (activeItem) {

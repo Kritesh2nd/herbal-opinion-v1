@@ -2,6 +2,7 @@ import React from "react";
 import { pricingPlans } from "../constants";
 import { ConsultationPlan } from "../types";
 import { MdOutlineCheck } from "react-icons/md";
+import Link from "next/link";
 
 const PricingSingleCard = ({
   data,
@@ -58,9 +59,18 @@ const PricingSingleCard = ({
             ))}
           </div>
           <div className="flex flex-1 flex-col justify-end pt-8">
-            <button className="bg-farm-green sm:text-[20xp] text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 ">
-              Get Started
-            </button>
+            {originalPrice ? (
+              <button className="bg-farm-green sm:text-[20xp] text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 ">
+                Get Started
+              </button>
+            ) : (
+              <Link
+                href="switch-clinic"
+                className="bg-farm-green sm:text-[20xp] text-center text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 "
+              >
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -6,8 +6,7 @@ import { MdCheck } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
 import TestimonialCard from "@/src/components/TestimonialCard";
-import { comparePlans, CONSULTATION_PLANS, faqs } from "@/src/constants";
-import ConsultationCard from "@/src/components/Plan";
+import { comparePlans } from "@/src/constants";
 import Faq from "@/src/components/Faq";
 import LeafComponent from "@/src/components/LeafComponent";
 import PricingCard from "@/src/components/PricingCard";

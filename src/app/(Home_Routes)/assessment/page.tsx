@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
@@ -56,6 +56,24 @@ const Assessment = () => {
   const [displayQuestion, setDisplayQuestion] = useState(true);
   const [eligible, setEligible] = useState(true);
   const [ineligibleStage, setIneligibleStage] = useState(0);
+
+  const handleButton = (checkButton: boolean) => {
+    let isRight = true;
+    if (
+      (checkButton && (stage == 0 || stage == 1 || stage == 2)) ||
+      (!checkButton && (stage == 3 || stage == 4))
+    ) {
+      isRight = true;
+    } else {
+      isRight = false;
+    }
+
+    if (isRight) {
+      handelRight();
+    } else {
+      handelWrong();
+    }
+  };
 
   const handelRight = () => {
     setStage(stage < 4 ? stage + 1 : stage);
@@ -127,7 +145,9 @@ const Assessment = () => {
                   <div className="flex flex-col sm:flex-row justify-center gap-8 pb-[20px] ">
                     <div
                       className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-green-500 transition-all duration-200 hover:scale-105"
-                      onClick={handelRight}
+                      onClick={() => {
+                        handleButton(true);
+                      }}
                     >
                       {/* <div className="flex justify-center items-center sm:h-[210px] h-[160px]  sm:w-[210px] w-[160px] "> */}
                       <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
@@ -141,7 +161,9 @@ const Assessment = () => {
                     </div>
                     <div
                       className="flex flex-row sm:flex-col justify-center sm:gap-0 gap-4 cursor-pointer shadow-[0px_0px_8px_rgba(0,0,0,0.30)] rounded-sm text-red-500 transition-all duration-200 hover:scale-105"
-                      onClick={handelWrong}
+                      onClick={() => {
+                        handleButton(false);
+                      }}
                     >
                       <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
                         <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
