@@ -99,7 +99,7 @@ export default function Header() {
                     </Link>
                   ))}
                   <Link
-                    href="/patient-portal"
+                    href="https://escript.link/login"
                     className="text-primary-white text-[18px] mb-5 py-2 text-center"
                     onClick={() => setToggle(!toggle)}
                   >

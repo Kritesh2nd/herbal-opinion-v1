@@ -14,7 +14,7 @@ const Herosection = () => {
             <div className="space-y-8 sm:w-1/2  md:pt-28 sm:pt-20 ">
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-[61px] text-[#1F1C1E] lg:leading-18 md:leading-14 gooper">
-                  Your Natural Path
+                  Your Natural Path{" "}
                   <span className="sm:inline hidden">
                     <br />
                   </span>

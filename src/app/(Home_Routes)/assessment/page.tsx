@@ -251,7 +251,7 @@ const Assessment = () => {
                   className="flex items-center gap-3 w-full border-3 border-green-500 text-primary-black px-7 py-[5px] rounded-lg sm:text-[20px] text-[18px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer"
                 >
                   <div className="flex items-center justify-center w-full gap-3 pt-[3px] md:pt-[6px] text-center ">
-                    Talk to out Team
+                    Talk to our Team
                   </div>
                 </Link>
               </div>
