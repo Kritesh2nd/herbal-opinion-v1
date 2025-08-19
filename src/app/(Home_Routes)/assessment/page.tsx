@@ -151,7 +151,7 @@ const Assessment = () => {
                     >
                       {/* <div className="flex justify-center items-center sm:h-[210px] h-[160px]  sm:w-[210px] w-[160px] "> */}
                       <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
-                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
+                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 border-green-500 sm:text-6xl text-4xl">
                           <FaCheck />
                         </div>
                       </div>
@@ -166,7 +166,7 @@ const Assessment = () => {
                       }}
                     >
                       <div className="flex justify-center items-center sm:h-[160px] h-[140px]  sm:w-[160px] w-[140px] ">
-                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 sm:text-6xl text-4xl">
+                        <div className="flex justify-center items-center sm:h-[120px] h-[80px] sm:w-[120px] w-[80px] rounded-full border-8 border-red-500 sm:text-6xl text-4xl">
                           <ImCross />
                         </div>
                       </div>
