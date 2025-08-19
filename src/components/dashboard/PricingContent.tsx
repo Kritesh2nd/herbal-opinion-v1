@@ -281,7 +281,7 @@ const PricingForm = ({
 };
 
 const PricingContent = () => {
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(true);
 
   const toggelShowForm = () => {

@@ -141,3 +141,14 @@ export interface ContactDataType {
   contactAgree: boolean;
   submittedAt: Date;
 }
+
+export interface ClinicDataType {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  clinicName: string;
+  note?: string;
+  contactConcent: boolean;
+  submittedAt: Date;
+}

@@ -11,7 +11,7 @@ import { IoIosArrowUp } from "react-icons/io";
 
 const FaqItem = ({ faq }: { faq: FaqDataType }) => {
   const { question, answer } = faq;
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col rounded-xl border border-primary-lgray text-primary-black py-4 px-6 ">
@@ -128,7 +128,7 @@ const FaqForm = ({
           >
             <div className="-mb-1 ">Cancel</div>
           </button>
-          {updateForm && (
+          {!updateForm && (
             <button
               type="reset"
               className="py-3 px-5 border-1 border-farm-green bg-white transition-all duration-200 hover:bg-[rgba(20,95,72,.2)] text-farm-green rounded-md cursor-pointer"
