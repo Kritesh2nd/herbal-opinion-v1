@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 
@@ -22,7 +22,7 @@ const DashboardSubTitle = ({
   displaySearch?: boolean;
   searchValue?: string;
   funcBtn?: () => void;
-  funcSearch?: () => void;
+  funcSearch?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }) => {
   return (
     <div className="flex flex-row  gap-4">
@@ -68,7 +68,6 @@ const DashboardSubTitle = ({
         <div className="flex items-center">
           <Link
             href={url}
-            onClick={funcBtn}
             className="flex items-center flex-row gap-4 py-2 px-11 text-white border-farm-green bg-farm-green rounded-md cursor-pointer"
           >
             <div className=" pt-[3px]">Export CSV</div>
