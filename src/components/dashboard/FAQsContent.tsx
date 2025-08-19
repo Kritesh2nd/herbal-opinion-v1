@@ -14,10 +14,17 @@ const FaqItem = ({ faq }: { faq: FaqDataType }) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className="flex flex-col rounded-xl border border-primary-lgray py-3 px-6">
-      <div className="flex flex-row">
-        <div className="flex-1">{question}</div>
-        <div className="flex items-center gap-2 text-lg">
+    <div className="flex flex-col rounded-xl border border-primary-lgray text-primary-black py-4 px-6 ">
+      <div className="flex flex-row items-center">
+        <div
+          className="flex-1 -mb-1 cursor-pointer"
+          onClick={() => {
+            setOpen(!open);
+          }}
+        >
+          {question}
+        </div>
+        <div className="flex items-center gap-2 text-xl">
           <div className="cursor-pointer">
             <BiSolidEdit />
           </div>
@@ -25,7 +32,9 @@ const FaqItem = ({ faq }: { faq: FaqDataType }) => {
             <MdDeleteForever />
           </div>
           <div
-            className="cursor-pointer"
+            className={`${
+              open ? "rotate-0" : "rotate-180"
+            } transform transition-transform ease-in-out duration-300 cursor-pointer`}
             onClick={() => {
               setOpen(!open);
             }}
@@ -37,9 +46,11 @@ const FaqItem = ({ faq }: { faq: FaqDataType }) => {
       <div
         className={`${
           open ? "max-h-40" : "max-h-0"
-        } transition-all duration-300 overflow-hidden pt-2`}
+        } transition-all ease-in-out duration-300 overflow-hidden`}
       >
-        {answer}
+        <div className="pt-3">
+          {answer} {answer}
+        </div>
       </div>
     </div>
   );
