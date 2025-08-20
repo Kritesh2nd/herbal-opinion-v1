@@ -57,6 +57,48 @@
   font-family: "GooperFont";
 }
 
+.hideScroll::-webkit-scrollbar {
+  width: 0px;
+}
+
+.hideScroll::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.hideScroll::-webkit-scrollbar-thumb {
+  background: rgba(170, 170, 170, 0.5);
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.hideScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(170, 170, 170, 0.7);
+  cursor: pointer;
+}
+
+.nice-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  transition-duration: 0.3s;
+}
+
+.nice-scrollbar::-webkit-scrollbar-track {
+  background: #eee;
+  border-radius: 10px;
+}
+
+.nice-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(170, 170, 170, 0.5);
+  background: #ccc;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.nice-scrollbar:hover::-webkit-scrollbar {
+  width: 5px;
+  cursor: pointer;
+}
+
 :root {
   font-family: "Maison_Neue_font";
 

@@ -134,8 +134,8 @@ const PricingForm = ({
   };
 
   return (
-    <div className="flex flex-col h-auto w-full">
-      <div className="flex flex-row justify-between text-[25px] p-6 pb-4 items-center border-b-1 border-primary-lgray">
+    <div className="flex flex-col h-auto w-full ">
+      <div className="flex flex-row justify-between text-[25px] p-6 pb-4 items-center border-b-1 border-primary-lgray ">
         <h2>{updateForm ? "Edit Pricing Plan" : "Add New Pricing Plan"}</h2>
         <span className=" cursor-pointer" onClick={toggelShowForm}>
           <RxCross2 />
@@ -304,10 +304,10 @@ const PricingContent = () => {
         <div className="absolute h-full w-full top-0 left-0">
           <div className="h-full w-full relative">
             <div className="absolute h-full w-full bg-black opacity-5"></div>
-            <div className="absolute h-full w-full">
-              <div className="h-full w-full flex justify-center items-center">
-                <div className="flex justify-center items-center w-[580px] h-[calc(100vh-180px)] ">
-                  <div className="overflow-y-auto bg-white rounded-lg  shadow-[0_2px_4px_rgba(0,0,0,0.30)]">
+            <div className="absolute h-full w-full ">
+              <div className="h-full w-full flex justify-center items-center ">
+                <div className="flex justify-center bg-white items-start w-[580px] h-[calc(100vh-200px)] rounded-lg overflow-hidden overflow-y-auto hideScroll shadow-[0_2px_4px_rgba(0,0,0,0.30)] ">
+                  <div className=" bg-white ">
                     <PricingForm
                       updateForm={updateForm}
                       toggelShowForm={toggelShowForm}

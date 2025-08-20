@@ -1,10 +1,8 @@
-"use client";
-
 import React, { ChangeEvent, useEffect, useState } from "react";
 import DashboardSubTitle from "./DashboardSubTitle";
 import { contactData } from "@/src/constants";
-import { MdDeleteForever } from "react-icons/md";
 import { ContactDataType } from "@/src/types";
+import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowUp } from "react-icons/io";
 
 const ContactFormsContent = () => {
@@ -60,7 +58,8 @@ const ContactFormsContent = () => {
 
   return (
     <div className="flex flex-col h-full w-full overflow-y-auto py-6">
-      <div className="pb-6 px-6">
+      {/* section 1: page title */}
+      <section className="pb-6 px-6">
         <DashboardSubTitle
           displaySearch={true}
           displayButton={false}
@@ -70,20 +69,21 @@ const ContactFormsContent = () => {
           title="Manage Contact Forms"
           subTitle="Manage contact submissions for your healthcare website"
         />
-      </div>
-      <div className="flex-1 flex-col px-3">
-        <table className={`w-full `}>
+      </section>
+
+      {/* section 2: table */}
+      <section className="flex-1 flex-col px-3">
+        <table className={`w-full border`}>
           <thead className="bg-[#F9FAFB]">
             <tr>
-              <td className="w-[18%] py-7 px-5">Full Name</td>
-              <td className="w-[23%] py-7 px-5">Email Address</td>
-              <td className="w-[15%] py-7 px-5">Phone Number</td>
-              <td className="w-[25%] py-7 px-5">Message</td>
-              <td className="w-[15%] py-7 px-5">Date Submitted</td>
-              <td className="w-[5%] py-7 px-5">Actions</td>
+              <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
+              <td className="w-[25%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
+              {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">Phone Number</td> */}
+              <td className="w-[30%] 2xl:py-7 xl:py-3 px-5">Message</td>
+              <td className="w-[18%] 2xl:py-7 xl:py-3 px-5">Date Submitted</td>
+              <td className="w-[7%]  2xl:py-7 xl:py-3 px-5">Actions</td>
             </tr>
           </thead>
-
           {dataList.map((item, index) => {
             const [date, time] = item.submittedAt.toLocaleString().split(",");
             return (
@@ -91,18 +91,44 @@ const ContactFormsContent = () => {
                 key={item.id}
                 className={`${
                   index == dataList.length - 1 ? "" : "border-b-1"
-                }  border-primary-lgray  h-30`}
+                }  border-primary-lgray  h-[calc(20vh-65px)]`}
               >
                 <tr>
-                  <td className="w-[18%] px-5 pt-5 pb-4">{item.fullname}</td>
-                  <td className="w-[23%] px-5 pt-5 pb-4">{item.email}</td>
-                  <td className="w-[15%] px-5 pt-5 pb-4">{item.phone}</td>
-                  <td className="w-[25%] px-5 pt-5 pb-4">{item.message}</td>
-                  <td className="w-[15%] px-5 pt-5 pb-4">
-                    {date} <br />
-                    {time}
+                  <td className="w-[20%] px-5 pt-5 pb-4">
+                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                      <div className="flex h-full">{item.fullname}</div>
+                    </div>
                   </td>
-                  <td className="w-[5%]">
+                  <td className="w-[25%] px-5 pt-5 pb-4">
+                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                      <div className="flex h-full">{item.email}</div>
+                    </div>
+                  </td>
+                  {/* <td className="w-[13%] px-5 pt-5 pb-4">
+                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                      <div className="flex h-full">{item.phone}</div>
+                    </div>
+                  </td> */}
+                  <td className="w-[30%] px-5 pt-5 pb-4">
+                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                      <div className="flex h-full">
+                        {item.message ? (
+                          item.message
+                        ) : (
+                          <div className="pl-5">-</div>
+                        )}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="w-[18%] px-5 pt-5 pb-4">
+                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                      <div className="flex h-full">
+                        {date} <br />
+                        {time}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="w-[7%]">
                     <div className="h-full w-full flex justify-center items-center">
                       <MdDeleteForever className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out " />
                     </div>
@@ -112,8 +138,10 @@ const ContactFormsContent = () => {
             );
           })}
         </table>
-      </div>
-      <div className="flex px-7 text-primary-dgray">
+      </section>
+
+      {/* section 3: pagination */}
+      <section className="flex px-7 text-primary-dgray">
         <div className="flex items-center">
           {dataLength &&
             "Showing " +
@@ -146,7 +174,6 @@ const ContactFormsContent = () => {
                 {i + 1}
               </div>
             ))}
-
             <div
               className="flex justify-center items-center h-10 w-7 rounded-r-md cursor-pointer border"
               onClick={() => handelActivePage("right", 0)}
@@ -155,7 +182,7 @@ const ContactFormsContent = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

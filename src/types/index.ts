@@ -136,7 +136,7 @@ export interface ContactDataType {
   id: number;
   fullname: string;
   email: string;
-  phone: string;
+  phone?: string;
   message: string;
   contactAgree: boolean;
   submittedAt: Date;

@@ -32,9 +32,16 @@ import {
   Testimonial,
   TherapyItem,
 } from "../types";
-import { FaSquareXTwitter, FaUserDoctor } from "react-icons/fa6";
+import { FaMessage, FaSquareXTwitter, FaUserDoctor } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
-import { IoMail } from "react-icons/io5";
+import { IoDocumentText, IoMail } from "react-icons/io5";
+import {
+  FiDollarSign,
+  FiHelpCircle,
+  FiMail,
+  FiRefreshCw,
+} from "react-icons/fi";
+import { BiTransfer } from "react-icons/bi";
 
 export const NavData: NavItemIn[] = [
   {
@@ -431,7 +438,7 @@ export const contactDetails: ContactDetailType[] = [
     id: 1,
     icon: <IoMail />,
     title: "Email",
-    description: "support@herbalopinion.com",
+    description: "support@herbalopinion.com.au",
   },
   {
     id: 2,
@@ -952,5 +959,80 @@ export const clinicData: ClinicDataType[] = [
     clinicName: "Sunrise Health",
     contactConcent: true,
     submittedAt: new Date("2025-01-21T14:20:00"),
+  },
+];
+
+export const metrics: StatCard[] = [
+  {
+    title: "Total Submissions",
+    value: "24",
+    subtitle: "This week",
+    icon: <IoDocumentText className="w-4 h-4 text-primary " />,
+    change: "+12%",
+    changeType: "positive",
+    period: "vs last week",
+    color: "bg-[#DCFCE7]",
+  },
+  {
+    title: "New Contact Messages",
+    value: "9",
+    subtitle: "This week",
+    icon: <FaMessage className="w-4 h-4 text-[#2563EB]" />,
+    change: "+5%",
+    changeType: "positive",
+    period: "vs last week",
+    color: "bg-[#DBEAFE]",
+  },
+  {
+    title: "New Switch Clinic Requests",
+    value: "7",
+    subtitle: "This week",
+    icon: <BiTransfer className="w-4 h-4 text-[#F5933C]" />,
+    change: "-3%",
+    changeType: "negative",
+    period: "vs last week",
+    color: "bg-[#E5EA98]",
+  },
+];
+
+export const shortcuts = [
+  {
+    icon: FiDollarSign,
+    title: "Edit Pricing",
+    description: "Update your service pricing plans",
+    color: "bg-yellow-100 text-yellow-600",
+  },
+  {
+    icon: FiHelpCircle,
+    title: "Edit FAQs",
+    description: "Manage frequently asked questions",
+    color: "bg-purple-100 text-purple-600",
+  },
+];
+
+export const recentActivity = [
+  {
+    icon: FiMail,
+    title: "New contact form submission from Sarah Johnson",
+    time: "Today, 10:45 AM",
+    color: "bg-blue-100 text-blue-600",
+  },
+  {
+    icon: FiRefreshCw,
+    title: "New switch clinic request from Michael Brown",
+    time: "Yesterday, 3:20 PM",
+    color: "bg-purple-100 text-purple-600",
+  },
+  {
+    icon: FiRefreshCw,
+    title: "New switch clinic request from Rita Heist",
+    time: "2024-04-05",
+    color: "bg-purple-100 text-purple-600",
+  },
+  {
+    icon: FiMail,
+    title: "New contact form submission from Mila Milson",
+    time: "2024-03-02",
+    color: "bg-blue-100 text-blue-600",
   },
 ];

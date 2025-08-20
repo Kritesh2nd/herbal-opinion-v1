@@ -26,7 +26,7 @@ const Footer = () => {
       id: 1,
       icon: <IoMail />,
       title: "Email",
-      description: "support@herbalopinion.com",
+      description: "support@herbalopinion.com.au ",
     },
     {
       id: 2,
