@@ -72,72 +72,79 @@ const ContactFormsContent = () => {
       </section>
 
       {/* section 2: table */}
-      <section className="flex-1 flex-col px-3">
-        <table className={`w-full border`}>
-          <thead className="bg-[#F9FAFB]">
-            <tr>
-              <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
-              <td className="w-[25%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
-              {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">Phone Number</td> */}
-              <td className="w-[30%] 2xl:py-7 xl:py-3 px-5">Message</td>
-              <td className="w-[18%] 2xl:py-7 xl:py-3 px-5">Date Submitted</td>
-              <td className="w-[7%]  2xl:py-7 xl:py-3 px-5">Actions</td>
-            </tr>
-          </thead>
-          {dataList.map((item, index) => {
-            const [date, time] = item.submittedAt.toLocaleString().split(",");
-            return (
-              <tbody
-                key={item.id}
-                className={`${
-                  index == dataList.length - 1 ? "" : "border-b-1"
-                }  border-primary-lgray  h-[calc(20vh-65px)]`}
-              >
-                <tr>
-                  <td className="w-[20%] px-5 pt-5 pb-4">
-                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                      <div className="flex h-full">{item.fullname}</div>
-                    </div>
-                  </td>
-                  <td className="w-[25%] px-5 pt-5 pb-4">
-                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                      <div className="flex h-full">{item.email}</div>
-                    </div>
-                  </td>
-                  {/* <td className="w-[13%] px-5 pt-5 pb-4">
-                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                      <div className="flex h-full">{item.phone}</div>
-                    </div>
-                  </td> */}
-                  <td className="w-[30%] px-5 pt-5 pb-4">
-                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                      <div className="flex h-full">
-                        {item.message ? (
-                          item.message
-                        ) : (
-                          <div className="pl-5">-</div>
-                        )}
+      <section className="flex-1 flex-col px-3 ">
+        <div className=" h-[calc(94vh-200px)]">
+          <table className={`w-full h-full `}>
+            <thead className="bg-[#F9FAFB]">
+              <tr>
+                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
+                <td className="w-[25%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
+                {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">Phone Number</td> */}
+                <td className="w-[30%] 2xl:py-7 xl:py-3 px-5">Message</td>
+                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5">
+                  Date Submitted
+                </td>
+                <td className="w-[7%]  2xl:py-7 xl:py-3 px-5">Actions</td>
+              </tr>
+            </thead>
+            {dataList.map((item, index) => {
+              const [date, time] = item.submittedAt.toLocaleString().split(",");
+              return (
+                <tbody
+                  key={item.id}
+                  className={`${
+                    index == dataList.length - 1 ? "" : "border-b-1"
+                  }  border-primary-lgray  h-[calc(20vh-65px)]`}
+                >
+                  <tr>
+                    <td className="w-[20%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">{item.fullname}</div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="w-[18%] px-5 pt-5 pb-4">
-                    <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                      <div className="flex h-full">
-                        {date} <br />
-                        {time}
+                    </td>
+                    <td className="w-[25%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">{item.email}</div>
                       </div>
-                    </div>
-                  </td>
-                  <td className="w-[7%]">
-                    <div className="h-full w-full flex justify-center items-center">
-                      <MdDeleteForever className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out " />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </table>
+                    </td>
+                    <td className="w-[30%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">
+                          {item.message ? (
+                            item.message
+                          ) : (
+                            <div className="pl-5">-</div>
+                          )}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="w-[18%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">
+                          {date} <br />
+                          {time}
+                        </div>
+                      </div>
+                    </td>
+                    <td className="w-[7%]">
+                      <div className="h-full w-full flex justify-center items-center">
+                        <MdDeleteForever className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out " />
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              );
+            })}
+            {dataList.length < 4 &&
+              Array.from({ length: 5 - dataList.length }).map((_, i) => (
+                <tbody key={i}>
+                  <tr>
+                    <td></td>
+                  </tr>
+                </tbody>
+              ))}
+          </table>
+        </div>
       </section>
 
       {/* section 3: pagination */}
