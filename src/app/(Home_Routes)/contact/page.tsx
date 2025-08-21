@@ -4,6 +4,7 @@ import React, { ChangeEvent, useState } from "react";
 import Link from "next/link";
 import { contactDetails, followUs } from "@/src/constants";
 import MessageReceived from "@/src/components/MessageReceived";
+import Image from "next/image";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -165,19 +166,32 @@ const Contact = () => {
             <div className="pt-4 pb-14">
               Need help fast? We usually reply within 1-2 business day.
             </div>
-            <div className="text-[20px] pb-4">Follow Us</div>
-            <div className="flex gap-[18px] pb-[100px]">
-              {followUs.map(
-                (item) =>
-                  item.display && (
-                    <Link key={item.id} href={item.link}>
-                      <div className="flex justify-center items-center h-[40px] w-[40px] text-lg rounded-full overflow-hidden relative ">
-                        <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
-                        {item.icon}
-                      </div>
-                    </Link>
-                  )
-              )}
+            <div className="relative flex flex-col sm:pb-[330px] pb-[340px]">
+              <div className="text-[20px] pb-4">Follow Us</div>
+              <div className="flex gap-[18px] z-20">
+                {followUs.map(
+                  (item) =>
+                    item.display && (
+                      <Link key={item.id} href={item.link}>
+                        <div className="flex justify-center items-center h-[40px] w-[40px] text-lg rounded-full overflow-hidden relative ">
+                          <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
+                          {item.icon}
+                        </div>
+                      </Link>
+                    )
+                )}
+              </div>
+
+              <div className="flex justify-center w-full absolute h-[495px]">
+                <div className="relative h-[495px] w-[495px] z-10 ">
+                  <Image
+                    src="/img/contact/girl.png"
+                    fill
+                    alt="yoga girl"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
