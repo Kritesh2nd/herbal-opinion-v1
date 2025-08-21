@@ -152,3 +152,27 @@ export interface ClinicDataType {
   contactConcent: boolean;
   submittedAt: Date;
 }
+
+export interface UserType {
+  id: number;
+  fullname: string;
+  email: string;
+  roles: string;
+  loggedIn: boolean;
+}
+
+export interface UserRegisterDto {
+  fullname: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}
+
+export interface VerificationProps {
+  email?: string;
+  otp: string;
+}
