@@ -20,7 +20,7 @@ export default function LoginPage() {
                 src="/logo.png"
                 alt="logo"
                 width={500}
-                height={500}                
+                height={500}
                 className="object-cover object-bottom w-full h-auto"
               />
             </div>

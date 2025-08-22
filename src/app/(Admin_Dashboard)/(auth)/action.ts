@@ -1,5 +1,5 @@
 import axiosInstance from "@/src/lib/axios.utils";
-import { VerificationProps, LoginDto, UserRegisterDto } from "@/src/types";
+import { LoginDto, UserRegisterDto } from "@/src/types";
 
 export interface UserResponse {
   tokens: {
@@ -8,13 +8,18 @@ export interface UserResponse {
   };
   user: {
     id: number;
-    fullname: string;
     email: string;
+    fullname: string;
     roles: string;
-    verified: boolean;
+    verified?: boolean;
     created_at: string;
     updated_at: string;
   };
+}
+
+export interface VerificationProps {
+  email?: string;
+  otp: string;
 }
 
 export const SignUpUser = async (userData: UserRegisterDto) => {

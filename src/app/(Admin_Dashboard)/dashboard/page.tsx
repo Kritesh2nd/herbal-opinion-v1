@@ -7,7 +7,6 @@ import FAQsContent from "@/src/components/dashboard/FAQsContent";
 import ContactFormsContent from "@/src/components/dashboard/ContactFormsContent";
 import SwitchClinicContent from "@/src/components/dashboard/SwitchClinicContent";
 import DashboardHeader from "@/src/components/dashboard/DashboardHeader";
-import { AuthProvider } from "@/src/context/AuthContext";
 
 export default function Dashboard() {
   const [activeItem, setActiveItem] = useState("Dashboard");
@@ -31,26 +30,24 @@ export default function Dashboard() {
 
   return (
     <>
-      <AuthProvider>
-        <div className="flex overflow-x-hidden h-screen">
-          {/* left section: side bar */}
-          <section className="w-[340px]">
-            <Sidebar activeItem={activeItem} onItemClick={setActiveItem} />
-          </section>
+      <div className="flex overflow-x-hidden h-screen">
+        {/* left section: side bar */}
+        <section className="w-[340px]">
+          <Sidebar activeItem={activeItem} onItemClick={setActiveItem} />
+        </section>
 
-          {/* right section: dashboard contents */}
-          <section className="flex flex-col flex-1 h-[100vh] relative">
-            {/* dashboard header */}
-            <div className="h-[65px] overflow-hidden">
-              <DashboardHeader />
-            </div>
-            {/* dashboard contents */}
-            <div className="flex-1 h-[calc(100%-65px)] overflow-hidden">
-              {renderContent()}
-            </div>
-          </section>
-        </div>
-      </AuthProvider>
+        {/* right section: dashboard contents */}
+        <section className="flex flex-col flex-1 h-[100vh] relative">
+          {/* dashboard header */}
+          <div className="h-[65px] overflow-hidden">
+            <DashboardHeader />
+          </div>
+          {/* dashboard contents */}
+          <div className="flex-1 h-[calc(100%-65px)] overflow-hidden">
+            {renderContent()}
+          </div>
+        </section>
+      </div>
     </>
   );
 }
