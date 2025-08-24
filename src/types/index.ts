@@ -152,3 +152,10 @@ export interface ClinicDataType {
   contactConcent: boolean;
   submittedAt: Date;
 }
+
+
+export interface Register {
+  email: string;
+  password: string;
+  fullname: string;
+}
