@@ -1,27 +1,28 @@
 "use client";
-import { LoginDto } from "@/src/types";
-import { signIn } from "next-auth/react";
-import Image from "next/image";
-import { useState } from "react";
-import { FaLeaf, FaEye, FaEyeSlash } from "react-icons/fa";
-import { loginUser } from "../action";
 
-export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("kritesh@gmail.com");
+import React, { useEffect, useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Image from "next/image";
+
+const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(true);
+  const [email, setEmail] = useState("kritesh@gmail.com");
   const [password, setPassword] = useState("password");
 
+  const router = useRouter();
+
   const onSubmit = async () => {
-    // loginUser({ email: username, password: password });
     try {
-      console.log(username, password);
+      console.log(email, password);
       const res = await signIn("credentials", {
-        email: username,
+        email: email,
         password: password,
         redirect: false,
       });
-
-      if (!res?.ok) {
+      if (res?.ok) {
+        router.push("/dashboard");
         return;
       }
     } catch (error) {
@@ -29,6 +30,7 @@ export default function LoginPage() {
     }
   };
 
+  useEffect(() => {}, []);
   return (
     <div className="min-h-screen flex ">
       {/* Left side - Login Form */}
@@ -56,9 +58,9 @@ export default function LoginPage() {
               </label>
               <input
                 type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               />
             </div>
@@ -114,4 +116,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+};
+export default LoginPage;

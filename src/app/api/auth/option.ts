@@ -18,17 +18,12 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         try {
-          console.log("credentials1:", credentials);
           const res = await loginUser({
             email: credentials.email,
             password: credentials.password,
           });
-          console.log("credentials1:", credentials, "response:", res);
 
-          // const { tokens, user } = res;
-          const tokens: any = {};
-          const user: any = {};
-
+          const { tokens, user } = res;
           if (!tokens || !user) return null;
 
           return {

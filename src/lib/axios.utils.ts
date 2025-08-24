@@ -1,6 +1,5 @@
 import axios from "axios";
-import { error } from "console";
-import toast from "react-hot-toast";
+import { getSession, useSession } from "next-auth/react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -10,6 +9,21 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+// Add a request interceptor to attach token
+axiosInstance.interceptors.request.use(
+  async (config) => {
+    const session = await getSession();
+
+    if (session?.accessToken) {
+      config.headers.Authorization = `Bearer ${session.accessToken}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // Add an interceptor for errors
 axiosInstance.interceptors.response.use(
