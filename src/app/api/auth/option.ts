@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { refreshAccessToken } from "../lib/refreshToken";
-import { loginUser } from "../app/(Admin_Dashboard)/(auth)/action";
+import { loginUser } from "../../(Admin_Dashboard)/(auth)/action";
+import { refreshAccessToken } from "@/src/lib/refreshToken";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -18,17 +18,21 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
         try {
+          console.log("credentials1:", credentials);
           const res = await loginUser({
             email: credentials.email,
             password: credentials.password,
           });
+          console.log("credentials1:", credentials, "response:", res);
 
-          const { tokens, user } = res;
+          // const { tokens, user } = res;
+          const tokens: any = {};
+          const user: any = {};
 
           if (!tokens || !user) return null;
 
           return {
-            id: user.id.toString(),
+            id: user.id,
             email: user.email,
             fullname: user.fullname,
             roles: user.roles,

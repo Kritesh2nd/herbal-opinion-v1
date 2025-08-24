@@ -1,12 +1,33 @@
 "use client";
+import { LoginDto } from "@/src/types";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { FaLeaf, FaEye, FaEyeSlash } from "react-icons/fa";
+import { loginUser } from "../action";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("kritesh@gmail.com");
+  const [password, setPassword] = useState("password");
+
+  const onSubmit = async () => {
+    // loginUser({ email: username, password: password });
+    try {
+      console.log(username, password);
+      const res = await signIn("credentials", {
+        email: username,
+        password: password,
+        redirect: false,
+      });
+
+      if (!res?.ok) {
+        return;
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex ">
@@ -70,7 +91,10 @@ export default function LoginPage() {
             </div>
 
             {/* Login Button */}
-            <button className="w-full bg-primary hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors">
+            <button
+              className="w-full bg-primary hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors"
+              onClick={onSubmit}
+            >
               Login
             </button>
           </div>

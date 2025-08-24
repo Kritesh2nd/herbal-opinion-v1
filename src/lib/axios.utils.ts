@@ -1,6 +1,6 @@
 import axios from "axios";
+import { error } from "console";
 import toast from "react-hot-toast";
-import { getSession } from "next-auth/react";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -11,26 +11,15 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add a request interceptor to attach token
-axiosInstance.interceptors.request.use(
-  async (config) => {
-    const session = await getSession();
-    if (session?.accessToken) {
-      config.headers.Authorization = `Bearer ${session.accessToken}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 // Add an interceptor for errors
 axiosInstance.interceptors.response.use(
-  (response) => response, // For successful responses, just return the data
+  (response) => {
+    console.log("response as in interceptor", response);
+    return response;
+  }, // For successful responses, just return the data
   //eslint-disable-next-line
   (error: any) => {
-    toast.error(error.response?.data?.message ?? error.message ?? error.cause);
+    console.log("error in interceptor", error);
     return {
       success: false,
       message: error.response?.data?.message || "Something went wrong.",
