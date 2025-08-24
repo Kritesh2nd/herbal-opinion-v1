@@ -30,12 +30,6 @@ const Footer = () => {
     },
     {
       id: 2,
-      icon: <FaPhoneAlt />,
-      title: "Phone",
-      description: "1-800-54444-877",
-    },
-    {
-      id: 3,
       icon: <FaClock />,
       title: "Hours",
       description: "Mon-Fri, 9am-5pm AEST",
@@ -111,9 +105,8 @@ const Footer = () => {
             © 2023 Herbal Opinion. All rights reserved.
           </div>
           <div className="flex sm:justify-end justify-center gap-6 ">
-            <Link href="#">Privacy Policy</Link>
-            <Link href="#">Terms of Service</Link>
-            <Link href="#">Accessibility</Link>
+            <Link href="privacy-policy">Privacy Policy</Link>
+            <Link href="terms-and-conditions">Terms of Service</Link>
           </div>
         </div>
       </div>

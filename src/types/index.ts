@@ -152,3 +152,58 @@ export interface ClinicDataType {
   contactConcent: boolean;
   submittedAt: Date;
 }
+
+export interface TermsAndConditionsType {
+  id: number;
+  title: string;
+  titleSize: number;
+  upperContent?: string[];
+  points?: string[];
+  belowContent?: string[];
+}
+
+// export interface SubPointType {
+//   id: number;
+//   type: "number" | "disk" | "circle";
+//   titleSize: number;
+//   subTitleLevel: number;
+//   bold: boolean;
+//   title?: string;
+//   points?: string[];
+//   content?: string[];
+//   subPoints?: SubPointType[];
+// }
+
+// export interface TermsAndConditionsSpecialType {
+//   id: number;
+//   title: string;
+//   titleSize: number;
+//   upperContent?: string[];
+//   points?: SubPointType[];
+//   belowContent?: string[];
+// }
+export interface SubPointType {
+  type: "number" | "disk" | "circle" | "none";
+  level: number;
+  point: string;
+  points: SubPointType[];
+}
+export interface TermsAndConditionsSpecialType {
+  id: number;
+  title: string;
+  titleSize: number;
+  upperContent?: string[];
+  points?: SubPointType[];
+  belowContent?: string[];
+}
+
+export interface PrivacyPolicyType {
+  id: number;
+  title: string;
+  titleColor: string;
+  titleSize: number;
+  titleBold: boolean;
+  content?: string[];
+  points?: string[];
+  subPoints?: SubPointType[];
+}

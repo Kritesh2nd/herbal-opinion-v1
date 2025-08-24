@@ -442,12 +442,6 @@ export const contactDetails: ContactDetailType[] = [
   },
   {
     id: 2,
-    icon: <FaPhoneAlt />,
-    title: "Phone",
-    description: "1-800-54444-877",
-  },
-  {
-    id: 3,
     icon: <FaClock />,
     title: "Hours",
     description: "Mon-Fri, 9am-5pm AEST",
