@@ -109,6 +109,16 @@ export interface StatCard {
   color: string;
 }
 
+export interface CreatePricingDto {
+  name: string;
+  description: string;
+  originalPrice: number;
+  currentPrice: number;
+  free: boolean;
+  shortDescription: string;
+  features: string[];
+}
+
 export interface pricingDataType {
   id: number;
   name: string;

@@ -2,6 +2,12 @@
 // get /dashboard/recent-activities
 
 import axiosInstance from "@/src/lib/axios.utils";
+import { CreatePricingDto } from "@/src/types";
+
+export const funcc = async () => {
+  const response = await axiosInstance.get("");
+  return response.data;
+};
 
 // Dashboard
 export const getDashboardTotalSubmission = async () => {
@@ -22,6 +28,35 @@ export const getContactWeeklyStats = async () => {
 // Clinic
 export const getClinicWeeklyStats = async () => {
   const response = await axiosInstance.get("clinics/weekly-stats");
+  return response.data;
+};
+
+// Pricing
+
+export const createPricing = async (formData: CreatePricingDto) => {
+  const response = await axiosInstance.post("pricing", formData);
+  return response.data;
+};
+
+export const getAllPricning = async () => {
+  const response = await axiosInstance.get("pricing");
+  console.log("pricing data ", response.data);
+  return response.data;
+};
+
+export const getPricningById = async (id: number) => {
+  const response = await axiosInstance.get("pricing/" + id);
+  console.log("response for pricing", response.data);
+  return response.data;
+};
+
+export const updatePricningById = async (formData: any, id: number) => {
+  const response = await axiosInstance.patch("pricing/" + id, formData);
+  return response.data;
+};
+
+export const deletePricingById = async (id: number) => {
+  const response = await axiosInstance.delete("pricing/" + id);
   return response.data;
 };
 

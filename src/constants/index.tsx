@@ -169,52 +169,54 @@ export const CONSULTATION_PLANS: ConsultationPlan[] = [
   },
 ];
 
-export const pricingPlans: ConsultationPlan[] = [
+export const pricingPlans: pricingDataType[] = [
   {
-    id: "initial",
-    title: "Initial Consultation",
+    id: 1,
+    name: "Initial Consultation",
     description:
       "Personalized care from doctor reviewed your tailored to your needs.",
     originalPrice: 79,
     currentPrice: 29,
-    bgColor: "light-green",
-    subtitle: "Ideal for new users.",
+    free: false,
+    shortDescription: "Ideal for new users.",
     features: [
       "Expert 1-on-1 consult",
       "Personalized wellness plan",
       "Doctor-reviewed recommendations",
     ],
+    display: true,
   },
   {
-    id: "followup",
-    title: "Follow Up Consultation",
+    id: 2,
+    name: "Follow Up Consultation",
     description:
       "Ongoing support to keep your wellness journey on track with expert guidance.",
     originalPrice: 69,
     currentPrice: 19,
-    bgColor: "Primary-green",
-    isPopular: true,
-    subtitle: "Ideal for ongoing care seekers.",
+    shortDescription: "Ideal for ongoing care seekers.",
+    free: false,
     features: [
       "Continued care support",
       "Review of progress & pain adjustment",
       "Quick virtual check-in",
     ],
+    display: true,
   },
   {
-    id: "switching",
-    title: "Switching Clinic",
+    id: 3,
+    name: "Switching Clinic",
     description:
       "Seamless transition, we make it easy to switch your care to herbal options.",
-    currentPrice: "FREE",
-    isFree: true,
-    bgColor: "light-green",
-    subtitle: "Effortless transition to Herbal Opinion.",
+    originalPrice: 0,
+    currentPrice: 0,
+    shortDescription: "Effortless transition to Herbal Opinion.",
+    free: true,
     features: [
       "No consultation fee",
       "We handle the switch for you",
       "Guided by our care team",
     ],
+    display: true,
   },
 ];
 
