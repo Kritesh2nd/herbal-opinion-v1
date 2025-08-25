@@ -28,12 +28,10 @@ axiosInstance.interceptors.request.use(
 // Add an interceptor for errors
 axiosInstance.interceptors.response.use(
   (response) => {
-    console.log("response as in interceptor", response);
     return response;
   }, // For successful responses, just return the data
   //eslint-disable-next-line
   (error: any) => {
-    console.log("error in interceptor", error);
     return {
       success: false,
       message: error.response?.data?.message || "Something went wrong.",

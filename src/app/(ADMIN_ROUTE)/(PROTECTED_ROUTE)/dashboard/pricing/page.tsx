@@ -1,8 +1,6 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import DashboardSubTitle from "./DashboardSubTitle";
-
 import { MdOutlineCheck } from "react-icons/md";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
@@ -10,6 +8,7 @@ import { pricingDataType } from "@/src/types";
 import { pricingData } from "@/src/constants";
 import { RxCross2 } from "react-icons/rx";
 import { CiTrash } from "react-icons/ci";
+import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
 
 const PricingCard = ({ price }: { price: pricingDataType }) => {
   const {
@@ -280,7 +279,7 @@ const PricingForm = ({
   );
 };
 
-const PricingContent = () => {
+const Pricing = () => {
   const [showForm, setShowForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(true);
 
@@ -323,4 +322,4 @@ const PricingContent = () => {
   );
 };
 
-export default PricingContent;
+export default Pricing;

@@ -1,13 +1,13 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import DashboardSubTitle from "./DashboardSubTitle";
 import { RxCross2 } from "react-icons/rx";
 import { faqData } from "@/src/constants";
 import { FaqDataType } from "@/src/types";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowUp } from "react-icons/io";
+import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
 
 const FaqItem = ({ faq }: { faq: FaqDataType }) => {
   const { question, answer } = faq;
@@ -148,7 +148,7 @@ const FaqForm = ({
   );
 };
 
-const FAQsContent = () => {
+const Faq = () => {
   const [showForm, setShowForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
 
@@ -194,4 +194,4 @@ const FAQsContent = () => {
   );
 };
 
-export default FAQsContent;
+export default Faq;

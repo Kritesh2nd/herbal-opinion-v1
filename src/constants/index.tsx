@@ -1001,12 +1001,14 @@ export const shortcuts = [
     title: "Edit Pricing",
     description: "Update your service pricing plans",
     color: "bg-yellow-100 text-yellow-600",
+    url: "/dashboard/pricing",
   },
   {
     icon: FiHelpCircle,
     title: "Edit FAQs",
     description: "Manage frequently asked questions",
     color: "bg-purple-100 text-purple-600",
+    url: "/dashboard/faq",
   },
 ];
 

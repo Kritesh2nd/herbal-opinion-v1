@@ -1,17 +1,19 @@
+"use client";
+
 import React, { ChangeEvent, useEffect, useState } from "react";
-import DashboardSubTitle from "./DashboardSubTitle";
-import { contactData } from "@/src/constants";
-import { ContactDataType } from "@/src/types";
+import { clinicData } from "@/src/constants";
+import { ClinicDataType } from "@/src/types";
 import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowUp } from "react-icons/io";
+import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
 
-const ContactFormsContent = () => {
+const SwitchClinicContent = () => {
   const exportCsvUrl = "#";
   const [search, setSearch] = useState("");
 
-  const [dataList, setDataList] = useState<ContactDataType[]>([]);
+  const [dataList, setDataList] = useState<ClinicDataType[]>([]);
   const [activePage, setActivePage] = useState(0);
-  const dataLength = contactData.length;
+  const dataLength = clinicData.length;
   const paginationLength =
     Math.floor(dataLength / 5) + (dataLength % 5 > 0 ? 1 : 0);
   const [startEnd, setStartEnd] = useState({ start: 0, end: 0 });
@@ -36,7 +38,7 @@ const ContactFormsContent = () => {
   };
 
   useEffect(() => {
-    const fiveItems = contactData.slice(0, 5);
+    const fiveItems = clinicData.slice(0, 5);
     setDataList(fiveItems);
     setStartEnd({ start: activePage * 5 + 1, end: (activePage + 1) * 5 });
   }, []);
@@ -44,7 +46,7 @@ const ContactFormsContent = () => {
   useEffect(() => {
     const start = activePage * 5 + 1;
     const end = (activePage + 1) * 5;
-    const fiveItems = contactData.slice(start - 1, end);
+    const fiveItems = clinicData.slice(start - 1, end);
     setDataList(fiveItems);
     setStartEnd({
       start: start,
@@ -66,8 +68,8 @@ const ContactFormsContent = () => {
           searchValue={search}
           funcSearch={handelSearch}
           url={exportCsvUrl}
-          title="Manage Contact Forms"
-          subTitle="Manage contact submissions for your healthcare website"
+          title="Manage Switch Clinic Forms"
+          subTitle="Manage switch clinic forms for your healthcare website"
         />
       </section>
 
@@ -77,16 +79,20 @@ const ContactFormsContent = () => {
           <table className={`w-full h-full `}>
             <thead className="bg-[#F9FAFB]">
               <tr>
-                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
-                <td className="w-[25%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
-                {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">Phone Number</td> */}
-                <td className="w-[30%] 2xl:py-7 xl:py-3 px-5">Message</td>
-                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5">
+                <td className="w-[10%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
+                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
+                <td className="w-[10%] 2xl:py-7 xl:py-3 px-5">Phone Number</td>
+                <td className="w-[10%] 2xl:py-7 xl:py-3 px-5">
+                  Current Clinic Neme
+                </td>
+                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Notes</td>
+                <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">
                   Date Submitted
                 </td>
-                <td className="w-[7%]  2xl:py-7 xl:py-3 px-5">Actions</td>
+                <td className="w-[5%]  2xl:py-7 xl:py-3 px-5">Actions</td>
               </tr>
             </thead>
+
             {dataList.map((item, index) => {
               const [date, time] = item.submittedAt.toLocaleString().split(",");
               return (
@@ -94,31 +100,41 @@ const ContactFormsContent = () => {
                   key={item.id}
                   className={`${
                     index == dataList.length - 1 ? "" : "border-b-1"
-                  }  border-primary-lgray  h-[calc(20vh-65px)]`}
+                  }  border-primary-lgray h-[calc(20vh-65px)]`}
                 >
-                  <tr>
-                    <td className="w-[20%] px-5 pt-5 pb-4">
+                  <tr className="">
+                    <td className="w-[12%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
-                        <div className="flex h-full">{item.fullname}</div>
+                        <div className="flex h-full">{item.name}</div>
                       </div>
                     </td>
-                    <td className="w-[25%] px-5 pt-5 pb-4">
+                    <td className="w-[16%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">{item.email}</div>
                       </div>
                     </td>
-                    <td className="w-[30%] px-5 pt-5 pb-4">
+                    <td className="w-[13%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">{item.phone}</div>
+                      </div>
+                    </td>
+                    <td className="w-[14%] px-5 pt-5 pb-4">
+                      <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
+                        <div className="flex h-full">{item.clinicName}</div>
+                      </div>
+                    </td>
+                    <td className="w-[16%] px-5 pt-5 pb-4 overflow-auto">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">
-                          {item.message ? (
-                            item.message
+                          {item.note ? (
+                            item.note
                           ) : (
                             <div className="pl-5">-</div>
                           )}
                         </div>
                       </div>
                     </td>
-                    <td className="w-[18%] px-5 pt-5 pb-4">
+                    <td className="w-[15%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">
                           {date} <br />
@@ -126,7 +142,7 @@ const ContactFormsContent = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="w-[7%]">
+                    <td className="w-[5%]">
                       <div className="h-full w-full flex justify-center items-center">
                         <MdDeleteForever className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out " />
                       </div>
@@ -181,6 +197,7 @@ const ContactFormsContent = () => {
                 {i + 1}
               </div>
             ))}
+
             <div
               className="flex justify-center items-center h-10 w-7 rounded-r-md cursor-pointer border"
               onClick={() => handelActivePage("right", 0)}
@@ -194,4 +211,4 @@ const ContactFormsContent = () => {
   );
 };
 
-export default ContactFormsContent;
+export default SwitchClinicContent;

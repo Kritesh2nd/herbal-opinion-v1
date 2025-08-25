@@ -16,12 +16,13 @@ export async function refreshAccessToken(token: JWTToken): Promise<JWTToken> {
 
     const refreshedTokens = response.data.tokens;
 
-    return {
-      ...token,
-      accessToken: refreshedTokens.accessToken,
-      refreshToken: refreshedTokens.refreshToken,
-      accessTokenExpires: Date.now() + 60 * 60 * 1000,
-    };
+    return token;
+    // return {
+    //   ...token,
+    //   accessToken: refreshedTokens.accessToken,
+    //   refreshToken: refreshedTokens.refreshToken,
+    //   accessTokenExpires: Date.now() + 60 * 60 * 1000,
+    // };
   } catch (error) {
     console.error("RefreshAccessToken error:", error);
 

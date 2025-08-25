@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import AuthSession from "../components/dashboard/AuthSession";
 import { Toaster } from "react-hot-toast";
 

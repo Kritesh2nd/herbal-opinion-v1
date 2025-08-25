@@ -1,6 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { loginUser } from "../../(Admin_Dashboard)/(auth)/action";
+import { loginUser } from "../../(ADMIN_ROUTE)/(AUTH)/action";
 import { refreshAccessToken } from "@/src/lib/refreshToken";
 
 export const authOptions: NextAuthOptions = {
