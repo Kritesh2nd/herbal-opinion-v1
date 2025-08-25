@@ -359,7 +359,7 @@ export const comparePlans: ComparePlansType[] = [
   },
 ];
 
-export const faqs: FaqDropdownType[] = [
+export const faqsData: FaqDataType[] = [
   {
     id: 1,
     question: "What makes your products different from others in the market?",

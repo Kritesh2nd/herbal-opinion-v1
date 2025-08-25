@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import { faqs } from "../constants";
-import { FaqDropdownType } from "../types";
+import React, { useEffect, useState } from "react";
+import { faqsData } from "../constants";
+import { FaqDataType, FaqDropdownType } from "../types";
 import { IoIosArrowUp } from "react-icons/io";
+import { getAllFaqs } from "../app/(HOME_ROUTE)/action";
 
-const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
-  const { question, answer } = faq;
+const FaqDropdown = ({ data }: { data: FaqDataType }) => {
+  const { question, answer } = data;
   const [open, setOpen] = useState(false);
 
   return (
@@ -40,6 +41,15 @@ const FaqDropdown = ({ faq }: { faq: FaqDropdownType }) => {
 };
 
 const Faq = () => {
+  const [faqs, setFaqs] = useState<FaqDataType[]>([]);
+  const fecthAllPricing = async () => {
+    const data = await getAllFaqs();
+    setFaqs(data);
+  };
+
+  useEffect(() => {
+    fecthAllPricing();
+  }, []);
   return (
     <div className="bg-white py-[70px]">
       <div className="globalContainer flex flex-col sm:flex-row">
@@ -57,11 +67,12 @@ const Faq = () => {
             together to support your wellness journey.
           </div>
           <div className="flex flex-col gap-2">
-            {faqs.map((item) => (
-              <div key={item.id}>
-                <FaqDropdown faq={item} />
-              </div>
-            ))}
+            {faqs &&
+              faqs.length > 0 &&
+              faqs.map((item) => <FaqDropdown key={item.id} data={item} />)}
+
+            {(!faqs || faqs.length == 0) &&
+              faqsData.map((item) => <FaqDropdown key={item.id} data={item} />)}
           </div>
         </div>
       </div>

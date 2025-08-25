@@ -10,9 +10,9 @@ import { CreatePricingDto, pricingDataType } from "@/src/types";
 import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
 import {
   createPricing,
-  getAllPricning,
-  getPricningById,
-  updatePricningById,
+  getAllPricing,
+  getPricingById,
+  updatePricingById,
   deletePricingById,
 } from "../action";
 
@@ -171,7 +171,7 @@ const PricingForm = ({
 
     try {
       const response = updateForm
-        ? await updatePricningById(filteredForm, updateFormId)
+        ? await updatePricingById(filteredForm, updateFormId)
         : await createPricing(filteredForm);
 
       if (response?.statusCode >= 400) {
@@ -188,7 +188,6 @@ const PricingForm = ({
         });
         toggelShowForm();
         fetchPricing();
-        console.log("priceing created res", response);
       }
     } catch (error) {
       console.log("Error:", error);
@@ -212,9 +211,7 @@ const PricingForm = ({
   };
 
   const handelUpdateForm = async () => {
-    console.log("updateFormId", updateFormId);
-    const response: pricingDataType = await getPricningById(updateFormId);
-    console.log("response for update", response);
+    const response: pricingDataType = await getPricingById(updateFormId);
     setFormData({
       name: response.name,
       description: response.description,
@@ -227,7 +224,6 @@ const PricingForm = ({
   };
 
   useEffect(() => {
-    console.log("formData", formData);
     if (updateForm) {
       handelUpdateForm();
     }
@@ -403,7 +399,7 @@ const Pricing = () => {
   };
 
   const fecthAllPricing = async () => {
-    const data = await getAllPricning();
+    const data = await getAllPricing();
     setPricings(data);
   };
 

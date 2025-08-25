@@ -2,7 +2,7 @@
 // get /dashboard/recent-activities
 
 import axiosInstance from "@/src/lib/axios.utils";
-import { CreatePricingDto } from "@/src/types";
+import { CreateFaqDto, CreatePricingDto } from "@/src/types";
 
 export const funcc = async () => {
   const response = await axiosInstance.get("");
@@ -32,31 +32,58 @@ export const getClinicWeeklyStats = async () => {
 };
 
 // Pricing
-
 export const createPricing = async (formData: CreatePricingDto) => {
   const response = await axiosInstance.post("pricing", formData);
   return response.data;
 };
 
-export const getAllPricning = async () => {
+export const getAllPricing = async () => {
   const response = await axiosInstance.get("pricing");
   console.log("pricing data ", response.data);
   return response.data;
 };
 
-export const getPricningById = async (id: number) => {
+export const getPricingById = async (id: number) => {
   const response = await axiosInstance.get("pricing/" + id);
   console.log("response for pricing", response.data);
   return response.data;
 };
 
-export const updatePricningById = async (formData: any, id: number) => {
+export const updatePricingById = async (formData: any, id: number) => {
   const response = await axiosInstance.patch("pricing/" + id, formData);
   return response.data;
 };
 
 export const deletePricingById = async (id: number) => {
   const response = await axiosInstance.delete("pricing/" + id);
+  return response.data;
+};
+
+// Faq
+export const createFaq = async (formData: CreateFaqDto) => {
+  const response = await axiosInstance.post("faqs", formData);
+  return response.data;
+};
+
+export const getAllFaqs = async () => {
+  const response = await axiosInstance.get("faqs");
+  console.log("faq data ", response.data);
+  return response.data;
+};
+
+export const getFaqById = async (id: number) => {
+  const response = await axiosInstance.get("faqs/" + id);
+  console.log("response for faq", response.data);
+  return response.data;
+};
+
+export const updateFaqById = async (formData: any, id: number) => {
+  const response = await axiosInstance.patch("faqs/" + id, formData);
+  return response.data;
+};
+
+export const deleteFaqById = async (id: number) => {
+  const response = await axiosInstance.delete("faqs/" + id);
   return response.data;
 };
 

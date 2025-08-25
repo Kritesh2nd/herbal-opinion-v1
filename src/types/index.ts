@@ -59,7 +59,7 @@ export interface FaqDropdownType {
   id: number;
   question: string;
   answer: string;
-  display: boolean;
+  display?: boolean;
 }
 
 export interface OurJourneyTypes {
@@ -133,11 +133,15 @@ export interface pricingDataType {
   updatedAt?: Date;
 }
 
+export interface CreateFaqDto {
+  question: string;
+  answer: string;
+}
 export interface FaqDataType {
   id: number;
   question: string;
   answer: string;
-  display: boolean;
+  display?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
