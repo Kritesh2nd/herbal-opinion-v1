@@ -153,6 +153,30 @@ export interface ClinicDataType {
   submittedAt: Date;
 }
 
+export interface UserType {
+  id: number;
+  fullname: string;
+  email: string;
+  roles: string;
+  loggedIn: boolean;
+}
+
+export interface UserRegisterDto {
+  fullname: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginDto {
+  email: string;
+  password: string;
+}
+
+export interface VerificationProps {
+  email?: string;
+  otp: string;
+}
+
 export interface TermsAndConditionsType {
   id: number;
   title: string;
@@ -162,26 +186,6 @@ export interface TermsAndConditionsType {
   belowContent?: string[];
 }
 
-// export interface SubPointType {
-//   id: number;
-//   type: "number" | "disk" | "circle";
-//   titleSize: number;
-//   subTitleLevel: number;
-//   bold: boolean;
-//   title?: string;
-//   points?: string[];
-//   content?: string[];
-//   subPoints?: SubPointType[];
-// }
-
-// export interface TermsAndConditionsSpecialType {
-//   id: number;
-//   title: string;
-//   titleSize: number;
-//   upperContent?: string[];
-//   points?: SubPointType[];
-//   belowContent?: string[];
-// }
 export interface SubPointType {
   type: "number" | "disk" | "circle" | "none";
   level: number;
