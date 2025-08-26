@@ -8,7 +8,13 @@ import { FiArrowRight } from "react-icons/fi";
 import { FaHouse } from "react-icons/fa6";
 import { MdOutlineSupportAgent } from "react-icons/md";
 
-const MessageReceived = ({ active = false }: { active: boolean }) => {
+const MessageReceived = ({
+  active = false,
+  toggleActive,
+}: {
+  active: boolean;
+  toggleActive: () => void;
+}) => {
   return (
     <div
       className={`${
@@ -41,15 +47,17 @@ const MessageReceived = ({ active = false }: { active: boolean }) => {
               In the meantime, feel free to explore our care process or FAQs.
             </div>
             <div className="pb-4">
-              <Link
-                href="/"
-                className="flex justify-center gap-2 items-center bg-lemon sm:text-[20px] p-[18px] text-primary-black rounded-lg"
+              <button
+                className="flex justify-center gap-2 items-center bg-lemon sm:text-[20px] p-[18px] text-primary-black rounded-lg w-full cursor-pointer"
+                onClick={() => {
+                  toggleActive();
+                }}
               >
                 <div>Return to Homepage</div>
                 <div className="-mt-[1px]">
                   <FiArrowRight />
                 </div>
-              </Link>
+              </button>
             </div>
             <div className="flex flex-row justify-center gap-4 sm:text-[20px] p-[18px] text-blue-500">
               <Link href="/" className="flex flex-row gap-2 hover:underline">

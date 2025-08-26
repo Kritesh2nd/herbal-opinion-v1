@@ -8,6 +8,7 @@ import { MdOutlineCheck } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { CreatePricingDto, pricingDataType } from "@/src/types";
 import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
+// toast.success("Login successful!.");
 import {
   createPricing,
   getAllPricing,

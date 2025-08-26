@@ -10,6 +10,7 @@ import { LuLogOut } from "react-icons/lu";
 import { BiTransfer } from "react-icons/bi";
 import { usePathname } from "next/navigation";
 import { FaCircleQuestion } from "react-icons/fa6";
+import { IoShareSocialOutline } from "react-icons/io5";
 import { FaInbox, FaTachometerAlt, FaTags } from "react-icons/fa";
 
 const sidebarItems = [
@@ -22,6 +23,11 @@ const sidebarItems = [
     icon: BiTransfer,
     label: "Switch Clinic Forms",
     url: "/dashboard/clinic",
+  },
+  {
+    icon: IoShareSocialOutline,
+    label: "Profile Manager",
+    url: "/dashboard/profile",
   },
   { icon: LuLogOut, label: "Log Out" },
 ];

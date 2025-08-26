@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Toaster position="top-left" />
+        <Toaster position="top-right" />
         <AuthSession>{children}</AuthSession>
       </body>
     </html>

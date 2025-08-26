@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(true);
@@ -21,11 +22,16 @@ const LoginPage = () => {
         password: password,
         redirect: false,
       });
+      console.log("res", res);
       if (res?.ok) {
+        toast.success("Login successful!.");
         router.push("/dashboard");
         return;
+      } else {
+        toast.error("Login Failed!.");
       }
     } catch (error) {
+      toast.error("Login Failed!.");
       console.error("Login error:", error);
     }
   };

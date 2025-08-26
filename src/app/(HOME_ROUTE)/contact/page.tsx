@@ -5,13 +5,19 @@ import Link from "next/link";
 import { contactDetails, followUs } from "@/src/constants";
 import MessageReceived from "@/src/components/MessageReceived";
 import Image from "next/image";
+import { createNewContact } from "../action";
+import { CreateContactDto } from "@/src/types";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
+  const router = useRouter();
+  const [showMessageSent, setShowMessageSent] = useState<boolean>(false);
+  const [formData, setFormData] = useState<CreateContactDto>({
+    fullname: "",
     email: "",
     phone: "",
     message: "",
-    agree: false,
+    contactAgree: false,
   });
 
   const [responseMessage, setResponseMessage] = useState("");
@@ -25,7 +31,25 @@ const Contact = () => {
   };
 
   const setChecked = () => {
-    setFormData({ ...formData, agree: !formData.agree });
+    setFormData({ ...formData, contactAgree: !formData.contactAgree });
+  };
+
+  const handelCreateContact = async (formData: CreateContactDto) => {
+    const response = await createNewContact(formData);
+    if (response.status >= 400) {
+      toast.error("Failed to Send Message");
+    } else {
+      setTimeout(() => {
+        setFormData({
+          fullname: "",
+          email: "",
+          phone: "",
+          message: "",
+          contactAgree: false,
+        });
+        setShowMessageSent(true);
+      }, 500);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -34,11 +58,17 @@ const Contact = () => {
     setError("");
     setLoading(true);
     console.log("formData", formData);
+    handelCreateContact(formData);
+  };
+
+  const toggleActive = () => {
+    setShowMessageSent(false);
+    router.push("/");
   };
 
   return (
     <div className="bg-light-green">
-      <MessageReceived active={false} />
+      <MessageReceived active={showMessageSent} toggleActive={toggleActive} />
       <div className="globalContainer flex flex-col">
         {/* section 1 */}
         <section className="flex flex-col gap-2 sm:py-16 py-10 text-center">
@@ -63,17 +93,17 @@ const Contact = () => {
             <div>
               <form className="flex flex-col">
                 <div>
-                  <label htmlFor="name" className="text-primary-black">
+                  <label htmlFor="fullname" className="text-primary-black">
                     Full Name
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    id="fullname"
                     className="inputStyle"
                     placeholder="Your name"
                     required
                     onChange={handleChange}
-                    value={formData.name}
+                    value={formData.fullname}
                   />
                 </div>
                 <div>
@@ -120,14 +150,14 @@ const Contact = () => {
                 <div className="flex items-start gap-2 pb-6">
                   <div className="flex items-start">
                     <input
-                      id="agree"
+                      id="contactAgree"
                       type="checkbox"
                       className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      checked={formData.agree}
+                      checked={formData.contactAgree}
                       onChange={setChecked}
                     />
                   </div>
-                  <label htmlFor="agree" className="">
+                  <label htmlFor="contactAgree" className="">
                     I agree to be contacted by Herbal Opinion.
                   </label>
                 </div>

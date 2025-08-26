@@ -146,6 +146,14 @@ export interface FaqDataType {
   updatedAt?: Date;
 }
 
+export interface CreateContactDto {
+  fullname: string;
+  email: string;
+  phone?: string;
+  message: string;
+  contactAgree: boolean;
+}
+
 export interface ContactDataType {
   id: number;
   fullname: string;
@@ -154,6 +162,15 @@ export interface ContactDataType {
   message: string;
   contactAgree: boolean;
   submittedAt: Date;
+}
+
+export interface CreateClinicDto {
+  name: string;
+  email: string;
+  phone: string;
+  clinicName: string;
+  note?: string;
+  contactConcent: boolean;
 }
 
 export interface ClinicDataType {

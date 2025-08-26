@@ -37,12 +37,10 @@ export const UserVerification = async (userData: VerificationProps) => {
 };
 
 export const loginUser = async (userData: LoginDto) => {
-  console.log("userData loginUser 1", userData);
   const response = await axiosInstance.post("auth/login", userData, {
     headers: {
       "Content-Type": "application/json",
     },
   });
-  console.log("userData loginUser 2", userData, "response:", response);
   return response.data;
 };

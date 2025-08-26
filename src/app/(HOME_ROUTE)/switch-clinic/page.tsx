@@ -11,20 +11,51 @@ import PrimaryButton from "@/src/components/PrimaryButton";
 import MeetHerbal from "@/src/components/MeetHerbal";
 import LeafComponent from "@/src/components/LeafComponent";
 import MessageReceived from "@/src/components/MessageReceived";
+import { CreateClinicDto } from "@/src/types";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+import { createNewSwitchClinic } from "../action";
 
 const SwitchClinic = () => {
-  const [formData, setFormData] = useState({
+  const router = useRouter();
+  const [showMessageSent, setShowMessageSent] = useState<boolean>(false);
+  const [formData, setFormData] = useState<CreateClinicDto>({
     name: "",
     email: "",
     phone: "",
     clinicName: "",
-    notes: "",
-    agree: false,
+    note: "",
+    contactConcent: false,
   });
 
   const [responseMessage, setResponseMessage] = useState("");
   const [error, setError] = useState("");
   const [Loading, setLoading] = useState(false);
+
+  const meetHerbalText = [
+    "Herbal Opinion is a Telehealth consultation clinic dedicated to helping everyday Australians explore alternate medications and treatment through expert clinical opinions. Our qualified practitioners guide each patient on a personalised journey to healing, offering tailored care plans that prioritise safety, efficacy, and individual needs.",
+    " We believe in the power of nature to support wellness and provide relief. Our team of healthcare professionals carefully evaluates each person's needs to recommend the most appropriate natural solutions.",
+  ];
+
+  const handelCreateContact = async (formData: CreateClinicDto) => {
+    const response = await createNewSwitchClinic(formData);
+
+    if (response.status >= 400) {
+      toast.error("Failed to Switch Clinic");
+    } else {
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          clinicName: "",
+          note: "",
+          contactConcent: false,
+        });
+        setShowMessageSent(true);
+      }, 500);
+    }
+  };
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,7 +64,7 @@ const SwitchClinic = () => {
   };
 
   const setChecked = () => {
-    setFormData({ ...formData, agree: !formData.agree });
+    setFormData({ ...formData, contactConcent: !formData.contactConcent });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,16 +73,16 @@ const SwitchClinic = () => {
     setError("");
     setLoading(true);
     console.log("formData", formData);
+    handelCreateContact(formData);
   };
 
-  const meetHerbalText = [
-    "Herbal Opinion is a Telehealth consultation clinic dedicated to helping everyday Australians explore alternate medications and treatment through expert clinical opinions. Our qualified practitioners guide each patient on a personalised journey to healing, offering tailored care plans that prioritise safety, efficacy, and individual needs.",
-    " We believe in the power of nature to support wellness and provide relief. Our team of healthcare professionals carefully evaluates each person's needs to recommend the most appropriate natural solutions.",
-  ];
-
+  const toggleActive = () => {
+    setShowMessageSent(false);
+    router.push("/");
+  };
   return (
     <div>
-      <MessageReceived active={false} />
+      <MessageReceived active={showMessageSent} toggleActive={toggleActive} />
       {/* section 1 */}
       <section className="bg-light-green">
         <div className="globalContainer flex flex-col-reverse md:flex-row pt-[86px] pb-[64px] ">
@@ -174,38 +205,40 @@ const SwitchClinic = () => {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="notes" className="text-primary-black">
+                  <label htmlFor="note" className="text-primary-black">
                     Any Notes (Optional)
                   </label>
                   <textarea
-                    id="notes"
+                    id="note"
                     className="inputStyle h-32 resize-none"
                     placeholder="Additional Notes"
                     required
                     onChange={handleChange}
-                    value={formData.notes}
+                    value={formData.note}
                   ></textarea>
                 </div>
                 <div className="flex items-start gap-2 pb-6">
                   <div className="flex items-start">
                     <input
-                      id="agree"
+                      id="contactConcent"
                       type="checkbox"
                       className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                      checked={formData.agree}
+                      checked={formData.contactConcent}
                       onChange={setChecked}
                     />
                   </div>
-                  <label htmlFor="agree" className="">
+                  <label htmlFor="contactConcent" className="">
                     I consent to Herbal Opinion contacting my previous provider
                     to arrange the transfer.
                   </label>
                 </div>
                 <div className="flex justify-center">
-                  <PrimaryButton
-                    title="Submit & Start Transfer"
-                    isButton={true}
-                  />
+                  <div className="flex justify-center" onClick={handleSubmit}>
+                    <PrimaryButton
+                      title="Submit & Start Transfer"
+                      isButton={true}
+                    />
+                  </div>
                 </div>
               </form>
             </div>
