@@ -1,8 +1,15 @@
 // get /dashboard/total-submission
 // get /dashboard/recent-activities
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
 import axiosInstance from "@/src/lib/axios.utils";
-import { CreateFaqDto, CreatePricingDto } from "@/src/types";
+import {
+  CreateFaqDto,
+  CreatePricingDto,
+  PaginationDto,
+  SearchDto,
+} from "@/src/types";
 
 export const funcc = async () => {
   const response = await axiosInstance.get("");
@@ -22,6 +29,47 @@ export const getDashboardRecentActivities = async () => {
 // Contact
 export const getContactWeeklyStats = async () => {
   const response = await axiosInstance.get("contacts/weekly-stats");
+  return response.data;
+};
+
+export const getContactPaginated = async (page?: number, limit?: number) => {
+  const response = await axiosInstance.get(
+    `/contacts/paginated?page=${page}&limit=${limit}`
+  );
+  return response.data;
+};
+
+export const getContactSearchResults = async (
+  page?: number,
+  limit?: number,
+  attribute: string = "fullname",
+  search: string = ""
+) => {
+  const response = await axiosInstance.get(
+    `/contacts/search?page=${page}&limit=${limit}&attribute=${attribute}&search=${search}`
+  );
+  return response.data;
+};
+
+export const getAllContact = async () => {
+  const response = await axiosInstance.get("/contacts");
+  return response.data;
+};
+
+export const getContactById = async (id: number) => {
+  const response = await axiosInstance.get("/contacts/" + id);
+  return response.data;
+};
+
+export const getContactCsv = async () => {
+  const response = await axiosInstance.get("/contacts/download-csv", {
+    responseType: "blob",
+  });
+  return response;
+};
+
+export const deleteContactById = async (id: number) => {
+  const response = await axiosInstance.delete("/contacts/" + id);
   return response.data;
 };
 
@@ -127,7 +175,6 @@ get /contacts/paginated
 get /contacts/search?attribute=name&search=br
 get /contacts
 get /contacts/19
-get /contacts/weekly-stats
 get /contacts/download-csv
 delete /contact/19
 

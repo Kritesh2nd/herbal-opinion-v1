@@ -1,62 +1,125 @@
 "use client";
 
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { contactData } from "@/src/constants";
-import { ContactDataType } from "@/src/types";
-import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowUp } from "react-icons/io";
+import { ContactDataType } from "@/src/types";
+import { formatDateTime } from "@/src/app/utils";
+import { MdDeleteForever } from "react-icons/md";
 import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
+import {
+  getContactPaginated,
+  getContactSearchResults,
+  getContactCsv,
+  deleteContactById,
+} from "../action";
+
+export interface ContactDataProps {
+  data: ContactDataType[];
+  metadata: {
+    currentLimit: number;
+    currentPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+}
 
 const ContactFormsContent = () => {
-  const exportCsvUrl = "#";
   const [search, setSearch] = useState("");
-
   const [dataList, setDataList] = useState<ContactDataType[]>([]);
   const [activePage, setActivePage] = useState(0);
-  const dataLength = contactData.length;
-  const paginationLength =
-    Math.floor(dataLength / 5) + (dataLength % 5 > 0 ? 1 : 0);
-  const [startEnd, setStartEnd] = useState({ start: 0, end: 0 });
+  const [dataLength, setDataLength] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [currentLimit, setCurrentLimit] = useState<number>(0);
+  const [paginationLength, setPaginationLength] = useState<number>(0);
 
   const handelActivePage = (type: string, i: number) => {
     if (type == "left") {
       setActivePage(activePage > 0 ? activePage - 1 : activePage);
-    } else if (type == "middle") {
+    }
+    if (type == "middle") {
       setActivePage(i);
-    } else if (type == "right") {
+    }
+    if (type == "right") {
       setActivePage(
         activePage <= paginationLength - 2 ? activePage + 1 : activePage
       );
     }
   };
 
+  const fetchContactPaginated = async (page: number) => {
+    const data: ContactDataProps = await getContactPaginated(page, 5);
+    handelPageData(data);
+  };
+
   const handelSearch = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    console.log("e.target.value", e.target.value);
-    setSearch(e.target.value);
+    const searchValue = e.target.value;
+    setSearch(searchValue);
+    console.log("searchValue", searchValue);
+
+    if (e.target.value.length > 2) {
+      fetchContactSearchResutl(1, search);
+    }
+  };
+
+  const handelPageData = (data: ContactDataProps) => {
+    const totalItems = data.metadata.totalItems;
+    setDataLength(totalItems);
+    setCurrentPage((data.metadata.currentPage - 1) * 5 + 1);
+    const currentLimit =
+      (data.metadata.currentPage - 1) * 5 + data.metadata.currentLimit;
+    setCurrentLimit(currentLimit <= totalItems ? currentLimit : totalItems);
+    setPaginationLength(
+      Math.floor(totalItems / 5) + (totalItems % 5 > 0 ? 1 : 0)
+    );
+    setDataList(data.data);
+  };
+
+  const fetchContactSearchResutl = async (page: number, search: string) => {
+    const data = await getContactSearchResults(page, 5, "fullname", search);
+    handelPageData(data);
+  };
+
+  const fetchContactCsv = async () => {
+    const response = await getContactCsv();
+
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+
+    // If API sends filename in headers
+    const contentDisposition = response.headers["content-disposition"];
+    let fileName = "contacts.csv";
+    if (contentDisposition) {
+      const match = contentDisposition.match(/filename="?([^"]+)"?/);
+      if (match && match[1]) fileName = match[1];
+    }
+
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const deletePricing = async (id: number) => {
+    try {
+      const response = await deleteContactById(id);
+      console.log("delete response", response);
+      fetchContactPaginated(activePage + 1);
+    } catch (error) {
+      console.log("error in fetching contact", error);
+    }
   };
 
   useEffect(() => {
-    const fiveItems = contactData.slice(0, 5);
-    setDataList(fiveItems);
-    setStartEnd({ start: activePage * 5 + 1, end: (activePage + 1) * 5 });
-  }, []);
-
-  useEffect(() => {
-    const start = activePage * 5 + 1;
-    const end = (activePage + 1) * 5;
-    const fiveItems = contactData.slice(start - 1, end);
-    setDataList(fiveItems);
-    setStartEnd({
-      start: start,
-      end: end <= dataLength ? end : dataLength,
-    });
-  }, [activePage]);
-
-  useEffect(() => {
-    console.log(activePage, startEnd);
-  }, [startEnd]);
+    if (search.length > 2) {
+      fetchContactSearchResutl(activePage + 1, search);
+    } else {
+      fetchContactPaginated(activePage + 1);
+    }
+  }, [activePage, search]);
 
   return (
     <div className="flex flex-col h-full w-full overflow-y-auto py-6">
@@ -64,10 +127,12 @@ const ContactFormsContent = () => {
       <section className="pb-6 px-6">
         <DashboardSubTitle
           displaySearch={true}
-          displayButton={false}
+          displayButton={true}
+          displayIcon={false}
           searchValue={search}
+          name="Download CSV"
           funcSearch={handelSearch}
-          url={exportCsvUrl}
+          funcBtn={fetchContactCsv}
           title="Manage Contact Forms"
           subTitle="Manage contact submissions for your healthcare website"
         />
@@ -79,18 +144,28 @@ const ContactFormsContent = () => {
           <table className={`w-full h-full `}>
             <thead className="bg-[#F9FAFB]">
               <tr>
-                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5">Full Name</td>
-                <td className="w-[25%] 2xl:py-7 xl:py-3 px-5">Email Address</td>
-                {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5">Phone Number</td> */}
-                <td className="w-[30%] 2xl:py-7 xl:py-3 px-5">Message</td>
-                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5">
+                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                  Full Name
+                </td>
+                <td className="w-[25%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                  Email Address
+                </td>
+                {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5 font-semibold">Phone Number</td> */}
+                <td className="w-[30%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                  Message
+                </td>
+                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5 font-semibold">
                   Date Submitted
                 </td>
-                <td className="w-[7%]  2xl:py-7 xl:py-3 px-5">Actions</td>
+                <td className="w-[7%]  2xl:py-7 xl:py-3 px-5 font-semibold">
+                  Actions
+                </td>
               </tr>
             </thead>
             {dataList.map((item, index) => {
-              const [date, time] = item.submittedAt.toLocaleString().split(",");
+              const { formattedDate, formattedTime } = formatDateTime(
+                item.submittedAt.toLocaleString()
+              );
               return (
                 <tbody
                   key={item.id}
@@ -123,20 +198,36 @@ const ContactFormsContent = () => {
                     <td className="w-[18%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">
-                          {date} <br />
-                          {time}
+                          {formattedDate} <br />
+                          {formattedTime}
                         </div>
                       </div>
                     </td>
                     <td className="w-[7%]">
                       <div className="h-full w-full flex justify-center items-center">
-                        <MdDeleteForever className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out " />
+                        <MdDeleteForever
+                          className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out "
+                          onClick={() => {
+                            deletePricing(item.id);
+                          }}
+                        />
                       </div>
                     </td>
                   </tr>
                 </tbody>
               );
             })}
+            {dataList.length == 0 && (
+              <tbody>
+                <tr>
+                  <td colSpan={5}>
+                    <div className=" text-center text-primary-dgray">
+                      No contacts found in database
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            )}
             {dataList.length < 4 &&
               Array.from({ length: 5 - dataList.length }).map((_, i) => (
                 <tbody key={i}>
@@ -152,23 +243,25 @@ const ContactFormsContent = () => {
       {/* section 3: pagination */}
       <section className="flex px-7 text-primary-dgray">
         <div className="flex items-center">
-          {dataLength &&
+          {dataLength > 0 &&
             "Showing " +
-              startEnd.start +
+              currentPage +
               " to " +
-              startEnd.end +
+              currentLimit +
               " of " +
               dataLength +
               " results"}
         </div>
         <div className="flex flex-1 justify-end">
           <div className="flex text-primary-black">
-            <div
-              className="flex justify-center items-center h-10 w-7 rounded-l-md cursor-pointer border"
-              onClick={() => handelActivePage("left", 0)}
-            >
-              <IoIosArrowUp className="-rotate-[90deg]" />
-            </div>
+            {dataLength > 0 && (
+              <div
+                className="flex justify-center items-center h-10 w-7 rounded-l-md cursor-pointer border"
+                onClick={() => handelActivePage("left", 0)}
+              >
+                <IoIosArrowUp className="-rotate-[90deg]" />
+              </div>
+            )}
 
             {Array.from({ length: paginationLength }).map((_, i) => (
               <div
@@ -183,12 +276,14 @@ const ContactFormsContent = () => {
                 {i + 1}
               </div>
             ))}
-            <div
-              className="flex justify-center items-center h-10 w-7 rounded-r-md cursor-pointer border"
-              onClick={() => handelActivePage("right", 0)}
-            >
-              <IoIosArrowUp className="rotate-[90deg]" />
-            </div>
+            {dataLength > 0 && (
+              <div
+                className="flex justify-center items-center h-10 w-7 rounded-r-md cursor-pointer border"
+                onClick={() => handelActivePage("right", 0)}
+              >
+                <IoIosArrowUp className="rotate-[90deg]" />
+              </div>
+            )}
           </div>
         </div>
       </section>

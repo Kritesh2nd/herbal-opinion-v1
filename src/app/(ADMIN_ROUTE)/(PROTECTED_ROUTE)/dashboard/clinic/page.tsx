@@ -55,7 +55,7 @@ const SwitchClinicContent = () => {
   }, [activePage]);
 
   useEffect(() => {
-    console.log(activePage, startEnd);
+    // console.log(activePage, startEnd);
   }, [startEnd]);
 
   return (

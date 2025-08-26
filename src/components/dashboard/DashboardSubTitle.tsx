@@ -12,6 +12,7 @@ const DashboardSubTitle = ({
   url = "/dashboard",
   displayButton = true,
   displaySearch = false,
+  displayIcon = true,
   searchValue = "",
   funcBtn = () => {},
   funcSearch = () => {},
@@ -22,6 +23,7 @@ const DashboardSubTitle = ({
   url?: string;
   displayButton?: boolean;
   displaySearch?: boolean;
+  displayIcon?: boolean;
   searchValue?: string;
   funcBtn?: () => void;
   funcSearch?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -60,9 +62,11 @@ const DashboardSubTitle = ({
             onClick={funcBtn}
             className="flex items-center flex-row gap-4 py-2 px-5 border border-farm-green text-white bg-farm-green rounded-md cursor-pointer"
           >
-            <div className=" ">
-              <FaPlus />
-            </div>
+            {displayIcon && (
+              <div className=" ">
+                <FaPlus />
+              </div>
+            )}
             <div className=" pt-[3px]">{name}</div>
           </button>
         </div>

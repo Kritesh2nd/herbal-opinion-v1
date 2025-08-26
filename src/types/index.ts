@@ -225,3 +225,15 @@ export interface PrivacyPolicyType {
   points?: string[];
   subPoints?: SubPointType[];
 }
+
+export interface PaginationDto {
+  page?: number;
+  limit?: number;
+}
+
+export interface SearchDto {
+  page?: number;
+  limit?: number;
+  attribute?: string;
+  search: string;
+}
