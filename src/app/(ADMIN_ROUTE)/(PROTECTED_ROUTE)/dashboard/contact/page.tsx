@@ -144,20 +144,20 @@ const ContactFormsContent = () => {
           <table className={`w-full h-full `}>
             <thead className="bg-[#F9FAFB]">
               <tr>
-                <td className="w-[20%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5 font-semibold">
                   Full Name
                 </td>
-                <td className="w-[25%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                <td className="w-[28%] 2xl:py-7 xl:py-3 px-5 font-semibold">
                   Email Address
                 </td>
                 {/* <td className="w-[15%] 2xl:py-7 xl:py-3 px-5 font-semibold">Phone Number</td> */}
-                <td className="w-[30%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                <td className="w-[28%] 2xl:py-7 xl:py-3 px-5 font-semibold">
                   Message
                 </td>
-                <td className="w-[18%] 2xl:py-7 xl:py-3 px-5 font-semibold">
+                <td className="w-[14%] 2xl:py-7 xl:py-3 px-5 font-semibold">
                   Date Submitted
                 </td>
-                <td className="w-[7%]  2xl:py-7 xl:py-3 px-5 font-semibold">
+                <td className="w-[12%]  2xl:py-7 xl:py-3 px-5 font-semibold text-center">
                   Actions
                 </td>
               </tr>
@@ -174,17 +174,17 @@ const ContactFormsContent = () => {
                   }  border-primary-lgray  h-[calc(20vh-65px)]`}
                 >
                   <tr>
-                    <td className="w-[20%] px-5 pt-5 pb-4">
+                    <td className="w-[18%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">{item.fullname}</div>
                       </div>
                     </td>
-                    <td className="w-[25%] px-5 pt-5 pb-4">
+                    <td className="w-[28%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">{item.email}</div>
                       </div>
                     </td>
-                    <td className="w-[30%] px-5 pt-5 pb-4">
+                    <td className="w-[28%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">
                           {item.message ? (
@@ -195,7 +195,7 @@ const ContactFormsContent = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="w-[18%] px-5 pt-5 pb-4">
+                    <td className="w-[14%] px-5 pt-5 pb-4">
                       <div className="h-full overflow-y-auto nice-scrollbar transition-all duration-300">
                         <div className="flex h-full">
                           {formattedDate} <br />
@@ -203,7 +203,7 @@ const ContactFormsContent = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="w-[7%]">
+                    <td className="w-[12%]">
                       <div className="h-full w-full flex justify-center items-center">
                         <MdDeleteForever
                           className="text-2xl cursor-pointer hover:text-chilly-paper transition-colors duration-300 ease-in-out "

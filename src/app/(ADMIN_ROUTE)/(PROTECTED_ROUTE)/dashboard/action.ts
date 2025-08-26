@@ -79,6 +79,47 @@ export const getClinicWeeklyStats = async () => {
   return response.data;
 };
 
+export const getClinicPaginated = async (page?: number, limit?: number) => {
+  const response = await axiosInstance.get(
+    `/clinics/paginated?page=${page}&limit=${limit}`
+  );
+  return response.data;
+};
+
+export const getClinicSearchResults = async (
+  page?: number,
+  limit?: number,
+  attribute: string = "name",
+  search: string = ""
+) => {
+  const response = await axiosInstance.get(
+    `/clinics/search?page=${page}&limit=${limit}&attribute=${attribute}&search=${search}`
+  );
+  return response.data;
+};
+
+export const getAllClinic = async () => {
+  const response = await axiosInstance.get("/clinics");
+  return response.data;
+};
+
+export const getClinicById = async (id: number) => {
+  const response = await axiosInstance.get("/clinics/" + id);
+  return response.data;
+};
+
+export const getClinicCsv = async () => {
+  const response = await axiosInstance.get("/clinics/download-csv", {
+    responseType: "blob",
+  });
+  return response;
+};
+
+export const deleteClinicById = async (id: number) => {
+  const response = await axiosInstance.delete("/clinics/" + id);
+  return response.data;
+};
+
 // Pricing
 export const createPricing = async (formData: CreatePricingDto) => {
   const response = await axiosInstance.post("pricing", formData);
