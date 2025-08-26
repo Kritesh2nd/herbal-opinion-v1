@@ -1,18 +1,32 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
-import DashboardSubTitle from "./DashboardSubTitle";
-
-import { MdOutlineCheck } from "react-icons/md";
-import { BiSolidEdit } from "react-icons/bi";
-import { MdDeleteForever } from "react-icons/md";
-import { pricingDataType } from "@/src/types";
-import { pricingData } from "@/src/constants";
-import { RxCross2 } from "react-icons/rx";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { CiTrash } from "react-icons/ci";
+import { RxCross2 } from "react-icons/rx";
+import { BiSolidEdit } from "react-icons/bi";
+import { MdOutlineCheck } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
+import { CreatePricingDto, pricingDataType } from "@/src/types";
+import DashboardSubTitle from "@/src/components/dashboard/DashboardSubTitle";
+import {
+  createPricing,
+  getAllPricing,
+  getPricingById,
+  updatePricingById,
+  deletePricingById,
+} from "../action";
 
-const PricingCard = ({ price }: { price: pricingDataType }) => {
+const PricingCard = ({
+  price,
+  fetchPricing,
+  updateForm,
+}: {
+  price: pricingDataType;
+  fetchPricing: () => void;
+  updateForm: (id: number) => void;
+}) => {
   const {
+    id,
     name,
     description,
     originalPrice,
@@ -21,6 +35,16 @@ const PricingCard = ({ price }: { price: pricingDataType }) => {
     shortDescription,
     features,
   } = price;
+
+  const deletePricing = async (id: number) => {
+    try {
+      const response = await deletePricingById(id);
+      fetchPricing();
+    } catch (error) {
+      console.log("Error in fetching pricing", error);
+    }
+  };
+
   return (
     <div className="flex flex-col shadow-[0_2px_5px_rgba(0,0,0,0.30)] p-6 rounded-lg">
       <div className="text-[20px] text-primary-black pb-3">{name}</div>
@@ -46,36 +70,54 @@ const PricingCard = ({ price }: { price: pricingDataType }) => {
           </div>
         ))}
       </div>
-      <div className="flex justify-between gap-3">
-        <button className="flex justify-center px-5 py-[10px] text-lg rounded-sm flex-1 text-lettuce border cursor-pointer transition-all duration-300 hover:bg-[rgba(43,161,73,.3)]  hover:border-lettuce">
-          <div className="flex items-center gap-2 justify-center">
-            <div>
-              <BiSolidEdit />
+      <div className="flex flex-1 flex-col justify-end">
+        <div className="flex justify-between gap-3 ">
+          <button className="flex justify-center px-5 py-[10px] text-lg rounded-sm flex-1 text-lettuce border cursor-pointer transition-all duration-300 hover:bg-[rgba(43,161,73,.3)]  hover:border-lettuce">
+            <div
+              className="flex items-center gap-2 justify-center"
+              onClick={() => {
+                updateForm(id);
+              }}
+            >
+              <div>
+                <BiSolidEdit />
+              </div>
+              <div className="-mb-1">Edit</div>
             </div>
-            <div className="-mb-1">Edit</div>
-          </div>
-        </button>
-        <button className="flex justify-center px-5 py-[10px] text-lg rounded-sm flex-1 text-chilly-paper border cursor-pointer  transition-all duration-300 hover:bg-[rgba(188,33,65,.3)]  hover:border-chilly-paper">
-          <div className="flex items-center gap-2 justify-center">
-            <div>
-              <MdDeleteForever />
+          </button>
+          <button className="flex justify-center px-5 py-[10px] text-lg rounded-sm flex-1 text-chilly-paper border cursor-pointer  transition-all duration-300 hover:bg-[rgba(188,33,65,.3)]  hover:border-chilly-paper">
+            <div className="flex items-center gap-2 justify-center">
+              <div>
+                <MdDeleteForever />
+              </div>
+              <div
+                className="-mb-1"
+                onClick={() => {
+                  deletePricing(id);
+                }}
+              >
+                Delete
+              </div>
             </div>
-            <div className="-mb-1">Delete</div>
-          </div>
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 const PricingForm = ({
+  updateFormId,
   updateForm,
   toggelShowForm,
+  fetchPricing,
 }: {
+  updateFormId: number;
   updateForm: boolean;
   toggelShowForm: () => void;
+  fetchPricing: () => void;
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<CreatePricingDto>({
     name: "",
     description: "",
     originalPrice: 0,
@@ -83,7 +125,6 @@ const PricingForm = ({
     free: false,
     shortDescription: "",
     features: ["", "", ""],
-    display: true,
   });
 
   const [responseMessage, setResponseMessage] = useState("");
@@ -114,7 +155,41 @@ const PricingForm = ({
     setResponseMessage("");
     setError("");
     setLoading(true);
-    console.log("formData", formData);
+
+    const filteredFeatrue = formData.features.filter(
+      (item) => item.trim() !== ""
+    );
+
+    const filteredForm: CreatePricingDto = {
+      ...formData,
+      originalPrice: parseInt(formData.originalPrice.toString()),
+      currentPrice: parseInt(formData.currentPrice.toString()),
+      features: filteredFeatrue,
+    };
+
+    try {
+      const response = updateForm
+        ? await updatePricingById(filteredForm, updateFormId)
+        : await createPricing(filteredForm);
+
+      if (response?.statusCode >= 400) {
+        console.log("Error", error);
+      } else {
+        setFormData({
+          name: "",
+          description: "",
+          originalPrice: 0,
+          currentPrice: 0,
+          free: false,
+          shortDescription: "",
+          features: ["", "", ""],
+        });
+        toggelShowForm();
+        fetchPricing();
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
 
   const addFeature = () => {
@@ -132,6 +207,25 @@ const PricingForm = ({
       });
     }
   };
+
+  const handelUpdateForm = async () => {
+    const response: pricingDataType = await getPricingById(updateFormId);
+    setFormData({
+      name: response.name,
+      description: response.description,
+      originalPrice: response.originalPrice,
+      currentPrice: response.currentPrice,
+      free: response.free,
+      shortDescription: response.shortDescription,
+      features: response.features,
+    });
+  };
+
+  useEffect(() => {
+    if (updateForm) {
+      handelUpdateForm();
+    }
+  }, [updateForm]);
 
   return (
     <div className="flex flex-col h-auto w-full ">
@@ -236,41 +330,45 @@ const PricingForm = ({
               </div>
             </div>
           </div>
-          {formData.features.map((item, index) => {
-            return (
-              <div className="flex gap-2 " key={index}>
-                <input
-                  type="text"
-                  className="dashdoardInputStyle"
-                  placeholder="e.g., Expert 1-on-1 consult"
-                  required
-                  onChange={(e) => {
-                    handleFeatureChange(e, index);
-                  }}
-                  value={item}
-                />
-                <div className="flex items-center">
-                  <CiTrash
-                    className="text-primary-dgray hover:text-chilly-paper transition-all duration-150 cursor-pointer text-2xl"
-                    onClick={() => {
-                      deleteFeature(index);
+          {formData &&
+            formData.features &&
+            formData.features.map((item, index) => {
+              return (
+                <div className="flex gap-2 " key={index}>
+                  <input
+                    type="text"
+                    className="dashdoardInputStyle"
+                    placeholder="e.g., Expert 1-on-1 consult"
+                    required
+                    onChange={(e) => {
+                      handleFeatureChange(e, index);
                     }}
+                    value={item}
                   />
+                  <div className="flex items-center">
+                    <CiTrash
+                      className="text-primary-dgray hover:text-chilly-paper transition-all duration-150 cursor-pointer text-2xl"
+                      onClick={() => {
+                        deleteFeature(index);
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         <div className="flex justify-end gap-4 pt-2">
           <button
             type="reset"
             className="py-3 px-5 border-1 border-primary-dgray text-primary-black rounded-md cursor-pointer"
+            onClick={toggelShowForm}
           >
             <div className="-mb-1 ">Cancel</div>
           </button>
           <button
-            type="reset"
+            type="submit"
             className="py-3 px-5 border-1 border-farm-green bg-farm-green text-primary-white rounded-md cursor-pointer"
+            onClick={handleSubmit}
           >
             <div className="-mb-1 ">Save Plan</div>
           </button>
@@ -280,23 +378,54 @@ const PricingForm = ({
   );
 };
 
-const PricingContent = () => {
+const Pricing = () => {
+  const [updateFormId, setUpdateFromId] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
-  const [updateForm, setUpdateForm] = useState(true);
+  const [updateForm, setUpdateForm] = useState(false);
+
+  const [pricings, setPricings] = useState<pricingDataType[]>([]);
 
   const toggelShowForm = () => {
+    setUpdateForm(!showForm);
     setShowForm(!showForm);
   };
+
+  const toggelUpdateForm = (id: number) => {
+    setUpdateForm(!updateForm);
+    toggelShowForm();
+    setUpdateFromId(id);
+  };
+
+  const fecthAllPricing = async () => {
+    const data = await getAllPricing();
+    setPricings(data);
+  };
+
+  useEffect(() => {
+    fecthAllPricing();
+  }, []);
 
   return (
     <div className="flex flex-col h-full w-full overflow-y-auto py-5 px-7">
       <div className="pb-6">
-        <DashboardSubTitle funcBtn={toggelShowForm} />
+        <DashboardSubTitle
+          funcBtn={() => {
+            setShowForm(!showForm);
+          }}
+        />
       </div>
       <div className="grid grid-cols-3 gap-6">
-        {pricingData.map((item) => {
-          return <PricingCard price={item} key={item.id} />;
-        })}
+        {pricings &&
+          pricings.map((item) => {
+            return (
+              <PricingCard
+                price={item}
+                key={item.id}
+                fetchPricing={fecthAllPricing}
+                updateForm={toggelUpdateForm}
+              />
+            );
+          })}
       </div>
 
       {/* add/edit pricing */}
@@ -311,6 +440,8 @@ const PricingContent = () => {
                     <PricingForm
                       updateForm={updateForm}
                       toggelShowForm={toggelShowForm}
+                      updateFormId={updateFormId}
+                      fetchPricing={fecthAllPricing}
                     />
                   </div>
                 </div>
@@ -323,4 +454,4 @@ const PricingContent = () => {
   );
 };
 
-export default PricingContent;
+export default Pricing;

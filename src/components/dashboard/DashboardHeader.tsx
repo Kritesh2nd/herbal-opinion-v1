@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
+import { useSession } from "next-auth/react";
 
 const DashboardHeader = () => {
+  const { data, status } = useSession();
+
   return (
-    <header className="bg-white shadow-sm px-7 py-3">
+    <header className="bg-white shadow-bottom px-7 py-3">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-[#1F2937]">Dashboard</h1>
         <div className="flex items-center gap-3">
@@ -13,7 +18,9 @@ const DashboardHeader = () => {
             </span>
           </div>
           <div className="text-left">
-            <div className="text-base  text-gray-900">Dr. James Wilson</div>
+            <div className="text-base  text-gray-900">
+              {data?.user?.fullname}
+            </div>
             <div className="text-xs text-gray-500">Administrator</div>
           </div>
         </div>

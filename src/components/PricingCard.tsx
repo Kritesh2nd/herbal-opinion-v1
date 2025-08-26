@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { pricingPlans } from "../constants";
-import { ConsultationPlan } from "../types";
+import { ConsultationPlan, pricingDataType } from "../types";
 import { MdOutlineCheck } from "react-icons/md";
 import Link from "next/link";
+import { getAllPricning } from "../app/(HOME_ROUTE)/action";
 
 const PricingSingleCard = ({
   data,
   index,
 }: {
-  data: ConsultationPlan;
+  data: pricingDataType;
   index: number;
 }) => {
   const {
-    title,
+    name,
     description,
     originalPrice,
     currentPrice,
-    subtitle,
+    free,
+    shortDescription,
     features,
   } = data;
 
@@ -32,22 +34,23 @@ const PricingSingleCard = ({
               : "bg-farm-green text-primary-white"
           } p-6 rounded-t-xl pb-7`}
         >
-          <h2 className={` text-xl sm:text-[25px] pb-2`}>{title}</h2>
+          <h2 className={` text-xl sm:text-[25px] pb-2`}>{name}</h2>
           <p className="text-[18px] sm:text-[20px] ">{description}</p>
         </div>
         <div className="flex flex-col flex-1 bg-white p-6">
           <div className="gooper flex items-center gap-5 pb-6">
-            {originalPrice && (
+            {!free && originalPrice && (
               <span className="sm:text-[31px] text-[25px] text-primary-dgray">
                 <s>${originalPrice}</s>
               </span>
             )}
             <span className="sm:text-[39px] text-[21px] text-primary-black">
-              {originalPrice && "$"}
-              {currentPrice}
+              {!free && originalPrice && "$"}
+              {!free && currentPrice}
+              {free && "FREE"}
             </span>
           </div>
-          <div className="pb-8 text-primary-dgray">{subtitle}</div>
+          <div className="pb-8 text-primary-dgray">{shortDescription}</div>
           <div className="flex flex-col gap-6 text-primary-black ">
             {features.map((item) => (
               <div className="flex gap-[4px]" key={item}>
@@ -79,6 +82,16 @@ const PricingSingleCard = ({
 };
 
 const PricingCard = () => {
+  const [pricings, setPricings] = useState<pricingDataType[]>([]);
+  const fecthAllPricing = async () => {
+    const data = await getAllPricning();
+    setPricings(data);
+  };
+
+  useEffect(() => {
+    fecthAllPricing();
+  }, []);
+
   return (
     <div className="">
       <div className="globalContainer flex flex-col  sm:px-22">
@@ -89,10 +102,17 @@ const PricingCard = () => {
           Choose the care level that suits your needs. No hidden fees. Cancel
           anytime.
         </p>
-        <div className="flex sm:gap-6 gap-4 sm:flex-row flex-col">
-          {pricingPlans.map((item, index) => (
-            <PricingSingleCard key={item.id} data={item} index={index} />
-          ))}
+        <div className=" sm:gap-6 gap-4 grid sm:grid-cols-3 grid-cols-1">
+          {pricings &&
+            pricings.length > 0 &&
+            pricings.map((item, index) => (
+              <PricingSingleCard key={item.id} data={item} index={index} />
+            ))}
+
+          {(!pricings || pricings.length == 0) &&
+            pricingPlans.map((item, index) => (
+              <PricingSingleCard key={item.id} data={item} index={index} />
+            ))}
         </div>
       </div>
     </div>

@@ -59,7 +59,7 @@ export interface FaqDropdownType {
   id: number;
   question: string;
   answer: string;
-  display: boolean;
+  display?: boolean;
 }
 
 export interface OurJourneyTypes {
@@ -109,6 +109,16 @@ export interface StatCard {
   color: string;
 }
 
+export interface CreatePricingDto {
+  name: string;
+  description: string;
+  originalPrice: number;
+  currentPrice: number;
+  free: boolean;
+  shortDescription: string;
+  features: string[];
+}
+
 export interface pricingDataType {
   id: number;
   name: string;
@@ -123,11 +133,15 @@ export interface pricingDataType {
   updatedAt?: Date;
 }
 
+export interface CreateFaqDto {
+  question: string;
+  answer: string;
+}
 export interface FaqDataType {
   id: number;
   question: string;
   answer: string;
-  display: boolean;
+  display?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -210,4 +224,16 @@ export interface PrivacyPolicyType {
   content?: string[];
   points?: string[];
   subPoints?: SubPointType[];
+}
+
+export interface PaginationDto {
+  page?: number;
+  limit?: number;
+}
+
+export interface SearchDto {
+  page?: number;
+  limit?: number;
+  attribute?: string;
+  search: string;
 }

@@ -15,8 +15,6 @@ const Pricing = () => {
   return (
     <div>
       {/* section 1 */}
-
-      {/* section 1 */}
       <section className="bg-light-green py-22">
         <PricingCard />
       </section>
