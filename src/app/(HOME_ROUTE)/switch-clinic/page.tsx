@@ -57,6 +57,13 @@ const SwitchClinic = () => {
     }
   };
 
+  const handleScroll = () => {
+    const element = document.getElementById("read-to-switch");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -101,10 +108,12 @@ const SwitchClinic = () => {
             <div className="flex">
               <PrimaryButton
                 title="Switch to Herbal Opinion"
-                url="/switch-clinic"
+                // url="/switch-clinic"
                 background="farm-green"
                 text="white"
                 py="py-2"
+                isButton={true}
+                btnFunc={handleScroll}
               />
             </div>
           </div>
@@ -120,7 +129,7 @@ const SwitchClinic = () => {
       </section>
 
       {/* section 2 */}
-      <section className="py-[74px] relative">
+      <section className="py-[74px] relative" id="read-to-switch">
         <div className="relative">
           <LeafComponent
             mainStyle="h-105 w-40 hidden sm:block"

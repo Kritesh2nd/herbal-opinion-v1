@@ -102,7 +102,7 @@ const Footer = () => {
                 socialMedia.map(
                   (item) =>
                     item.display && (
-                      <Link key={item.id} href={item.link}>
+                      <Link key={item.id} href={item.link} target="_blank">
                         <div className="flex justify-center items-center h-[40px] w-[40px] text-2xl rounded-full overflow-hidden relative text-white hover:text-light-green">
                           {item.icon}
                         </div>

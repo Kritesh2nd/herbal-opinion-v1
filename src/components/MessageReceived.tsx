@@ -7,6 +7,8 @@ import { FaCheck } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { FaHouse } from "react-icons/fa6";
 import { MdOutlineSupportAgent } from "react-icons/md";
+import { FaQuestion } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 const MessageReceived = ({
   active = false,
@@ -15,6 +17,12 @@ const MessageReceived = ({
   active: boolean;
   toggleActive: () => void;
 }) => {
+  const router = useRouter();
+
+  const handleNavigate = () => {
+    router.push("/about?scrollTo=faq");
+  };
+
   return (
     <div
       className={`${
@@ -60,19 +68,31 @@ const MessageReceived = ({
               </button>
             </div>
             <div className="flex flex-row justify-center gap-4 sm:text-[20px] p-[18px] text-blue-500">
-              <Link href="/" className="flex flex-row gap-2 hover:underline">
-                <div>
-                  <FaHouse />
-                </div>
-                Talk to our Team
-              </Link>
+              <div className="flex justify-end flex-1 min-w-0">
+                <button
+                  onClick={handleNavigate}
+                  className="flex flex-row gap-2 hover:underline cursor-pointer"
+                >
+                  <div>
+                    <FaQuestion />
+                  </div>
+                  FAQ
+                </button>
+              </div>
               <div className="text-primary-dgray">|</div>
-              <Link href="/" className="flex flex-row gap-2 hover:underline">
-                <div>
-                  <MdOutlineSupportAgent />
-                </div>
-                Contact Support
-              </Link>
+              <div className="flex-1 min-w-0">
+                <Link
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@example.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-row gap-2 hover:underline cursor-pointer"
+                >
+                  <div>
+                    <MdOutlineSupportAgent />
+                  </div>
+                  Contact Support
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signOut, useSession } from "next-auth/react";
+import { refreshAccessToken } from "./refreshToken";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 

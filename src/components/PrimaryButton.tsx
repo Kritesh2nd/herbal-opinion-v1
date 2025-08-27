@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
 const PrimaryButton = ({
@@ -12,6 +12,7 @@ const PrimaryButton = ({
   url = "#",
   isButton = false,
   py = "py-[5px]",
+  btnFunc = () => {},
 }: {
   title: string;
   displayArrow?: boolean;
@@ -20,6 +21,7 @@ const PrimaryButton = ({
   url?: string;
   isButton?: boolean;
   py?: string;
+  btnFunc?: () => void;
 }) => {
   return (
     <div className="flex">
@@ -41,7 +43,7 @@ const PrimaryButton = ({
 
       {isButton && (
         <button
-          type="submit"
+          onClick={btnFunc}
           className={`${background ? "bg-" + background : "bg-lemon"} 
         ${text ? "text-" + text : "text-farm-green"}
           flex items-center gap-3  text-farm-green px-7 py-[5px] rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer`}

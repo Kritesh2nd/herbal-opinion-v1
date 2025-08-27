@@ -9,7 +9,7 @@ export default async function ProtectedLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session || session?.user.roles.length == 1) {
     redirect("/login");
   }
   return <>{children}</>;

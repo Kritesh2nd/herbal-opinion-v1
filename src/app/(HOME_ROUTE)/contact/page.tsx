@@ -267,7 +267,7 @@ const Contact = () => {
                   socialMedia.map(
                     (item) =>
                       item.display && (
-                        <Link key={item.id} href={item.link}>
+                        <Link key={item.id} href={item.link} target="_blank">
                           <div className="flex justify-center items-center h-[40px] w-[40px] text-lg rounded-full overflow-hidden relative ">
                             <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
                             {item.icon}

@@ -196,7 +196,9 @@ const FaqForm = ({
             type="reset"
             className="py-3 px-5 border-1 border-primary-dgray bg-white transition-all duration-200 hover:bg-[rgba(98,91,95,.1)] text-primary-black rounded-md cursor-pointer"
           >
-            <div className="-mb-1 ">Cancel</div>
+            <div className="-mb-1 " onClick={toggelShowForm}>
+              Cancel
+            </div>
           </button>
           {!updateForm && (
             <button

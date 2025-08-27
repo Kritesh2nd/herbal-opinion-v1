@@ -195,7 +195,7 @@ const PricingForm = ({
 
   const addFeature = () => {
     const length = formData.features.length;
-    if (length <= 2) {
+    if (length <= 4) {
       setFormData({ ...formData, features: [...formData.features, ""] });
     }
   };

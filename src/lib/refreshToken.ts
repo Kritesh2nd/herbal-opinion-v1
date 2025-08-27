@@ -1,4 +1,13 @@
-import axiosInstance from "./axios.utils";
+import axios from "axios";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+const axiosInstance = axios.create({
+  baseURL: API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 interface JWTToken {
   accessToken: string;
@@ -16,13 +25,12 @@ export async function refreshAccessToken(token: JWTToken): Promise<JWTToken> {
 
     const refreshedTokens = response.data.tokens;
 
-    return token;
-    // return {
-    //   ...token,
-    //   accessToken: refreshedTokens.accessToken,
-    //   refreshToken: refreshedTokens.refreshToken,
-    //   accessTokenExpires: Date.now() + 60 * 60 * 1000,
-    // };
+    return {
+      ...token,
+      accessToken: refreshedTokens.accessToken,
+      refreshToken: refreshedTokens.refreshToken,
+      accessTokenExpires: Date.now() + 60 * 60 * 1000,
+    };
   } catch (error) {
     console.error("RefreshAccessToken error:", error);
 

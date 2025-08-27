@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
 import Image from "next/image";
 import WhyHerbal from "@/src/components/WhyHerbal";
 import { FaQuoteLeft } from "react-icons/fa";
@@ -7,8 +9,21 @@ import { ourJourney, resilience } from "@/src/constants";
 import Faq from "@/src/components/Faq";
 import TestimonialCard from "@/src/components/TestimonialCard";
 import LeafComponent from "@/src/components/LeafComponent";
+import { useSearchParams } from "next/navigation";
 
 const page = () => {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const scrollToId = searchParams.get("scrollTo");
+    if (scrollToId) {
+      const element = document.getElementById(scrollToId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [searchParams]);
+
   return (
     <div>
       {/* section 1 */}
@@ -263,7 +278,7 @@ const page = () => {
       </section>
 
       {/* section 8 */}
-      <section>
+      <section id="faq">
         <Faq />
       </section>
     </div>
