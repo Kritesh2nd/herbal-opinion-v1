@@ -22,8 +22,8 @@ export interface SocialMediaDetailType {
 const Footer = () => {
   const [profiles, setProfiles] = useState<UpdateProfileProps[]>([]);
   const [socialMedia, setSocialMedia] = useState<SocialMediaDetailType[]>([
-    { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
-    { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
+    { id: 1, display: true, icon: <FaFacebookF />, link: "/" },
+    { id: 2, display: true, icon: <FaInstagram />, link: "/" },
   ]);
 
   const [contactDetails, setContactDetails] = useState<ContactDetailType[]>([
