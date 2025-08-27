@@ -254,3 +254,24 @@ export interface SearchDto {
   attribute?: string;
   search: string;
 }
+
+export interface CreateProfileProps {
+  name: string;
+  value: string;
+}
+
+export interface UpdateProfileProps {
+  id: number;
+  name: string;
+  value: string;
+}
+export interface UpdateManyProfileProps {
+  title: string;
+  profiles: UpdateProfileProps[];
+}
+
+export interface ProfileDataType {
+  id: number;
+  name: string;
+  value: string;
+}

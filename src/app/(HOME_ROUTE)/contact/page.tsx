@@ -1,16 +1,22 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { contactDetails, followUs } from "@/src/constants";
 import MessageReceived from "@/src/components/MessageReceived";
 import Image from "next/image";
-import { createNewContact } from "../action";
-import { CreateContactDto } from "@/src/types";
+import { createNewContact, getAllProfile } from "../action";
+import {
+  ContactDetailType,
+  CreateContactDto,
+  UpdateProfileProps,
+} from "@/src/types";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { IoMail } from "react-icons/io5";
+import { FaClock, FaFacebookF, FaInstagram } from "react-icons/fa";
 const Contact = () => {
   const router = useRouter();
+  const [profiles, setProfiles] = useState<UpdateProfileProps[]>([]);
   const [showMessageSent, setShowMessageSent] = useState<boolean>(false);
   const [formData, setFormData] = useState<CreateContactDto>({
     fullname: "",
@@ -23,6 +29,25 @@ const Contact = () => {
   const [responseMessage, setResponseMessage] = useState("");
   const [error, setError] = useState("");
   const [Loading, setLoading] = useState(false);
+
+  const [socialMedia, setSocialMedia] = useState([
+    { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
+    { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
+  ]);
+  const [contactDetails, setContactDetails] = useState<ContactDetailType[]>([
+    {
+      id: 1,
+      icon: <IoMail />,
+      title: "Email",
+      description: "support@herbalopinion.com.au",
+    },
+    {
+      id: 2,
+      icon: <FaClock />,
+      title: "Hours",
+      description: "Mon-Fri, 9am-5pm AEST",
+    },
+  ]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -57,7 +82,6 @@ const Contact = () => {
     setResponseMessage("");
     setError("");
     setLoading(true);
-    console.log("formData", formData);
     handelCreateContact(formData);
   };
 
@@ -65,6 +89,45 @@ const Contact = () => {
     setShowMessageSent(false);
     router.push("/");
   };
+
+  const loadSocialMedia = () => {
+    const emailData = profiles.find((item) => item.name === "email");
+    const hoursData = profiles.find((item) => item.name === "hours");
+    const facebookData = profiles.find((item) => item.name === "facebook");
+    const instagramData = profiles.find((item) => item.name === "instagram");
+    const email = {
+      ...contactDetails[0],
+      description: emailData?.value ?? contactDetails[0].description,
+    };
+    const hours = {
+      ...contactDetails[1],
+      description: hoursData?.value ?? contactDetails[1].description,
+    };
+    setContactDetails([email, hours]);
+
+    const facebook = {
+      ...socialMedia[0],
+      link: facebookData?.value ?? socialMedia[0].link,
+    };
+    const instagram = {
+      ...socialMedia[1],
+      link: instagramData?.value ?? socialMedia[1].link,
+    };
+    setSocialMedia([facebook, instagram]);
+  };
+
+  const fecthAllProfile = async () => {
+    const data = await getAllProfile();
+    setProfiles(data);
+  };
+
+  useEffect(() => {
+    fecthAllProfile();
+  }, []);
+
+  useEffect(() => {
+    loadSocialMedia();
+  }, [profiles]);
 
   return (
     <div className="bg-light-green">
@@ -179,18 +242,19 @@ const Contact = () => {
               Contact Details
             </div>
             <div className="flex flex-col gap-8 pb-8 relative">
-              {contactDetails.map((item) => (
-                <div key={item.id} className="flex gap-4">
-                  <div className="flex justify-center items-center h-[50px] w-[50px] text-2xl rounded-full overflow-hidden relative ">
-                    <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
-                    {item.icon}
+              {contactDetails &&
+                contactDetails.map((item) => (
+                  <div key={item.id} className="flex gap-4">
+                    <div className="flex justify-center items-center h-[50px] w-[50px] text-2xl rounded-full overflow-hidden relative ">
+                      <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
+                      {item.icon}
+                    </div>
+                    <div className="flex flex-col">
+                      <div className="sm:text-xl text-lg">{item.title}</div>
+                      <div>{item.description}</div>
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <div className="sm:text-xl text-lg">{item.title}</div>
-                    <div>{item.description}</div>
-                  </div>
-                </div>
-              ))}
+                ))}
               <span className="bg-white absolute opacity-30 bottom-0 left-0 h-[1px] w-full"></span>
             </div>
             <div className="pt-4 pb-14">
@@ -199,17 +263,18 @@ const Contact = () => {
             <div className="relative flex flex-col sm:pb-[330px] pb-[340px]">
               <div className="text-[20px] pb-4">Follow Us</div>
               <div className="flex gap-[18px] z-20">
-                {followUs.map(
-                  (item) =>
-                    item.display && (
-                      <Link key={item.id} href={item.link}>
-                        <div className="flex justify-center items-center h-[40px] w-[40px] text-lg rounded-full overflow-hidden relative ">
-                          <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
-                          {item.icon}
-                        </div>
-                      </Link>
-                    )
-                )}
+                {socialMedia &&
+                  socialMedia.map(
+                    (item) =>
+                      item.display && (
+                        <Link key={item.id} href={item.link}>
+                          <div className="flex justify-center items-center h-[40px] w-[40px] text-lg rounded-full overflow-hidden relative ">
+                            <span className="h-full w-full bg-white absolute opacity-20 top-0 left-0"></span>
+                            {item.icon}
+                          </div>
+                        </Link>
+                      )
+                  )}
               </div>
 
               <div className="flex justify-center w-full absolute h-[495px]">

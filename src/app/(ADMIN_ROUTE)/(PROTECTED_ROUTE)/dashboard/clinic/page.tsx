@@ -126,7 +126,7 @@ const SwitchClinicContent = () => {
       <section className="pb-6 px-6">
         <DashboardSubTitle
           displaySearch={true}
-          displayButton={false}
+          displayButton={true}
           displayIcon={false}
           searchValue={search}
           name="Download CSV"

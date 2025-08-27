@@ -1,27 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 import { IoMail } from "react-icons/io5";
-import { FaPhoneAlt } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaTwitter } from "react-icons/fa";
 import { NavData } from "../constants";
-import { ContactDetailType } from "../types";
+import { ContactDetailType, UpdateProfileProps } from "../types";
 import Link from "next/link";
 import Image from "next/image";
+import { getAllProfile } from "../app/(HOME_ROUTE)/action";
+
+export interface SocialMediaDetailType {
+  id: number;
+  icon: ReactNode;
+  display: boolean;
+  link: string;
+}
+
 const Footer = () => {
-  const socialMedia = [
+  const [profiles, setProfiles] = useState<UpdateProfileProps[]>([]);
+  const [socialMedia, setSocialMedia] = useState<SocialMediaDetailType[]>([
     { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
     { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
-    { id: 3, display: true, icon: <FaSquareXTwitter />, link: "/twitter" },
-    { id: 4, display: false, icon: <FaTwitter />, link: "/twitter" },
-  ];
+  ]);
 
-  const contactDetails: ContactDetailType[] = [
+  const [contactDetails, setContactDetails] = useState<ContactDetailType[]>([
     {
       id: 1,
       icon: <IoMail />,
@@ -34,7 +39,46 @@ const Footer = () => {
       title: "Hours",
       description: "Mon-Fri, 9am-5pm AEST",
     },
-  ];
+  ]);
+
+  const loadSocialMedia = () => {
+    const emailData = profiles.find((item) => item.name === "email");
+    const hoursData = profiles.find((item) => item.name === "hours");
+    const facebookData = profiles.find((item) => item.name === "facebook");
+    const instagramData = profiles.find((item) => item.name === "instagram");
+    const email = {
+      ...contactDetails[0],
+      description: emailData?.value ?? contactDetails[0].description,
+    };
+    const hours = {
+      ...contactDetails[1],
+      description: hoursData?.value ?? contactDetails[1].description,
+    };
+    setContactDetails([email, hours]);
+
+    const facebook = {
+      ...socialMedia[0],
+      link: facebookData?.value ?? socialMedia[0].link,
+    };
+    const instagram = {
+      ...socialMedia[1],
+      link: instagramData?.value ?? socialMedia[1].link,
+    };
+    setSocialMedia([facebook, instagram]);
+  };
+
+  const fecthAllProfile = async () => {
+    const data = await getAllProfile();
+    setProfiles(data);
+  };
+
+  useEffect(() => {
+    fecthAllProfile();
+  }, []);
+
+  useEffect(() => {
+    loadSocialMedia();
+  }, [profiles]);
 
   return (
     <div className="bg-farm-green">
@@ -54,16 +98,17 @@ const Footer = () => {
               options that support your well-being.
             </div>
             <div className="flex flex-row gap-2">
-              {socialMedia.map(
-                (item) =>
-                  item.display && (
-                    <Link key={item.id} href={item.link}>
-                      <div className="flex justify-center items-center h-[40px] w-[40px] text-2xl rounded-full overflow-hidden relative text-white hover:text-light-green">
-                        {item.icon}
-                      </div>
-                    </Link>
-                  )
-              )}
+              {socialMedia &&
+                socialMedia.map(
+                  (item) =>
+                    item.display && (
+                      <Link key={item.id} href={item.link}>
+                        <div className="flex justify-center items-center h-[40px] w-[40px] text-2xl rounded-full overflow-hidden relative text-white hover:text-light-green">
+                          {item.icon}
+                        </div>
+                      </Link>
+                    )
+                )}
             </div>
           </div>
           <div className="flex flex-col gap-3 sm:w-1/4 sm:text-[20px] text-[18px] sm:p-0 pb-10">
@@ -80,14 +125,15 @@ const Footer = () => {
           </div>
           <div className="flex flex-col gap-3 sm:w-1/4 sm:text-[20px] text-[18px]">
             <div className="sm:pb-6 pb-2">Contact Us</div>
-            {contactDetails.map((item) => (
-              <div key={item.id} className="flex gap-3">
-                <div className="text-light pt-[3px] text-lemon">
-                  {item.icon}
+            {contactDetails &&
+              contactDetails.map((item) => (
+                <div key={item.id} className="flex gap-3">
+                  <div className="text-light pt-[3px] text-lemon">
+                    {item.icon}
+                  </div>
+                  <div>{item.description}</div>
                 </div>
-                <div>{item.description}</div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
         <div className="text-sm pb-[54px] text-justify ">

@@ -56,7 +56,7 @@ const DashboardSubTitle = ({
           </div>
         </div>
       )}
-      {displayButton ? (
+      {displayButton && (
         <div className="flex items-center">
           <button
             onClick={funcBtn}
@@ -69,15 +69,6 @@ const DashboardSubTitle = ({
             )}
             <div className=" pt-[3px]">{name}</div>
           </button>
-        </div>
-      ) : (
-        <div className="flex items-center">
-          <Link
-            href={url}
-            className="flex items-center flex-row gap-4 py-2 px-11 text-white border-farm-green bg-farm-green rounded-md cursor-pointer"
-          >
-            <div className=" pt-[3px]">Export CSV</div>
-          </Link>
         </div>
       )}
     </div>

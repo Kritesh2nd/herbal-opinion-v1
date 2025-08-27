@@ -1,5 +1,11 @@
 import axiosInstance from "@/src/lib/axios.utils";
-import { CreateFaqDto, CreatePricingDto } from "@/src/types";
+import {
+  CreateFaqDto,
+  CreatePricingDto,
+  CreateProfileProps,
+  UpdateManyProfileProps,
+  UpdateProfileProps,
+} from "@/src/types";
 import { AxiosResponse } from "axios";
 import toast from "react-hot-toast";
 
@@ -191,6 +197,24 @@ export const deleteFaqById = async (id: number) => {
   handelToast(response, "Successfully Deleted FAQ", "Failed to Deleted FAQ");
   return response.data;
 };
+
+// Profile
+export const getAllProfile = async () => {
+  const response = await axiosInstance.get("profile");
+  return response.data;
+};
+
+export const getProfileById = async (id: number) => {
+  const response = await axiosInstance.get("profile/" + id);
+  return response.data;
+};
+
+export const updateProfiles = async (formData: UpdateManyProfileProps) => {
+  const response = await axiosInstance.patch("profile/many", formData);
+  return response;
+};
+
+// Support function
 
 const handelToast = (
   response: AxiosResponse<any, any>,

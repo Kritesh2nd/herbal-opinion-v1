@@ -26,3 +26,10 @@ export const createNewSwitchClinic = async (formData: CreateClinicDto) => {
   const response = await axiosInstance.post("clinics", formData);
   return response;
 };
+
+// Profile
+export const getAllProfile = async () => {
+  const response = await axiosInstance.get("profile");
+  console.log("response", response);
+  return response.data;
+};
