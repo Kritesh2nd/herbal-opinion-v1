@@ -1,5 +1,6 @@
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,9 @@ export default function RootLayout({
   return (
     <div>
       <Header />
-      {children}
+      <Suspense fallback={<div className="p-25 text-center">Loading...</div>}>
+        {children}
+      </Suspense>
       <Footer />
     </div>
   );
