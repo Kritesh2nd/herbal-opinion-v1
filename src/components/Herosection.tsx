@@ -18,7 +18,7 @@ const Herosection = () => {
                   <span className="sm:inline hidden">
                     <br />
                   </span>
-                  to <span className="text-primary">Feeling Better</span>
+                  to <span className="text-primary">Feeling Better </span>
                   <span className="sm:inline hidden">
                     <br />
                   </span>
