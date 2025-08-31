@@ -32,10 +32,10 @@ const PrimaryButton = ({
         ${text ? "text-" + text : "text-farm-green"}
           flex items-center gap-3  text-farm-green px-7 ${py} rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer`}
         >
-          <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] ">
+          <div className="flex items-center gap-3 pt-[2px] md:pt-[4px] ">
             {title}
             {displayArrow && (
-              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 -mt-[4px]" />
             )}
           </div>
         </Link>
@@ -48,10 +48,10 @@ const PrimaryButton = ({
         ${text ? "text-" + text : "text-farm-green"}
           flex items-center gap-3  text-farm-green px-7 py-[5px] rounded-full sm:text-[25px] text-[20px] transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer`}
         >
-          <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] ">
+          <div className="flex items-center gap-3 pt-[3px] md:pt-[6px] border ">
             {title}
             {displayArrow && (
-              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <FiArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 -mt-1" />
             )}
           </div>
         </button>

@@ -16,6 +16,7 @@ import {
   updatePricingById,
   deletePricingById,
 } from "../action";
+import Loading from "@/src/components/Loading";
 
 const PricingCard = ({
   price,
@@ -380,6 +381,7 @@ const PricingForm = ({
 };
 
 const Pricing = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [updateFormId, setUpdateFromId] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
@@ -402,12 +404,22 @@ const Pricing = () => {
     setPricings(data);
   };
 
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
+      await fecthAllPricing();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fecthAllPricing();
+    fetchAllData();
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto py-5 px-7">
+    <div className="flex flex-col h-full w-full overflow-y-auto py-5 px-7 relative">
       <div className="pb-6">
         <DashboardSubTitle
           funcBtn={() => {
@@ -451,6 +463,7 @@ const Pricing = () => {
           </div>
         </div>
       )}
+      <Loading display={loading} />
     </div>
   );
 };

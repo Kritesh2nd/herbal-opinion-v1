@@ -7,6 +7,7 @@ import {
   getDashboardTotalSubmission,
 } from "@/src/app/(ADMIN_ROUTE)/(PROTECTED_ROUTE)/dashboard/action";
 import { formatDate } from "@/src/app/utils";
+import Loading from "@/src/components/Loading";
 import { shortcuts } from "@/src/constants";
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
@@ -77,6 +78,7 @@ const SubMetric = ({
 };
 
 export default function Dashboard() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [totalSubmission, setTotalSubmission] = useState<TotalSubmissionType>({
     submissionCount: 0,
     weeklyChange: 0,
@@ -123,18 +125,29 @@ export default function Dashboard() {
     });
   };
 
+  const fetchAllData = async () => {
+    setLoading(true);
+
+    try {
+      await fetcDashboardRecentActivities();
+      await fetchTotalSubmission();
+      await fetchContactWeeklyStats();
+      await fetchClinicWeeklyStats();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetcDashboardRecentActivities();
-    fetchTotalSubmission();
-    fetchContactWeeklyStats();
-    fetchClinicWeeklyStats();
+    fetchAllData();
   }, []);
 
   // getDashboardTotalSubmission
   return (
-    <div className="flex flex-col h-full w-full p-6">
+    <div className="flex flex-col h-full w-full py-6 relative">
       {/* Dashboard Content */}
-      <main className="py-6 space-y-6 overflow-y-auto">
+      <main className="py-6 space-y-6 overflow-y-auto px-6">
         {/* Metrics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <SubMetric
@@ -254,6 +267,7 @@ export default function Dashboard() {
           </div>
         </div>
       </main>
+      <Loading display={loading} />
     </div>
   );
 }

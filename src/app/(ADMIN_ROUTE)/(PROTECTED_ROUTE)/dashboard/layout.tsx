@@ -17,7 +17,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div className="h-[93%] overflow-y-auto">
-          <div>{children}</div>
+          <div className="h-full">{children}</div>
         </div>
       </div>
     </div>

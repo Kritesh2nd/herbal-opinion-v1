@@ -19,7 +19,7 @@ const DashboardHeader = () => {
           </div>
           <div className="text-left">
             <div className="text-base  text-gray-900">
-              {data?.user?.fullname}
+              Mr. {data?.user?.fullname}
             </div>
             <div className="text-xs text-gray-500">Administrator</div>
           </div>

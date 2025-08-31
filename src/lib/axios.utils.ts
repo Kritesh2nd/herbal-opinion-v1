@@ -22,6 +22,7 @@ axiosInstance.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.log("axios request");
     return Promise.reject(error);
   }
 );
@@ -33,6 +34,7 @@ axiosInstance.interceptors.response.use(
   }, // For successful responses, just return the data
   //eslint-disable-next-line
   (error: any) => {
+    console.log("axios response");
     return {
       success: false,
       message: error.response?.data?.message || "Something went wrong.",

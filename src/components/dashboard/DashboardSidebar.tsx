@@ -14,7 +14,7 @@ import { IoShareSocialOutline } from "react-icons/io5";
 import { FaInbox, FaTachometerAlt, FaTags } from "react-icons/fa";
 
 const sidebarItems = [
-  { icon: FaHome, label: "Home", url: "/" },
+  // { icon: FaHome, label: "Home", url: "/" },
   { icon: FaTachometerAlt, label: "Dashboard", url: "/dashboard" },
   { icon: FaTags, label: "Pricing Manager", url: "/dashboard/pricing" },
   { icon: FaCircleQuestion, label: "FAQs Editor", url: "/dashboard/faq" },
@@ -41,8 +41,16 @@ const DashboardSidebar = () => {
 
   return (
     <div className="flex flex-col h-full border-r-1">
-      <div className="p-6 ">
-        <Image src="/logo.png" alt="logo" height={52} width={137} />
+      <div className="flex p-6">
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            className=""
+            alt="logo"
+            height={52}
+            width={137}
+          />
+        </Link>
       </div>
       <div className="flex flex-col gap-2 px-6">
         {sidebarItems.map((item) => (

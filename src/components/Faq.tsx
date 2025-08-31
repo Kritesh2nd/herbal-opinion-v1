@@ -6,6 +6,7 @@ import { faqsData } from "../constants";
 import { FaqDataType, FaqDropdownType } from "../types";
 import { IoIosArrowUp } from "react-icons/io";
 import { getAllFaqs } from "../app/(HOME_ROUTE)/action";
+import Loading from "./Loading";
 
 const FaqDropdown = ({ data }: { data: FaqDataType }) => {
   const { question, answer } = data;
@@ -41,17 +42,30 @@ const FaqDropdown = ({ data }: { data: FaqDataType }) => {
 };
 
 const Faq = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const [faqs, setFaqs] = useState<FaqDataType[]>([]);
   const fecthAllPricing = async () => {
-    const data = await getAllFaqs();
-    setFaqs(data);
+    try {
+      const data = await getAllFaqs();
+
+      if (data.status == 200) {
+        setFaqs(data.data);
+      } else {
+        setError("Failed to Load FAQ Page");
+      }
+    } catch (error) {
+      setError("Failed to Load FAQ Page");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fecthAllPricing();
   }, []);
   return (
-    <div className="bg-white py-[70px]">
+    <div className="bg-white py-[70px] relative">
       <div className="globalContainer flex flex-col sm:flex-row">
         <div className="flex sm:justify-start justify-center sm:w-1/2 pb-10 sm:pb-0">
           <div className="w-[100vw] h-[calc(100vw+50px)] sm:w-[320px] sm:h-[420px] md:w-[440px] md:h-[560px] lg:w-[559px] lg:h-[680px] relative overflow-hidden rounded-xl">
@@ -66,16 +80,24 @@ const Faq = () => {
             Our community of care providers, experts, and advocates working
             together to support your wellness journey.
           </div>
-          <div className="flex flex-col gap-2">
-            {faqs &&
-              faqs.length > 0 &&
-              faqs.map((item) => <FaqDropdown key={item.id} data={item} />)}
-
-            {(!faqs || faqs.length == 0) &&
-              faqsData.map((item) => <FaqDropdown key={item.id} data={item} />)}
-          </div>
+          {error ? (
+            <div className="flex flex-col pt-20 pb-28 text-center ">
+              <p className="text-xl font-bold text-farm-green pb-1">{error}</p>
+              <p className="text-lg text-primary-dgray">
+                Please try again after a while...
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-2">
+              {!loading &&
+                faqs &&
+                faqs.length > 0 &&
+                faqs.map((item) => <FaqDropdown key={item.id} data={item} />)}
+            </div>
+          )}
         </div>
       </div>
+      <Loading display={loading} displayBg={false} />
     </div>
   );
 };

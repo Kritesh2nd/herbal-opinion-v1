@@ -18,6 +18,7 @@ interface JWTToken {
 }
 
 export async function refreshAccessToken(token: JWTToken): Promise<JWTToken> {
+  console.log("requesting refrwsh token from frontend");
   try {
     const response = await axiosInstance.get("/auth/refresh-tokens", {
       params: { "refresh-token": token.refreshToken },

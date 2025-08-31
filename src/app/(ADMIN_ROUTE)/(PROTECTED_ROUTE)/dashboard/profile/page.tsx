@@ -9,6 +9,7 @@ import {
 } from "@/src/types";
 import { getProfileById, getAllProfile, updateProfiles } from "../action";
 import toast from "react-hot-toast";
+import Loading from "@/src/components/Loading";
 
 export interface profileProp {
   email: string;
@@ -45,6 +46,7 @@ const profileData = [
 ];
 
 const page = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [formData, setFormData] = useState<UpdateProfileProps[]>([
     {
       id: 1,
@@ -120,16 +122,22 @@ const page = () => {
     handelUpdateProfile();
   };
 
-  useEffect(() => {
-    console.log("formData", formData);
-  }, [formData]);
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
+      await loadProfile();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    loadProfile();
+    fetchAllData();
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto p-6">
+    <div className="flex flex-col h-full w-full overflow-y-auto p-6 relative">
       <div className="pb-6">
         <DashboardSubTitle
           displayButton={false}
@@ -171,6 +179,7 @@ const page = () => {
           </div>
         </form>
       </div>
+      <Loading display={loading} />
     </div>
   );
 };

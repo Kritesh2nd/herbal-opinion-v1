@@ -6,13 +6,13 @@ import toast from "react-hot-toast";
 // Pricing
 export const getAllPricning = async () => {
   const response = await axiosInstance.get("pricing");
-  return response.data;
+  return response;
 };
 
 // Faq
 export const getAllFaqs = async () => {
   const response = await axiosInstance.get("faqs");
-  return response.data;
+  return response;
 };
 
 // Contact
@@ -31,5 +31,5 @@ export const createNewSwitchClinic = async (formData: CreateClinicDto) => {
 export const getAllProfile = async () => {
   const response = await axiosInstance.get("profile");
   console.log("response", response);
-  return response.data;
+  return response;
 };

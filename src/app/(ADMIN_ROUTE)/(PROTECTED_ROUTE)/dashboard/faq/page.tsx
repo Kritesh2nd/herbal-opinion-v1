@@ -16,6 +16,7 @@ import {
   updateFaqById,
   deleteFaqById,
 } from "../action";
+import Loading from "@/src/components/Loading";
 
 const FaqItem = ({
   faq,
@@ -227,6 +228,7 @@ const FaqForm = ({
 };
 
 const Faq = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [updateFormId, setUpdateFromId] = useState<number>(0);
   const [showForm, setShowForm] = useState(false);
   const [updateForm, setUpdateForm] = useState(false);
@@ -249,12 +251,22 @@ const Faq = () => {
     setFaqs(data);
   };
 
+  const fetchAllData = async () => {
+    setLoading(true);
+    try {
+      await fecthAllFaq();
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fecthAllFaq();
+    fetchAllData();
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto p-6">
+    <div className="flex flex-col h-full w-full overflow-y-auto p-6 relative">
       <div className="pb-6">
         <DashboardSubTitle
           name="Add New FAQ"
@@ -299,6 +311,7 @@ const Faq = () => {
           </div>
         </div>
       )}
+      <Loading display={loading} />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import {
   getContactCsv,
   deleteContactById,
 } from "../action";
+import Loading from "@/src/components/Loading";
 
 export interface ContactDataProps {
   data: ContactDataType[];
@@ -24,6 +25,7 @@ export interface ContactDataProps {
 }
 
 const ContactFormsContent = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<ContactDataType[]>([]);
   const [activePage, setActivePage] = useState(0);
@@ -111,16 +113,25 @@ const ContactFormsContent = () => {
     }
   };
 
-  useEffect(() => {
-    if (search.length > 2) {
-      fetchContactSearchResutl(activePage + 1, search);
-    } else {
-      fetchContactPaginated(activePage + 1);
+  const fetchAllData = async () => {
+    try {
+      if (search.length > 2) {
+        await fetchContactSearchResutl(activePage + 1, search);
+      } else {
+        await fetchContactPaginated(activePage + 1);
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchAllData();
   }, [activePage, search]);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto py-6">
+    <div className="flex flex-col h-full w-full overflow-y-auto py-6 relative">
       {/* section 1: page title */}
       <section className="pb-6 px-6">
         <DashboardSubTitle
@@ -215,7 +226,7 @@ const ContactFormsContent = () => {
                 </tbody>
               );
             })}
-            {dataList.length == 0 && (
+            {!loading && dataList.length == 0 && (
               <tbody>
                 <tr>
                   <td colSpan={5}>
@@ -285,6 +296,7 @@ const ContactFormsContent = () => {
           </div>
         </div>
       </section>
+      <Loading display={loading} />
     </div>
   );
 };

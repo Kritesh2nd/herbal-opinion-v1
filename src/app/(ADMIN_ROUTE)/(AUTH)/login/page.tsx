@@ -6,15 +6,19 @@ import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import Loading from "@/src/components/Loading";
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const router = useRouter();
 
-  const onSubmit = async () => {
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
     try {
       console.log(email, password);
       const res = await signIn("credentials", {
@@ -33,12 +37,14 @@ const LoginPage = () => {
     } catch (error) {
       toast.error("Login Failed!.");
       console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {}, []);
   return (
-    <div className="min-h-screen flex ">
+    <div className="min-h-screen flex relative">
       {/* Left side - Login Form */}
       <div className="flex items-center justify-center bg-white p-8 w-[45%]">
         <div className="w-full max-w-sm space-y-6 shadow-lg rounded-lg p-6 bg-white">
@@ -56,56 +62,58 @@ const LoginPage = () => {
           </div>
 
           {/* Login Form */}
-          <div className="space-y-4">
-            {/* Username Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-[#374151]">
-                Username
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-              />
-            </div>
-
-            {/* Password Field */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-[#374151]">
-                Password
-              </label>
-              <div className="relative">
+          <form onSubmit={onSubmit} className="">
+            <div className="space-y-4">
+              {/* Username Field */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-[#374151]">
+                  Username
+                </label>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-3 py-2 pr-10 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  type="text"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3 py-2 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#E5E7EB] hover:text-gray-600"
-                >
-                  {showPassword ? (
-                    <FaEyeSlash className="w-4 h-4" />
-                  ) : (
-                    <FaEye className="w-4 h-4" />
-                  )}
-                </button>
               </div>
-            </div>
 
-            {/* Login Button */}
-            <button
-              className="w-full bg-primary hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors"
-              onClick={onSubmit}
-            >
-              Login
-            </button>
-          </div>
+              {/* Password Field */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-[#374151]">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-3 py-2 pr-10 border border-[#E5E7EB] rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#E5E7EB] hover:text-gray-600"
+                  >
+                    {showPassword ? (
+                      <FaEyeSlash className="w-4 h-4" />
+                    ) : (
+                      <FaEye className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {/* Login Button */}
+              <button
+                className="w-full bg-primary hover:bg-green-700 text-white py-2 px-4 rounded-md font-medium transition-colors cursor-pointer duration-300"
+                type="submit"
+              >
+                Login
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -120,6 +128,7 @@ const LoginPage = () => {
           />
         </div>
       </div>
+      <Loading display={isLoading} page="login" />
     </div>
   );
 };

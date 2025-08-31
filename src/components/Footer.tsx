@@ -11,6 +11,7 @@ import { ContactDetailType, UpdateProfileProps } from "../types";
 import Link from "next/link";
 import Image from "next/image";
 import { getAllProfile } from "../app/(HOME_ROUTE)/action";
+import Loading from "./Loading";
 
 export interface SocialMediaDetailType {
   id: number;
@@ -20,6 +21,7 @@ export interface SocialMediaDetailType {
 }
 
 const Footer = () => {
+  const [loading, setLoading] = useState<boolean>(false);
   const [profiles, setProfiles] = useState<UpdateProfileProps[]>([]);
   const [socialMedia, setSocialMedia] = useState<SocialMediaDetailType[]>([
     { id: 1, display: true, icon: <FaFacebookF />, link: "/" },
@@ -31,7 +33,7 @@ const Footer = () => {
       id: 1,
       icon: <IoMail />,
       title: "Email",
-      description: "support@herbalopinion.com.au ",
+      description: "support@herbalopinion.com.au",
     },
     {
       id: 2,
@@ -68,8 +70,16 @@ const Footer = () => {
   };
 
   const fecthAllProfile = async () => {
-    const data = await getAllProfile();
-    setProfiles(data);
+    setLoading(true);
+    try {
+      const data = await getAllProfile();
+      if (data.status == 200) {
+        setProfiles(data.data);
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -81,7 +91,7 @@ const Footer = () => {
   }, [profiles]);
 
   return (
-    <div className="bg-farm-green">
+    <div className="bg-farm-green relative">
       <div className="globalContainer flex flex-col py-12  text-primary-lgray">
         <div className="flex sm:flex-row flex-col pb-[78px]">
           <div className="flex flex-col sm:w-1/2 sm:p-0 pb-10">
@@ -156,6 +166,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <Loading display={loading} displayBg={false} />
     </div>
   );
 };

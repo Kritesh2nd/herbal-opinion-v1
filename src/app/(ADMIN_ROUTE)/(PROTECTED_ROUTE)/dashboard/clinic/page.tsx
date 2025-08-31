@@ -13,6 +13,7 @@ import {
   deleteClinicById,
 } from "../action";
 import { formatDateTime } from "@/src/app/utils";
+import Loading from "@/src/components/Loading";
 
 export interface ClinicDataProps {
   data: ClinicDataType[];
@@ -25,6 +26,7 @@ export interface ClinicDataProps {
 }
 
 const SwitchClinicContent = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [search, setSearch] = useState("");
   const [dataList, setDataList] = useState<ClinicDataType[]>([]);
   const [activePage, setActivePage] = useState(0);
@@ -112,16 +114,34 @@ const SwitchClinicContent = () => {
     }
   };
 
-  useEffect(() => {
-    if (search.length > 2) {
-      fetchClinicSearchResutl(activePage + 1, search);
-    } else {
-      fetchClinicPaginated(activePage + 1);
+  // useEffect(() => {
+  //   if (search.length > 2) {
+  //     fetchClinicSearchResutl(activePage + 1, search);
+  //   } else {
+  //     fetchClinicPaginated(activePage + 1);
+  //   }
+  // }, [activePage, search]);
+
+  const fetchAllData = async () => {
+    // setLoading(true);
+    try {
+      if (search.length > 2) {
+        await fetchClinicSearchResutl(activePage + 1, search);
+      } else {
+        await fetchClinicPaginated(activePage + 1);
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchAllData();
   }, [activePage, search]);
 
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto py-6">
+    <div className="flex flex-col h-full w-full overflow-y-auto py-6 relative">
       {/* section 1: page title */}
       <section className="pb-6 px-6">
         <DashboardSubTitle
@@ -232,10 +252,10 @@ const SwitchClinicContent = () => {
                 </tbody>
               );
             })}
-            {dataList.length == 0 && (
+            {loading && dataList.length == 0 && (
               <tbody>
                 <tr>
-                  <td colSpan={5}>
+                  <td colSpan={7}>
                     <div className=" text-center text-primary-dgray">
                       No clinics found in database
                     </div>
@@ -303,6 +323,7 @@ const SwitchClinicContent = () => {
           </div>
         </div>
       </section>
+      <Loading display={loading} />
     </div>
   );
 };

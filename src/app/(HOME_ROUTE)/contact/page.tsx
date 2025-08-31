@@ -31,8 +31,8 @@ const Contact = () => {
   const [Loading, setLoading] = useState(false);
 
   const [socialMedia, setSocialMedia] = useState([
-    { id: 1, display: true, icon: <FaFacebookF />, link: "/facebook" },
-    { id: 2, display: true, icon: <FaInstagram />, link: "/instagram" },
+    { id: 1, display: true, icon: <FaFacebookF />, link: "/" },
+    { id: 2, display: true, icon: <FaInstagram />, link: "/" },
   ]);
   const [contactDetails, setContactDetails] = useState<ContactDetailType[]>([
     {
@@ -118,7 +118,9 @@ const Contact = () => {
 
   const fecthAllProfile = async () => {
     const data = await getAllProfile();
-    setProfiles(data);
+    if (data.status == 200) {
+      setProfiles(data.data);
+    }
   };
 
   useEffect(() => {

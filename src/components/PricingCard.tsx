@@ -4,6 +4,7 @@ import { ConsultationPlan, pricingDataType } from "../types";
 import { MdOutlineCheck } from "react-icons/md";
 import Link from "next/link";
 import { getAllPricning } from "../app/(HOME_ROUTE)/action";
+import Loading from "./Loading";
 
 const PricingSingleCard = ({
   data,
@@ -23,7 +24,7 @@ const PricingSingleCard = ({
   } = data;
 
   return (
-    <div className={`${index % 2 == 0 ? "sm:py-6" : "py-0"} flex `}>
+    <div className={`${index % 2 == 0 ? "sm:py-6" : "py-0"} flex`}>
       <div
         className={`flex flex-col flex-1 bg-white rounded-xl border-2 border-lemon-green overflow-hidden `}
       >
@@ -82,10 +83,22 @@ const PricingSingleCard = ({
 };
 
 const PricingCard = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
   const [pricings, setPricings] = useState<pricingDataType[]>([]);
   const fecthAllPricing = async () => {
-    const data = await getAllPricning();
-    setPricings(data);
+    try {
+      const data = await getAllPricning();
+      if (data.status == 200) {
+        setPricings(data.data);
+      } else {
+        setError("Failed to Load Pricing Page");
+      }
+    } catch (error) {
+      setError("Failed to Load Pricing Page");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -93,8 +106,8 @@ const PricingCard = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="globalContainer flex flex-col  sm:px-22">
+    <div className=" relative min-h-[500px]">
+      <div className="globalContainer flex flex-col sm:px-22">
         <h2 className="gooper text-farm-green titleLevel2 pb-2 font-medium">
           Simple Pricing for Personalized Support
         </h2>
@@ -102,19 +115,25 @@ const PricingCard = () => {
           Choose the care level that suits your needs. No hidden fees. Cancel
           anytime.
         </p>
-        <div className=" sm:gap-6 gap-4 grid sm:grid-cols-3 grid-cols-1">
-          {pricings &&
-            pricings.length > 0 &&
-            pricings.map((item, index) => (
-              <PricingSingleCard key={item.id} data={item} index={index} />
-            ))}
-
-          {(!pricings || pricings.length == 0) &&
-            pricingPlans.map((item, index) => (
-              <PricingSingleCard key={item.id} data={item} index={index} />
-            ))}
-        </div>
+        {error ? (
+          <div className="flex flex-col pt-20 pb-28 text-center ">
+            <p className="text-xl font-bold text-farm-green pb-1">{error}</p>
+            <p className="text-lg text-primary-dgray">
+              Please try again after a while...
+            </p>
+          </div>
+        ) : (
+          <div className=" sm:gap-6 gap-4 grid sm:grid-cols-3 grid-cols-1">
+            {!loading &&
+              pricings &&
+              pricings.length > 0 &&
+              pricings.map((item, index) => (
+                <PricingSingleCard key={item.id} data={item} index={index} />
+              ))}
+          </div>
+        )}
       </div>
+      <Loading display={loading} displayBg={false} />
     </div>
   );
 };
