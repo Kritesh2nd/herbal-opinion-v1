@@ -108,7 +108,6 @@ const SwitchClinic = () => {
             <div className="flex">
               <PrimaryButton
                 title="Switch to Herbal Opinion"
-                // url="/switch-clinic"
                 background="farm-green"
                 text="white"
                 py="py-2"

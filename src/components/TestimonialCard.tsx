@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { FaQuoteLeft, FaQuoteRight, FaStar } from "react-icons/fa";
+import { FaQuoteRight, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { testimonials } from "../constants";

@@ -223,38 +223,38 @@ export const pricingPlans: pricingDataType[] = [
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Robert Thomas",
-    title: "12 years old",
+    name: "Robert Thomas Businessman",
+    title: "72 years old",
     content:
       "The doctor was so patient with all my questions. I appreciate finding a service that treats seniors with respect and offers natural alternatives.",
-    image: "/img/testimonial/1.jpg",
+    image: "/img/testimonial/testimonial1.jpg",
     rating: 5,
   },
   {
     id: 2,
-    name: "Sarah Johnson",
+    name: "Sarah Johnson Homemaker",
     title: "Wellness Coach",
     content:
       "Amazing service! The personalized approach and natural remedies have made such a difference in my health journey. Highly recommend!",
-    image: "/img/testimonial/2.jpg",
+    image: "/img/testimonial/testimonial2.jpg",
     rating: 5,
   },
   {
     id: 3,
-    name: "Michael Chen",
+    name: "Michael Chen Retired professor",
     title: "Retired Teacher",
     content:
       "I was skeptical at first, but the results speak for themselves. The team is knowledgeable and truly cares about their patients.",
-    image: "/img/testimonial/1.jpg",
+    image: "/img/testimonial/testimonial3.jpg",
     rating: 5,
   },
   {
     id: 4,
-    name: "Emily Rodriguez",
+    name: "Emily Rodriguez Retired",
     title: "Yoga Instructor",
     content:
       "The holistic approach aligns perfectly with my lifestyle. Professional, caring, and effective - everything I was looking for.",
-    image: "/img/testimonial/2.jpg",
+    image: "/img/testimonial/testimonial4.jpg",
     rating: 5,
   },
 ];

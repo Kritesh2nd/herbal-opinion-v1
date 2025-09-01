@@ -1,11 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
+
 import DashboardHeader from "@/src/components/dashboard/DashboardHeader";
 import DashboardSidebar from "@/src/components/dashboard/DashboardSidebar";
 
 import React from "react";
 
 const layout = ({ children }: { children: React.ReactNode }) => {
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (session?.error === "RefreshTokenExpired") {
+      signOut({ callbackUrl: "/login" });
+    }
+  }, [session]);
   return (
     <div className="flex flex-row h-[100vh] w-full">
       <div className="flex flex-col w-[340px]">

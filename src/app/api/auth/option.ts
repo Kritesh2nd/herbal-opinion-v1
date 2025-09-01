@@ -60,14 +60,24 @@ export const authOptions: NextAuthOptions = {
         token.roles = user.roles;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
-        token.accessTokenExpires = Date.now() + 60 * 60 * 1000;
+        token.accessTokenExpires = Date.now() + 1 * 20 * 1000;
+        token.refreshTokenExpires = Date.now() + 1 * 40 * 1000;
       }
+
+      // if (Date.now() > (token.refreshTokenExpires as number)) {
+      //   console.log(
+      //     "Date.now() > (token.refreshTokenExpires as number)",
+      //     Date.now() > (token.refreshTokenExpires as number)
+      //   );
+      //   return { ...token, error: "RefreshTokenExpired" };
+      // }
 
       if (Date.now() < (token.accessTokenExpires as number)) {
         return token;
       }
-
+      console.log("refreshedToken in jwt callback", token);
       const refreshedToken = await refreshAccessToken(token);
+      console.log("refreshedToken in jwt callback", refreshedToken);
       return {
         ...token,
         ...refreshedToken,
