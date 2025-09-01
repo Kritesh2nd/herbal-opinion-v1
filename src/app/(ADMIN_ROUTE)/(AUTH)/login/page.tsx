@@ -11,8 +11,8 @@ import Loading from "@/src/components/Loading";
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("kritesh@gmail.com");
-  const [password, setPassword] = useState("password");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const router = useRouter();
 
