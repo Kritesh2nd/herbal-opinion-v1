@@ -11,7 +11,10 @@ import React from "react";
 const layout = ({ children }: { children: React.ReactNode }) => {
   const { data: session } = useSession();
   useEffect(() => {
-    if (session?.error === "RefreshTokenExpired") {
+    if (
+      session?.refreshTokenExipreCount &&
+      session?.refreshTokenExipreCount >= 5
+    ) {
       signOut({ callbackUrl: "/login" });
     }
   }, [session]);

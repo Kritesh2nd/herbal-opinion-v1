@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUser } from "../../(ADMIN_ROUTE)/(AUTH)/action";
 import { refreshAccessToken } from "@/src/lib/refreshToken";
+import { signOut } from "next-auth/react";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -64,20 +65,10 @@ export const authOptions: NextAuthOptions = {
         token.refreshTokenExpires = Date.now() + 1 * 40 * 1000;
       }
 
-      // if (Date.now() > (token.refreshTokenExpires as number)) {
-      //   console.log(
-      //     "Date.now() > (token.refreshTokenExpires as number)",
-      //     Date.now() > (token.refreshTokenExpires as number)
-      //   );
-      //   return { ...token, error: "RefreshTokenExpired" };
-      // }
-
       if (Date.now() < (token.accessTokenExpires as number)) {
         return token;
       }
-      console.log("refreshedToken in jwt callback", token);
       const refreshedToken = await refreshAccessToken(token);
-      console.log("refreshedToken in jwt callback", refreshedToken);
       return {
         ...token,
         ...refreshedToken,
@@ -94,6 +85,7 @@ export const authOptions: NextAuthOptions = {
         };
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
+        session.refreshTokenExipreCount = token.refreshTokenExipreCount ?? 0;
       }
       return session;
     },
