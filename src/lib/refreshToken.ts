@@ -17,27 +17,23 @@ interface JWTToken {
 }
 
 export async function refreshAccessToken(token: JWTToken): Promise<JWTToken> {
+  console.log("requesting refrwsh token from frontend");
   try {
     const response = await axiosInstance.get("/auth/refresh-tokens", {
       params: { refreshToken: token.refreshToken },
     });
-    let count = 0;
-    if (response.status == 401) {
-      count = 5;
-    }
-    const tokenPairs = response.data.tokens;
+
+    const refreshedTokens = response.data.tokens;
     return {
       ...token,
-      refreshTokenExipreCount: count,
-      accessToken: tokenPairs.accessToken,
-      refreshToken: tokenPairs.refreshToken,
-      accessTokenExpires: Date.now() + 1 * 20 * 1000,
+      accessToken: refreshedTokens.accessToken,
+      refreshToken: refreshedTokens.refreshToken,
+      accessTokenExpires: Date.now() + 60 * 60 * 1000,
     };
   } catch (error) {
-    let count = 5;
+    console.error("RefreshAccessToken error:", error);
     return {
       ...token,
-      refreshTokenExipreCount: count,
       error: "RefreshAccessTokenError",
     };
   }

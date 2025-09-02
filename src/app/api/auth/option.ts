@@ -2,7 +2,6 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { loginUser } from "../../(ADMIN_ROUTE)/(AUTH)/action";
 import { refreshAccessToken } from "@/src/lib/refreshToken";
-import { signOut } from "next-auth/react";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -61,8 +60,7 @@ export const authOptions: NextAuthOptions = {
         token.roles = user.roles;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
-        token.accessTokenExpires = Date.now() + 1 * 20 * 1000;
-        token.refreshTokenExpires = Date.now() + 1 * 40 * 1000;
+        token.accessTokenExpires = Date.now() + 60 * 60 * 1000;
       }
 
       if (Date.now() < (token.accessTokenExpires as number)) {
@@ -85,7 +83,6 @@ export const authOptions: NextAuthOptions = {
         };
         session.accessToken = token.accessToken;
         session.refreshToken = token.refreshToken;
-        session.refreshTokenExipreCount = token.refreshTokenExipreCount ?? 0;
       }
       return session;
     },

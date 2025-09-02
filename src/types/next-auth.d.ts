@@ -11,7 +11,7 @@ declare module "next-auth" {
     accessToken?: string;
     refreshToken?: string;
     error?: string;
-    refreshTokenExipreCount?: number;
+    refreshTokenExpired: boolean;
   }
 
   interface User extends DefaultUser {
@@ -35,7 +35,7 @@ declare module "next-auth/jwt" {
     accessTokenExpires: number;
     refreshTokenExpires: number;
     error?: string;
-    refreshTokenExipreCount?: number;
+    refreshTokenExpired: boolean;
   }
 }
 
