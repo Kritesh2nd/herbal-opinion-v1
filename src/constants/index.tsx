@@ -236,7 +236,7 @@ export const testimonials: Testimonial[] = [
     title: "Homemaker",
     content:
       "Amazing service! The personalized approach and natural remedies have made such a difference in my health journey. Highly recommend!",
-    image: "/img/testimonial/testimonial2.jpg",
+    image: "/img/testimonial/testimonial3.jpg",
     rating: 5,
   },
   {
@@ -245,7 +245,7 @@ export const testimonials: Testimonial[] = [
     title: "Retired Professor",
     content:
       "I was skeptical at first, but the results speak for themselves. The team is knowledgeable and truly cares about their patients.",
-    image: "/img/testimonial/testimonial3.jpg",
+    image: "/img/testimonial/testimonial2.jpg",
     rating: 5,
   },
   {

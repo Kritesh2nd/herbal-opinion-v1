@@ -8,7 +8,7 @@ const DashboardHeader = () => {
   const { data, status } = useSession();
 
   return (
-    <header className="bg-white shadow-bottom px-7 py-3">
+    <header className=" bg-white shadow-bottom px-7 py-3 z-20 relative">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-[#1F2937]">Dashboard</h1>
         <div className="flex items-center gap-3">

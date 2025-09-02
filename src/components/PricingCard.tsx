@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { pricingPlans } from "../constants";
 import { ConsultationPlan, pricingDataType } from "../types";
@@ -63,18 +65,12 @@ const PricingSingleCard = ({
             ))}
           </div>
           <div className="flex flex-1 flex-col justify-end pt-8">
-            {originalPrice ? (
-              <button className="bg-farm-green sm:text-[20xp] text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 ">
-                Get Started
-              </button>
-            ) : (
-              <Link
-                href="switch-clinic"
-                className="bg-farm-green sm:text-[20xp] text-center text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 "
-              >
-                Get Started
-              </Link>
-            )}
+            <Link
+              href={free ? "/switch-clinic" : "assessment"}
+              className="bg-farm-green sm:text-[20xp] text-center text-[18px] text-white py-[18px] w-full rounded-lg cursor-pointer  transition-all duration-300 hover:scale-105 "
+            >
+              Get Started
+            </Link>
           </div>
         </div>
       </div>

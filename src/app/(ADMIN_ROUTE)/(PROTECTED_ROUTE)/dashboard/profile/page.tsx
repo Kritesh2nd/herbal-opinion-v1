@@ -22,7 +22,7 @@ const profileData = [
   {
     id: 1,
     name: "email",
-    title: "Bussiness email",
+    title: "Business email",
     placeholder: "e.g., support@herbalopinion.com.au",
   },
   {
@@ -34,13 +34,13 @@ const profileData = [
   {
     id: 3,
     name: "facebook",
-    title: "Bussiness Facebook Page Link",
+    title: "Business Facebook Page Link",
     placeholder: "e.g., https://facebook.com",
   },
   {
     id: 4,
     name: "instagram",
-    title: "Bussiness Instagram Page Link",
+    title: "Business Instagram Page Link",
     placeholder: "e.g., https://instagram.com",
   },
 ];
